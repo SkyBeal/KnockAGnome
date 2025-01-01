@@ -26,12 +26,29 @@ public class SplineController : MonoBehaviour
         currentSplineIndex = splineStartIndex;
 
         //Subscribes event to method
-        SplineAnimate.ReachedEndOfSpline += SwitchSpline;
+        //SplineAnimate.ReachedEndOfSpline += SwitchSpline;
 
         //Gets all spline scripts on cart
         splinePath = gameObject.GetComponentsInChildren<SplineAnimate>();
 
         SetSplineTrack();
+    }
+
+    /// <summary>
+    /// Switches to next spline after the current one is finished
+    /// </summary>
+    private void Update()
+    {
+        //out of bounds check
+        if (currentSplineIndex < splinePath.Length)
+        {
+            //checks to see if current spline is finished
+            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+            {
+                //switches to next spline
+                SwitchSpline();
+            }
+        }
     }
 
     /// <summary>
@@ -71,8 +88,9 @@ public class SplineController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    /*private void OnDisable()
     {
         SplineAnimate.ReachedEndOfSpline -= SwitchSpline;
     }
+    */
 }
