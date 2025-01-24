@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638682157531190432
+  lastModified: 638678772108911815
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638682157531190432
+  lastModified: 638678772108896681
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -55,7 +55,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638682157531200433
+  lastModified: 638678772108911815
   FileSizes:
   - Name: Desktop
     Value: 792
@@ -75,7 +75,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638682157531200433
+  lastModified: 638678772108921969
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -103,5 +103,5 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638682157531200433
+  cacheTime: 638678772108921969
   cacheVersion: 131620
