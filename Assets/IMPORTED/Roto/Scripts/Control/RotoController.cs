@@ -177,6 +177,12 @@ namespace Roto.Control
             {
                 process.Kill();
             }
+
+            //TYLER MOVED THIS HERE
+            processThread = new Thread(StreamLoop) { };
+            processThread.Start();
+            isConnected = true;
+
         }
 
         /// <summary>
@@ -184,9 +190,10 @@ namespace Roto.Control
         /// </summary>
         void Start()
         {
-            processThread = new Thread(StreamLoop) { };
+            //MOVED TO AWAKE
+            /*processThread = new Thread(StreamLoop) { };
             processThread.Start();
-            isConnected = true;
+            isConnected = true;*/
         }
 
         #endregion
