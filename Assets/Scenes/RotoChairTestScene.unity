@@ -365,22 +365,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotoTimeline:
   - direction: 0
-    angle: 189
+    angle: 309
     power: 20
     time: 0
-  - direction: 2
-    angle: 0
-    power: 0
-    time: 3
-  - direction: 1
-    angle: 93
-    power: 55
-    time: 0
-  - direction: 1
-    angle: 93
-    power: 55
-    time: 0
   placeInTimeline: 0
+  checkpointsOn: 0
   degreesOff: 4
 --- !u!114 &1108805612
 MonoBehaviour:
