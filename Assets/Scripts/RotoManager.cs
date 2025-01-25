@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(RotoController))]
 public class RotoManager : MonoBehaviour
 {
     //I LOVE ENUMS YIPPEE
@@ -67,7 +68,7 @@ public class RotoManager : MonoBehaviour
 
     //the chair is always 4 degrees off, so this should always be 4.
     //IF the chair ever gets more unsynced, change this variable
-    [SerializeField, Tooltip("DEBUG ONLY - HOW MANY DEGREES OFF IT IS"), Header("DEBUG")]
+    [SerializeField, Tooltip("DEBUG ONLY - If something is off with calibration, it's probably this. DO NOT TOUCH UNLESS YOU'RE TYLER."), Header("DO NOT TOUCH UNLESS YOU ARE TYLER")]
     private int degreesOff = 4;
 
 
