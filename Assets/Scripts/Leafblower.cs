@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -5,6 +6,7 @@ public class Leafblower : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
     public GameObject leafBlowerHitBox;
+    [SerializeField] Transform origin;
     private LeafblowerHitBox hitbox;
     public UnityAction ActivateLeafBlower;
 
@@ -35,24 +37,51 @@ public class Leafblower : MonoBehaviour
         activeLeafBlower.canceled -= Shoot_Leaf_Blower;
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void Suck_Leaf_Blower(InputAction.CallbackContext obj)
     {
         isLeafBlowerActive = true;
-        target = hitbox.target;
+
+        //Sucks up an object that is in the leaf blower's range
+        StartCoroutine(LeafBlowerSuck());
     }
 
     private void Shoot_Leaf_Blower(InputAction.CallbackContext obj)
     {
         isLeafBlowerActive = false;
 
-        if (target != null)
-        {
+        //This is either an error check or something that causes errors lol
+        StopCoroutine(LeafBlowerSuck());
 
+        //Shoots the object
+        LeafBlowerBlow();
+    }
+
+    IEnumerator LeafBlowerSuck()
+    {
+        while (isLeafBlowerActive)
+        {
+            if (hitbox.target != null)
+            {
+                hitbox.target.transform.LookAt(origin.position);
+                hitbox.target.GetComponent<Rigidbody>().useGravity = false;
+                if (Vector3.Distance(hitbox.target.transform.position, origin.position) > 0.1f)
+                    hitbox.target.transform.position = Vector3.MoveTowards(hitbox.target.transform.position, origin.position, 0.25f);
+                else
+                {
+                    hitbox.target.transform.position = origin.position;
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private void LeafBlowerBlow()
+    {
+        if (hitbox.target != null)
+        {
+            hitbox.target.GetComponent<Rigidbody>().useGravity = true;
+            hitbox.target.transform.rotation = Quaternion.Inverse(hitbox.target.transform.rotation);
+            hitbox.target.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20f, ForceMode.Impulse);
         }
     }
 }
