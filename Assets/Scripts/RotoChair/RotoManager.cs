@@ -74,8 +74,8 @@ public class RotoManager : MonoBehaviour
 
     //TEMPORARY VARIABLE
     //allows for testing before we have the eventsystem set up
-    [SerializeField, ReadOnly, Tooltip("Does the script work based off checkpoints or not"), Foldout("Debug")]
-    private bool checkpointsOn = false;
+    [Tooltip("Does the script work based off checkpoints or not"), Foldout("Debug")]
+    public bool checkpointsOn = false;
 
     //the chair is always 4 degrees off, so this should always be 4.
     //IF the chair ever gets more unsynced, change this variable
@@ -108,9 +108,16 @@ public class RotoManager : MonoBehaviour
         //adds all the right listeners to the eventsystem
         //NOT CURRENTLY IMPLEMENTED
         AddListenersToEventSystem();
+
+        PublicEventManager.TestingCheckpointOne?.Invoke(RotoTimeline[0]);
+        PublicEventManager.TestingCheckpointTwo?.Invoke(RotoTimeline[1]);
+        PublicEventManager.TestingCheckpointThree?.Invoke(RotoTimeline[2]);
     }
 
-    
+    public void TestFunc()
+    {
+        Debug.Log("Gnomes Spawned");
+    }
 
     /// <summary>
     /// Moves the chair based on the parameter, then
@@ -299,8 +306,23 @@ public class RotoManager : MonoBehaviour
     private void AddListenersToEventSystem()
     {
         //when eventsystem is implemented, add all listeners here
+        PublicEventManager.TestingCheckpointOne += HandleEvents;
+        PublicEventManager.TestingCheckpointTwo += HandleEvents;
+        PublicEventManager.TestingCheckpointThree += HandleEvents;
     }
 
+    private void HandleEvents(RotoInstructions RotoIns)
+    {
+        MoveChair(RotoIns);
+        TestFunc();
+    }
+
+    private void OnDestroy()
+    {
+        PublicEventManager.TestingCheckpointOne -= HandleEvents;
+        PublicEventManager.TestingCheckpointTwo -= HandleEvents;
+        PublicEventManager.TestingCheckpointThree -= HandleEvents;
+    }
     #endregion
 
     /// <summary>
