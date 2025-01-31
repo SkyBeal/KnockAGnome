@@ -18,6 +18,7 @@ using UnityEngine.Splines;
 public class SplineController : MonoBehaviour
 {
     [SerializeField] private int splineStartIndex;
+    [SerializeField] private SplineCheckpoint[] splineCheckPoints;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
     private void Start()
@@ -30,7 +31,6 @@ public class SplineController : MonoBehaviour
 
         //Gets all spline scripts on cart
         splinePath = gameObject.GetComponentsInChildren<SplineAnimate>();
-
         SetSplineTrack();
     }
 
@@ -82,7 +82,10 @@ public class SplineController : MonoBehaviour
         for (int i = 0; i < splinePath.Length; i++)
         {
             if (i == currentSplineIndex) //If this is the current spline
+            {
                 splinePath[i].enabled = true;
+                splineCheckPoints[i].RotateChair();
+            }
             else //All other splines
                 splinePath[i].enabled = false;
         }

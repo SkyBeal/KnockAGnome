@@ -37,6 +37,11 @@ public class Leafblower : MonoBehaviour
         activeLeafBlower.canceled -= Shoot_Leaf_Blower;
     }
 
+    private void Update()
+    {
+        transform.Rotate(new Vector3(2, 0, 0));
+    }
+
     private void Suck_Leaf_Blower(InputAction.CallbackContext obj)
     {
         isLeafBlowerActive = true;
@@ -80,8 +85,7 @@ public class Leafblower : MonoBehaviour
         if (hitbox.target != null)
         {
             hitbox.target.GetComponent<Rigidbody>().useGravity = true;
-            hitbox.target.transform.rotation = Quaternion.Inverse(hitbox.target.transform.rotation);
-            hitbox.target.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20f, ForceMode.Impulse);
+            hitbox.target.GetComponent<Rigidbody>().AddForce(hitbox.target.transform.forward * 20f, ForceMode.Impulse);
         }
     }
 }
