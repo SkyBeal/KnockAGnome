@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Shatter))]
+
 public class GnomeBehavior : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float moveSpeed;
 
     private Rigidbody rb;
+    private Shatter shatter;
 
     private bool isMoving;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInChildren<Rigidbody>();
+        shatter = GetComponent<Shatter>();
     }
 
     //Start is called before the first frame update
@@ -22,6 +26,8 @@ public class GnomeBehavior : MonoBehaviour
         //target will eventually be set to the lawnmower here once it exists.
         isMoving = true;
         StartCoroutine("MoveTowardTarget");
+
+        Invoke("Die", 1f);
     }
 
     // Update is called once per frame
@@ -34,6 +40,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         Debug.Log(this.name + " has died.");
         isMoving = false;
+        shatter.BreakObject();
     }
 
     IEnumerator MoveTowardTarget()
