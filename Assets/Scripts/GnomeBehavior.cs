@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GnomeBehavior : MonoBehaviour
 {
+    [SerializeField] private Transform body;
     [SerializeField] private Transform target;
     [SerializeField] private float moveSpeed;
 
@@ -27,7 +28,7 @@ public class GnomeBehavior : MonoBehaviour
         isMoving = true;
         StartCoroutine("MoveTowardTarget");
 
-        Invoke("Die", 1f);
+        //Invoke("Die", 5f);
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class GnomeBehavior : MonoBehaviour
         
     }
 
+    
     void Die()
     {
         Debug.Log(this.name + " has died.");
@@ -47,8 +49,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isMoving)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            
+            Vector3 direction = (target.position - body.position).normalized;
             
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
