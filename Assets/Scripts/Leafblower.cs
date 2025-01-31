@@ -39,7 +39,7 @@ public class Leafblower : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(new Vector3(2, 0, 0));
+        transform.Rotate(new Vector3(2, 2, 0));
     }
 
     private void Suck_Leaf_Blower(InputAction.CallbackContext obj)
@@ -67,7 +67,7 @@ public class Leafblower : MonoBehaviour
         {
             if (hitbox.target != null)
             {
-                hitbox.target.transform.LookAt(origin.position);
+                hitbox.target.transform.LookAt(origin.position - new Vector3(90, 90, 90));
                 hitbox.target.GetComponent<Rigidbody>().useGravity = false;
                 if (Vector3.Distance(hitbox.target.transform.position, origin.position) > 0.1f)
                     hitbox.target.transform.position = Vector3.MoveTowards(hitbox.target.transform.position, origin.position, 0.25f);
