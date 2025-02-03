@@ -26,18 +26,27 @@ public class Shatter : MonoBehaviour
         
     }
 
-    public async void BreakObject()
+    /// <summary>
+    /// Breaks the mesh into individual pieces of a Voronoi pattern determined by the points inside of breakPoints, adds
+    /// physics components to them, and organizes than under a results parent object.
+    /// </summary>
+    public async void BreakObject(Vector3 fragmentVelocity)
     {
+        //Collects all of the points childed to the breakPoints object.
         List<Transform> breakPoints 
             = Enumerable.Range(0, breakPointsParent.childCount).Select(x => breakPointsParent.GetChild(x)).ToList();
-        List<GameObject> results = await meshDemolisher.DemolishAsync(target, breakPoints, meshInterior);
 
+        //Asynchonously runs the internal demolition code and sets the pieces' parent to be the result object.
+        //This can take a second to complete depending on the complexity of the mesh, since the final gnome mesh is
+        //pretty low poly, I don't think it'll be an issue. If it is, lower the number of break points.
+        List<GameObject> results = await meshDemolisher.DemolishAsync(target, breakPoints, meshInterior);
         results.ForEach(x => x.transform.SetParent(fragments, true));
 
-        //Add physics components to all of the new pieces
+        //Add physics components to all of the new pieces.
         results.ForEach(x => x.AddComponent<MeshCollider>().convex = true);
         results.ForEach(x => x.AddComponent<Rigidbody>());
 
+        //Scales the results pieces by the fragmentScale.
         Enumerable.Range(0, fragments.childCount).Select(i => fragments.GetChild(i)).ToList().ForEach(x => x.localScale
             = fragmentScale * Vector3.one);
         target.gameObject.SetActive(false);

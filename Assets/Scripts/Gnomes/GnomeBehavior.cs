@@ -1,0 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Shatter))]
+
+public class GnomeBehavior : MonoBehaviour
+{
+    [SerializeField] private Transform body;
+    [SerializeField] private Transform target;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float attackInterval;
+
+    private Rigidbody rb;
+    private Shatter shatter;
+
+    private bool isMoving;
+    private bool isAttacking;
+
+    private void Awake()
+    {
+        rb = GetComponentInChildren<Rigidbody>();
+        shatter = GetComponent<Shatter>();
+    }
+
+    //Start is called before the first frame update
+    void Start()
+    {
+        isMoving = true;
+        StartCoroutine("MoveTowardTarget");
+
+        //Here for testing until theres a reliable way to kill the gnome in the scene.
+        //Invoke("Die", 3f);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Finish")
+        {
+            AttachToCart(collision.transform);
+        }
+    }
+
+    /// <summary>
+    /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
+    /// </summary>
+    /// <param name="killingBlowVelocity"></param>
+    void Die(Vector3 killingBlowVelocity)
+    {
+        Debug.Log(this.name + " has died.");
+        isMoving = false;
+        isAttacking = false;
+        shatter.BreakObject(killingBlowVelocity);
+    }
+
+    /// <summary>
+    /// Once the gnome reaches the lawnmower it attaches itself to it and continues attacking it until it is killed.
+    /// </summary>
+    /// <param name="cart"></param>
+    void AttachToCart(Transform cart)
+    {
+        isMoving = false;
+        isAttacking = true;
+        transform.SetParent(cart);
+        StartCoroutine("Attack");
+    }
+
+    /// <summary>
+    /// Moves the gnome in the direction of its assigned target.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator MoveTowardTarget()
+    {
+        while (isMoving)
+        {
+            Vector3 direction = (target.position - body.position).normalized;
+            
+            rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
+
+            yield return new WaitForFixedUpdate();
+        }
+        
+    }
+
+
+    IEnumerator Attack()
+    {
+        while (isAttacking)
+        {
+            
+            
+            yield return new WaitForSeconds(attackInterval);
+        }
+    }
+}
