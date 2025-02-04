@@ -44,8 +44,9 @@ public class Shatter : MonoBehaviour
 
         //Add physics components to all of the new pieces.
         results.ForEach(x => x.AddComponent<MeshCollider>().convex = true);
-        results.ForEach(x => x.AddComponent<Rigidbody>());
-
+        results.ForEach(x => x.AddComponent<Rigidbody>().AddExplosionForce(fragmentVelocity.magnitude, 
+            transform.position, 1, 0, ForceMode.Impulse));
+        
         //Scales the results pieces by the fragmentScale.
         Enumerable.Range(0, fragments.childCount).Select(i => fragments.GetChild(i)).ToList().ForEach(x => x.localScale
             = fragmentScale * Vector3.one);

@@ -13,6 +13,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private Rigidbody rb;
     private Shatter shatter;
+    private LawnmowerPointsSystem pointsSystem;
 
     private bool isMoving;
     private bool isAttacking;
@@ -21,6 +22,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         rb = GetComponentInChildren<Rigidbody>();
         shatter = GetComponent<Shatter>();
+        pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
     }
 
     //Start is called before the first frame update
@@ -30,7 +32,7 @@ public class GnomeBehavior : MonoBehaviour
         StartCoroutine("MoveTowardTarget");
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
-        //Invoke("Die", 3f);
+        //Invoke("Die", 1f);
     }
 
     // Update is called once per frame
@@ -56,6 +58,7 @@ public class GnomeBehavior : MonoBehaviour
         Debug.Log(this.name + " has died.");
         isMoving = false;
         isAttacking = false;
+        pointsSystem.GainPoints();
         shatter.BreakObject(killingBlowVelocity);
     }
 
@@ -93,7 +96,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            
+            pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
         }

@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8661964909254828076, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -424,6 +428,7 @@ GameObject:
   - component: {fileID: 1202061225}
   - component: {fileID: 1202061224}
   - component: {fileID: 1202061223}
+  - component: {fileID: 1202061227}
   m_Layer: 0
   m_Name: Target
   m_TagString: Finish
@@ -510,13 +515,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202061222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.22, y: 0.5, z: 0}
+  m_LocalPosition: {x: 6.39, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1202061227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202061222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd2ccf7cda35624ea642ba2c658095b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointIncreases: 5
+  PointLosses: 1
+  StartingPointValue: 20
+  MinimumPointValue: 0
+  points: 9
 --- !u!1 &1665220504
 GameObject:
   m_ObjectHideFlags: 0
