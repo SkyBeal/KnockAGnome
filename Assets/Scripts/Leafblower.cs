@@ -1,3 +1,16 @@
+/* ---------------------------------------------------------------------------------------------+
+ *@author - Ryan Herwig
+ *@Last Modified - 02/04/2025
+ *@Description - Controls the leafblower
+ *               The leafblower can suck up gnomes and shoot them back out
+ *               It uses a collider to detect if a gnome is in range and then
+ *               uses a raycast that points to the gnome. If the raycast hits
+ *               a gnome, it sucks it in - assuming the proper input is being held down
+ *               When the proper input is released, it rotates the gnome 180 degrees and
+ *               shoots it out, in the opposite direction the leaf blower is facing
+ * ---------------------------------------------------------------------------------------------+/
+ */
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +20,19 @@ public class Leafblower : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     public GameObject leafBlowerHitBox;
     [SerializeField] Transform origin;
+    [SerializeField] LayerMask layerMask;
+
+    [Tooltip("How much power the leaf blower has when sucking up a gnome. The higher this value is, the faster the gnome will move")]
+    [SerializeField] private float leafBlowerSuckPower;
+    
+    [Tooltip("How much force is applied to the gnome when it is blasted away. The higher this value, the more force that will be applied")]
+    [SerializeField] private float leafBlowerBlowPower;
+
+    [Tooltip("The distance the raycast will shoot out.")]
+    [SerializeField] private float rayCastDistance;
+
+    [Tooltip("The minimum distance a gnome has to be from the origin of the vaccuum to be snapped to the origin.")]
+    [SerializeField] private float gnomeSnapDistance;
     private LeafblowerHitBox hitbox;
     public UnityAction ActivateLeafBlower;
 
@@ -17,6 +43,7 @@ public class Leafblower : MonoBehaviour
     private GameObject target;
     void Start()
     {
+        //Error check
         if (leafBlowerHitBox == null)
             Debug.LogWarning("LEAF BLOWER HITBOX IS NULL!");
         hitbox = leafBlowerHitBox.GetComponent<LeafblowerHitBox>();
@@ -24,6 +51,7 @@ public class Leafblower : MonoBehaviour
 
     private void OnEnable()
     {
+        //Enables inputs
         activeLeafBlower = playerInput.currentActionMap.FindAction("ActivateLeafblower");
         activeLeafBlower.performed += context => isLeafBlowerActive = true;
         activeLeafBlower.performed += Suck_Leaf_Blower;
@@ -32,6 +60,7 @@ public class Leafblower : MonoBehaviour
 
     private void OnDisable()
     {
+        //Disables inputs
         activeLeafBlower.performed -= context => isLeafBlowerActive = true;
         activeLeafBlower.performed -= Suck_Leaf_Blower;
         activeLeafBlower.canceled -= Shoot_Leaf_Blower;
@@ -39,7 +68,15 @@ public class Leafblower : MonoBehaviour
 
     private void Update()
     {
+        //Rotates for checks
         transform.Rotate(new Vector3(2, 2, 0));
+
+        //Draws a line for debugging
+        //This can be commented out
+        if (hitbox.target != null)
+        {
+            Debug.DrawLine(transform.position, (hitbox.target.transform.position - transform.position), Color.green);
+        }
     }
 
     private void Suck_Leaf_Blower(InputAction.CallbackContext obj)
@@ -61,31 +98,80 @@ public class Leafblower : MonoBehaviour
         LeafBlowerBlow();
     }
 
+    /// <summary>
+    /// A coroutine that searches for a target, rotates it, and sucks it in
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LeafBlowerSuck()
     {
+        //If the leaf blower is currently active, vaccuums gnomes
         while (isLeafBlowerActive)
         {
+            //If there is a gnome within range
             if (hitbox.target != null)
             {
-                hitbox.target.transform.LookAt(origin.position - new Vector3(90, 90, 90));
-                hitbox.target.GetComponent<Rigidbody>().useGravity = false;
-                if (Vector3.Distance(hitbox.target.transform.position, origin.position) > 0.1f)
-                    hitbox.target.transform.position = Vector3.MoveTowards(hitbox.target.transform.position, origin.position, 0.25f);
-                else
+                //Creates a raycast from the vaccuum to the target gnome
+                RaycastHit rayCast;
+
+                //If the raycast hits anything, save the target data
+                if (Physics.Raycast(transform.position, hitbox.target.transform.position - transform.position, out rayCast, rayCastDistance))
                 {
-                    hitbox.target.transform.position = origin.position;
+                    //If the raycast hit a gnome
+                    if (rayCast.transform.CompareTag("Gnome"))
+                    {
+                        //Sets target
+                        target = hitbox.target;
+                        //Sets rotation
+                        target.transform.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
+                        //Disables gravity
+                        target.GetComponent<Rigidbody>().useGravity = false;
+
+                        //Sucks the gnome to the vaccumm
+                        if (Vector3.Distance(target.transform.position, origin.position) > gnomeSnapDistance)
+                        {
+                            target.transform.position = Vector3.MoveTowards(target.transform.position, origin.position, leafBlowerSuckPower);
+                        }
+                        else
+                        {
+                            //If gnome is close enough to vaccuum, snap gnome to the vaccuum's origin point
+                            //This saves resources and probably avoids any bugs or visual glitches
+                            target.transform.position = origin.position;
+                        }
+                    }
+                    else
+                        target = null;
                 }
+                else
+                    target = null;
             }
+            else
+                target = null;
+            //Infinitely loops coroutine until the vaccuum stops
             yield return new WaitForFixedUpdate();
         }
     }
 
+    /// <summary>
+    /// Blasts the vaccuum target in a specified direction
+    /// </summary>
     private void LeafBlowerBlow()
     {
-        if (hitbox.target != null)
+        //Checks if the target actually exists
+        if (target != null)
         {
-            hitbox.target.GetComponent<Rigidbody>().useGravity = true;
-            hitbox.target.GetComponent<Rigidbody>().AddForce(hitbox.target.transform.forward * 20f, ForceMode.Impulse);
+            //Re-enables gravity
+            target.GetComponent<Rigidbody>().useGravity = true;
+
+            //Rotates the target to be able to be properly shot at the correct angle
+            target.transform.rotation *= Quaternion.Euler(-90, 0, 0);
+
+            //Shoots the target
+            hitbox.target.GetComponent<Rigidbody>().AddForce(target.transform.forward * leafBlowerBlowPower, ForceMode.Impulse);;
+
+            //Rotates target to look like it was shot at the specified angle
+            target.transform.rotation *= Quaternion.Euler(-90, 0, 0);
+
+            //In the end, the target was rotated 180 degrees, which should be correct
         }
     }
 }

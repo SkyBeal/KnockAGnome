@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------------------------------------+
  *@author - Ryan Herwig
- *@Last Modified - 12/13/2024
+ *@Last Modified - 02/04/2025
  *@Description - Controls what spline the player / cart is on. This is done by grabbing all
  *               SplineAnimate scripts on the object, then enabling and disbling them.
  *               Essentially, the SplineAnimate script will hold a section of the spline. The
