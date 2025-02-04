@@ -110,10 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7a3680ef36200449b2019f25663b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 253526437641792026}
   target: {fileID: 0}
   moveSpeed: 2
-  attackInterval: 0
+  attackInterval: 1
 --- !u!114 &3369705200362762596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +129,7 @@ MonoBehaviour:
   breakPointsParent: {fileID: 1673871430701138151}
   meshInterior: {fileID: 2100000, guid: 842f1b88643f1bb458ba6243088e344e, type: 2}
   fragmentScale: 1
-  fragments: {fileID: 3467907161528049170}
+  fragmentsParent: {fileID: 3467907161528049170}
 --- !u!54 &8661964909254828076
 Rigidbody:
   m_ObjectHideFlags: 0

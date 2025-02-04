@@ -1,3 +1,10 @@
+/******************************************************************************
+ * Author: Campbell Dugal
+ * Last Modified: 2/4/25
+ * Description: A basic behavior script for the gnome enemies that run up to
+ *              and attack the lawnmower. 
+ *
+ *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +13,15 @@ using UnityEngine;
 
 public class GnomeBehavior : MonoBehaviour
 {
-    [SerializeField] private Transform body;
-    [SerializeField] private Transform target;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float attackInterval;
+    #region Variables
+    [SerializeField, Tooltip("The transform that the gnome should move towards.")]
+    private Transform target;
+
+    [SerializeField, Tooltip("How fast the gnome should move.")]
+    private float moveSpeed;
+
+    [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
+    private float attackInterval;
 
     private Rigidbody rb;
     private Shatter shatter;
@@ -17,6 +29,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
+    #endregion
 
     private void Awake()
     {
@@ -29,7 +42,7 @@ public class GnomeBehavior : MonoBehaviour
     void Start()
     {
         isMoving = true;
-        StartCoroutine("MoveTowardTarget");
+        StartCoroutine(MoveTowardTarget());
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Invoke("Die", 1f);
@@ -43,7 +56,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Finish")
+        if(collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
         {
             AttachToCart(collision.transform);
         }
@@ -71,7 +84,7 @@ public class GnomeBehavior : MonoBehaviour
         isMoving = false;
         isAttacking = true;
         transform.SetParent(cart);
-        StartCoroutine("Attack");
+        StartCoroutine(Attack());
     }
 
     /// <summary>
@@ -82,7 +95,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isMoving)
         {
-            Vector3 direction = (target.position - body.position).normalized;
+            Vector3 direction = (target.position - transform.position).normalized;
             
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
@@ -91,7 +104,10 @@ public class GnomeBehavior : MonoBehaviour
         
     }
 
-
+    /// <summary>
+    /// Attacks every set interval, losing the player points.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Attack()
     {
         while (isAttacking)

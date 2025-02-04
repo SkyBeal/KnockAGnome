@@ -1,3 +1,15 @@
+/******************************************************************************
+ * Author: Campbell Dugal
+ * Last Modified: 2/4/25
+ * Description: This is a script meant for designer use to control the behavior
+ *              of the MeshDemolisher package. The demolish behavior functions 
+ *              by creating a Voronoi pattern and breaking the mesh into pieces 
+ *              based on the sections of this pattern. These points, for now, 
+ *              need to be manually placed as child objects of the 
+ *              breakPointsParent object.
+ *
+ *****************************************************************************/
+
 using Hanzzz.MeshDemolisher;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,13 +18,25 @@ using UnityEngine;
 
 public class Shatter : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
-    [SerializeField] private Transform breakPointsParent;
-    [SerializeField] private Material meshInterior;
-    [SerializeField] [Range(0f, 1f)] private float fragmentScale;
-    [SerializeField] private Transform fragments;
+    #region Variables
+    [SerializeField, Tooltip("The object that contains the mesh to be shattered.")] 
+    private GameObject target;
+
+    [SerializeField, Tooltip("The parent object of the points which determine the Voronoi pattern.")] 
+    private Transform breakPointsParent;
+
+    [SerializeField, Tooltip("The material for the inner sides of the new broken mesh pieces")]
+    private Material meshInterior;
+
+    [SerializeField, Tooltip("A value between zero and one that scales the broken mesh pieces." + 
+        " A value of zero will make pieces infinitely small. A value of one will not scale pieces."), Range(0f, 1f)]
+    private float fragmentScale;
+
+    [SerializeField, Tooltip("The parent object that broken mesh pieces will be placed under.")]
+    private Transform fragmentsParent;
 
     private static MeshDemolisher meshDemolisher = new MeshDemolisher();
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +64,7 @@ public class Shatter : MonoBehaviour
         //This can take a second to complete depending on the complexity of the mesh, since the final gnome mesh is
         //pretty low poly, I don't think it'll be an issue. If it is, lower the number of break points.
         List<GameObject> results = await meshDemolisher.DemolishAsync(target, breakPoints, meshInterior);
-        results.ForEach(x => x.transform.SetParent(fragments, true));
+        results.ForEach(x => x.transform.SetParent(fragmentsParent, true));
 
         //Add physics components to all of the new pieces.
         results.ForEach(x => x.AddComponent<MeshCollider>().convex = true);
@@ -48,8 +72,10 @@ public class Shatter : MonoBehaviour
             transform.position, 1, 0, ForceMode.Impulse));
         
         //Scales the results pieces by the fragmentScale.
-        Enumerable.Range(0, fragments.childCount).Select(i => fragments.GetChild(i)).ToList().ForEach(x => x.localScale
-            = fragmentScale * Vector3.one);
+        Enumerable.Range(0, fragmentsParent.childCount).Select(i => fragmentsParent.GetChild(i)).ToList().ForEach(x => 
+            x.localScale = fragmentScale * Vector3.one);
+        
+        //Hides the original full mesh
         target.gameObject.SetActive(false);
     }
 }
