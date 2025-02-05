@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineStartIndex: 0
+  splineCheckPoints: []
 --- !u!33 &7313764360925784715
 MeshFilter:
   m_ObjectHideFlags: 0
