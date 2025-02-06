@@ -97,6 +97,7 @@ public class GnomeBehavior : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
             yield return new WaitForFixedUpdate();
