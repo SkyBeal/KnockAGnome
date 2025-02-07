@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638733256258241863
+  lastModified: 638739301493858361
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638733256258241863
+  lastModified: 638739301493853141
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -55,10 +55,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638745311217750113
+  lastModified: 638739301493858361
   FileSizes:
   - Name: Desktop
-    Value: 834
+    Value: 792
   Exists: 1
 --- !u!114 &-3481361832903948002
 MonoBehaviour:
@@ -75,10 +75,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638745311217800943
+  lastModified: 638739301493858361
   FileSizes:
   - Name: Desktop
-    Value: 1488
+    Value: 494
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -97,39 +97,11 @@ MonoBehaviour:
   - {fileID: -6729135784664890556}
   - {fileID: -7239902350555940727}
   - {fileID: -3481361832903948002}
-  EditorEvents:
-  - {fileID: 1017604364932741178}
+  EditorEvents: []
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638745311217800943
+  cacheTime: 638739301493858361
   cacheVersion: 131620
---- !u!114 &1017604364932741178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Test
-  m_EditorClassIdentifier: 
-  Path: event:/Test
-  Guid:
-    Data1: -977268378
-    Data2: 1199982641
-    Data3: -1305026373
-    Data4: -794163330
-  Banks:
-  - {fileID: -3481361832903948002}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
