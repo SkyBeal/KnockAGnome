@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class GnomeBehavior : MonoBehaviour
 {
+    public GameObject GnomeModel;
     #region Variables
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
@@ -82,7 +83,10 @@ public class GnomeBehavior : MonoBehaviour
             isDead = true;
             isMoving = false;
             isAttacking = false;
-            pointsSystem.GainPoints();
+            if(pointsSystem != null)
+                pointsSystem.GainPoints();
+            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
+            mr.enabled = false;
             shatter.BreakObject(killingBlowVelocity);
         }
     }
@@ -127,7 +131,8 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            pointsSystem.LosePoints();
+            if(pointsSystem != null)
+                pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
         }
