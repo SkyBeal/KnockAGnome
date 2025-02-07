@@ -83,6 +83,7 @@ public class RotoManager : MonoBehaviour
         "DO NOT TOUCH UNLESS YOU'RE TYLER."), Header("DO NOT TOUCH UNLESS YOU ARE TYLER"), Foldout("Debug")]
     private int degreesOff = 4;
 
+    private Coroutine chairMoving;
 
 
 
@@ -106,12 +107,11 @@ public class RotoManager : MonoBehaviour
         }
 
         //adds all the right listeners to the eventsystem
-        //NOT CURRENTLY IMPLEMENTED
         AddListenersToEventSystem();
 
-        PublicEventManager.TestingCheckpointOne?.Invoke(RotoTimeline[0]);
+        /*PublicEventManager.RotateChair?.Invoke(RotoTimeline[0]);
         PublicEventManager.TestingCheckpointTwo?.Invoke(RotoTimeline[1]);
-        PublicEventManager.TestingCheckpointThree?.Invoke(RotoTimeline[2]);
+        PublicEventManager.TestingCheckpointThree?.Invoke(RotoTimeline[2]);*/
     }
 
     public void TestFunc()
@@ -210,7 +210,7 @@ public class RotoManager : MonoBehaviour
     /// refer to the RotoInstructions class at the top of the script</param>
     /// <exception cref="UnityException">Throws an out of bounds exception if
     /// the direction is not a possible value in the enum</exception>
-    public void MoveChair(RotoInstructions rotoIns)
+    public IEnumerator MoveChair(RotoInstructions rotoIns)
     {
             int tempAngle = 0;
             //checks to see the type of action
@@ -227,6 +227,7 @@ public class RotoManager : MonoBehaviour
                     while (rotoCon.GetOutputRotation() != tempAngle)
                     {
                         rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                        yield return null;
                     }
 
                 break;
@@ -242,6 +243,7 @@ public class RotoManager : MonoBehaviour
                     while (rotoCon.GetOutputRotation() != tempAngle)
                     {
                         rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                        yield return null;
                     }
                     break;
 
@@ -306,20 +308,23 @@ public class RotoManager : MonoBehaviour
     private void AddListenersToEventSystem()
     {
         //when eventsystem is implemented, add all listeners here
-        PublicEventManager.TestingCheckpointOne += HandleEvents;
+        PublicEventManager.RotateChair += HandleEvents;
         PublicEventManager.TestingCheckpointTwo += HandleEvents;
         PublicEventManager.TestingCheckpointThree += HandleEvents;
     }
 
     private void HandleEvents(RotoInstructions RotoIns)
     {
-        MoveChair(RotoIns);
-        TestFunc();
+        if (chairMoving != null)
+        {
+            StopCoroutine(chairMoving);
+        }
+        chairMoving = StartCoroutine(MoveChair(RotoIns));
     }
 
     private void OnDestroy()
     {
-        PublicEventManager.TestingCheckpointOne -= HandleEvents;
+        PublicEventManager.RotateChair -= HandleEvents;
         PublicEventManager.TestingCheckpointTwo -= HandleEvents;
         PublicEventManager.TestingCheckpointThree -= HandleEvents;
     }
