@@ -3172,9 +3172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotoInstructions:
-    direction: 0
-    angle: 0
-    power: 0
+    direction: 1
+    angle: 60
+    power: 30
     time: 0
 --- !u!4 &573544412 stripped
 Transform:
@@ -10494,6 +10494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotoInstructions:
     direction: 0
-    angle: 0
-    power: 0
+    angle: 300
+    power: 30
     time: 0
