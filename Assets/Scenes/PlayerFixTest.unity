@@ -9727,22 +9727,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5269442873192512797, guid: 62feb8baa820d254890b7e2d4c9be105, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5269442873192512797, guid: 62feb8baa820d254890b7e2d4c9be105, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5269442873192512797, guid: 62feb8baa820d254890b7e2d4c9be105, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5269442873192512797, guid: 62feb8baa820d254890b7e2d4c9be105, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
-      objectReference: {fileID: 0}
     - target: {fileID: 6160310987282103262, guid: 62feb8baa820d254890b7e2d4c9be105, type: 3}
       propertyPath: m_Name
       value: PlayButton Variant
