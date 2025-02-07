@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8661964909254828076}
   m_Layer: 0
   m_Name: Gnome
-  m_TagString: Untagged
+  m_TagString: Gnome
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   breakPointsParent: {fileID: 1673871430701138151}
   meshInterior: {fileID: 2100000, guid: 842f1b88643f1bb458ba6243088e344e, type: 2}
   fragmentScale: 1
+  breakForce: 20
   fragmentsParent: {fileID: 3467907161528049170}
 --- !u!54 &8661964909254828076
 Rigidbody:

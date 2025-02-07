@@ -29,6 +29,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
+    private bool isDead;
     #endregion
 
     private void Awake()
@@ -41,15 +42,23 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        if(pointsSystem == null)
+        {
+            Debug.LogError("No points system exists in the current level. Gnomes will not be able to be killed.");
+        }
+
         isMoving = true;
-        StartCoroutine(MoveTowardTarget());
+        if (target != null)
+        {
+            StartCoroutine(MoveTowardTarget());
+        }
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Invoke("Die", 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         
     }
@@ -66,13 +75,16 @@ public class GnomeBehavior : MonoBehaviour
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
     /// <param name="killingBlowVelocity"></param>
-    void Die(Vector3 killingBlowVelocity)
+    public void Die(Vector3 killingBlowVelocity)
     {
-        Debug.Log(this.name + " has died.");
-        isMoving = false;
-        isAttacking = false;
-        pointsSystem.GainPoints();
-        shatter.BreakObject(killingBlowVelocity);
+        if (!isDead)
+        {
+            isDead = true;
+            isMoving = false;
+            isAttacking = false;
+            pointsSystem.GainPoints();
+            shatter.BreakObject(killingBlowVelocity);
+        }
     }
 
     /// <summary>
@@ -83,6 +95,8 @@ public class GnomeBehavior : MonoBehaviour
     {
         isMoving = false;
         isAttacking = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         transform.SetParent(cart);
         StartCoroutine(Attack());
     }
