@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{940b1ac8-371b-4d1c-9564-c3226fb3df7c}">
+		<property name="assetPath">
+			<value>GnomeSFX/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e3806a39-9d11-40c9-8a68-730387126901}</destination>
+		</relationship>
+	</object>
+</objects>
