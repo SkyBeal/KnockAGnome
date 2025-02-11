@@ -616,22 +616,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome Explosion 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8809077249622355047, guid: d592c2c0c6507c5488d30022ba3df647, type: 3}
-      propertyPath: VelocityModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809077249622355047, guid: d592c2c0c6507c5488d30022ba3df647, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913436100967827511, guid: d592c2c0c6507c5488d30022ba3df647, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8938863916933790524, guid: d592c2c0c6507c5488d30022ba3df647, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
