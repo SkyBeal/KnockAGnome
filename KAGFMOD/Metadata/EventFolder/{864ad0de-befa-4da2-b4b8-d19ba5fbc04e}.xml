@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{864ad0de-befa-4da2-b4b8-d19ba5fbc04e}">
+		<property name="name">
+			<value>GnomeSFX</value>
+		</property>
+		<relationship name="folder">
+			<destination>{38595f1c-b00d-44ee-913b-95ccd409a6a6}</destination>
+		</relationship>
+	</object>
+</objects>
