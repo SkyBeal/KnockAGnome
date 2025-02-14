@@ -66,7 +66,7 @@ public class GnomeBehavior : MonoBehaviour
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
     /// <param name="killingBlowVelocity"></param>
-    void Die(Vector3 killingBlowVelocity)
+    public void Die(Vector3 killingBlowVelocity)
     {
         Debug.Log(this.name + " has died.");
         isMoving = false;
