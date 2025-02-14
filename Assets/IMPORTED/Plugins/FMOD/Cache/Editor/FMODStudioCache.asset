@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638745364722125275
+  lastModified: 638749794053902229
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638745348609093291
+  lastModified: 638745311788875467
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -136,10 +136,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638745364722150358
+  lastModified: 638749794053917305
   FileSizes:
   - Name: Desktop
-    Value: 1604
+    Value: 1550
   Exists: 1
 --- !u!114 &-4086482918099840889
 MonoBehaviour:
@@ -210,10 +210,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638745364722319897
+  lastModified: 638749794053927366
   FileSizes:
   - Name: Desktop
-    Value: 15288
+    Value: 14368
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -314,7 +314,6 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   - {fileID: -3481361832903948002}
   EditorEvents:
-  - {fileID: 3517103896177219859}
   - {fileID: -4086482918099840889}
   - {fileID: -6356205306835859460}
   - {fileID: 3969342051405405750}
@@ -335,7 +334,7 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638745364722319897
+  cacheTime: 638749794053927366
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -409,33 +408,6 @@ MonoBehaviour:
     Data2: 1311770502
     Data3: -876521287
     Data4: 630901612
-  Banks:
-  - {fileID: -3481361832903948002}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3517103896177219859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerSFX/PowerSwitch
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerSFX/PowerSwitch
-  Guid:
-    Data1: -709300990
-    Data2: 1249705376
-    Data3: -2009422189
-    Data4: -1388989003
   Banks:
   - {fileID: -3481361832903948002}
   IsStream: 0
