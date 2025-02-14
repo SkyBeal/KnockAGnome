@@ -14,7 +14,9 @@ public class AudioManager : MonoBehaviour
 
     [Range(0, 1)]
     public float masterVolume;
+    [Range(0, 1)]
     public float sfxVolume;
+    [Range(0, 1)]
     public float musicVolume;
 
     private void Awake()
