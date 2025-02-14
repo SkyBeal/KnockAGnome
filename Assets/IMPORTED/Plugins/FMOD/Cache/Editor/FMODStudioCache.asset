@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638682157531190432
+  lastModified: 638749794053902229
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1340
   Exists: 1
 --- !u!114 &-6729135784664890556
 MonoBehaviour:
@@ -35,11 +35,92 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638682157531190432
+  lastModified: 638745311788875467
   FileSizes:
   - Name: Desktop
     Value: 494
   Exists: 1
+--- !u!114 &-6421885237119319552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Feeder
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Feeder
+  Guid:
+    Data1: 1738452921
+    Data2: 1206645311
+    Data3: 813441704
+    Data4: -176665697
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6356205306835859460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LawnmowerSFX/Humming
+  m_EditorClassIdentifier: 
+  Path: event:/LawnmowerSFX/Humming
+  Guid:
+    Data1: -1121003229
+    Data2: 1176389866
+    Data3: 568150198
+    Data4: -16663238
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5988215452043849182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LawnmowerSFX/Damage
+  m_EditorClassIdentifier: 
+  Path: event:/LawnmowerSFX/Damage
+  Guid:
+    Data1: -503615654
+    Data2: 1233749658
+    Data3: -1580195161
+    Data4: -156271451
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4934615888628326578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +136,65 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638741925074231980
+  lastModified: 638749794053917305
   FileSizes:
   - Name: Desktop
-    Value: 834
+    Value: 1550
   Exists: 1
+--- !u!114 &-4086482918099840889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Bird
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Bird
+  Guid:
+    Data1: -2049634796
+    Data2: 1282554270
+    Data3: 937472921
+    Data4: 1159369188
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3555181859057605344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/Donk
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/Donk
+  Guid:
+    Data1: -1997232309
+    Data2: 1238395133
+    Data3: -1469387602
+    Data4: -1292760371
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3481361832903948002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,12 +210,12 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638741925074427696
+  lastModified: 638749794053927366
   FileSizes:
   - Name: Desktop
-    Value: 1488
+    Value: 14368
   Exists: 1
---- !u!114 &-2095985813896398181
+--- !u!114 &-2402311404581063885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,14 +225,68 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Test
+  m_Name: event:/LawnmowerSFX/OverRock
   m_EditorClassIdentifier: 
-  Path: event:/Test
+  Path: event:/LawnmowerSFX/OverRock
   Guid:
-    Data1: -977268378
-    Data2: 1199982641
-    Data3: -1305026373
-    Data4: -794163330
+    Data1: 555738024
+    Data2: 1126625499
+    Data3: -1924172877
+    Data4: 2031151987
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2209076877311404532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Sparks
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Sparks
+  Guid:
+    Data1: 870051654
+    Data2: 1189894825
+    Data3: 1286514847
+    Data4: -563112380
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1390787622977827348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Fire
+  Guid:
+    Data1: 685789024
+    Data2: 1104666711
+    Data3: 1636162489
+    Data4: -1835262700
   Banks:
   - {fileID: -3481361832903948002}
   IsStream: 0
@@ -125,11 +314,214 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   - {fileID: -3481361832903948002}
   EditorEvents:
-  - {fileID: -2095985813896398181}
+  - {fileID: -4086482918099840889}
+  - {fileID: -6356205306835859460}
+  - {fileID: 3969342051405405750}
+  - {fileID: 717024869982552157}
+  - {fileID: 1678889023658431349}
+  - {fileID: 8130050484014970184}
+  - {fileID: 7758847007063380390}
+  - {fileID: -2209076877311404532}
+  - {fileID: -3555181859057605344}
+  - {fileID: -5988215452043849182}
+  - {fileID: -1390787622977827348}
+  - {fileID: -2402311404581063885}
+  - {fileID: -6421885237119319552}
+  - {fileID: 1537537334369754697}
+  - {fileID: 3866357040580319825}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638741925074427696
+  cacheTime: 638749794053927366
   cacheVersion: 131620
+--- !u!114 &717024869982552157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/Squash
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/Squash
+  Guid:
+    Data1: -2113051594
+    Data2: 1190505719
+    Data3: -1099614323
+    Data4: -806033332
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1537537334369754697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Ambience
+  Guid:
+    Data1: -1199360801
+    Data2: 1257603055
+    Data3: -1315999090
+    Data4: -1092339384
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1678889023658431349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSFX/Shovel
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSFX/Shovel
+  Guid:
+    Data1: -781627849
+    Data2: 1311770502
+    Data3: -876521287
+    Data4: 630901612
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3866357040580319825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LawnmowerSFX/Smoking
+  m_EditorClassIdentifier: 
+  Path: event:/LawnmowerSFX/Smoking
+  Guid:
+    Data1: -1500644706
+    Data2: 1312991528
+    Data3: 1382334091
+    Data4: -1787945186
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3969342051405405750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LawnmowerSFX/OverMulch
+  m_EditorClassIdentifier: 
+  Path: event:/LawnmowerSFX/OverMulch
+  Guid:
+    Data1: 228185646
+    Data2: 1133559279
+    Data3: -648792424
+    Data4: 287612969
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7758847007063380390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/Shatter
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/Shatter
+  Guid:
+    Data1: 1984915524
+    Data2: 1150775534
+    Data3: 222921881
+    Data4: -1263931743
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8130050484014970184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnvironmentSFX/Leaves
+  m_EditorClassIdentifier: 
+  Path: event:/EnvironmentSFX/Leaves
+  Guid:
+    Data1: 518112577
+    Data2: 1321574956
+    Data3: 630854333
+    Data4: 1700724003
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
