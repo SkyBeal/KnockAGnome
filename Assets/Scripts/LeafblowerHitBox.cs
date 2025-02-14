@@ -16,7 +16,7 @@ using UnityEngine;
 public class LeafblowerHitBox : MonoBehaviour
 {
     [NonSerialized] public bool foundTarget;
-    [NonSerialized] public GameObject target;
+     public GameObject target;
     
     void Start()
     {
@@ -26,7 +26,7 @@ public class LeafblowerHitBox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //If a gnome enters its radius, mark it
-        if (other.gameObject.CompareTag("Gnome"))
+        if (other.gameObject.GetComponentInParent<GnomeBehavior>())
         {
             if (!foundTarget)
             {
@@ -38,13 +38,13 @@ public class LeafblowerHitBox : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Gnome"))
+        if (other.gameObject.GetComponentInParent<GnomeBehavior>())
         {
             if (other.gameObject == target)
             {
                 //if a gnome leaves the radius, unmark it
                 foundTarget = false;
-                target.GetComponent<Rigidbody>().useGravity = true; //Fail safe if object falls out of radius
+                target.GetComponentInParent<Rigidbody>().useGravity = true; //Fail safe if object falls out of radius
                 target = null;
             }
         }
