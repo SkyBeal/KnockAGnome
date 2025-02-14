@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "ActivateLeafblower",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "4793686c-5c7b-4cb2-a31f-9628026421b5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -23,6 +23,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "ActivateLeafblower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5514b183-a0b8-4512-97f2-52232fdd4ddd",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerRight>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XR",
                     "action": "ActivateLeafblower",
                     "isComposite": false,
                     "isPartOfComposite": false
