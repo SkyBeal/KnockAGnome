@@ -16,6 +16,7 @@ public class PlayButton : MonoBehaviour
     {
 
         Time.timeScale = 1f;
+        Destroy(this.gameObject);
 
     }
 }
