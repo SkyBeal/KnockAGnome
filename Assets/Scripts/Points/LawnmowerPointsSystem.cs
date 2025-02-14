@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using TMPro;
 
 public class LawnmowerPointsSystem : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
     [SerializeField, ReadOnly, Foldout("Debug")]
     private int points;
 
+    public TMP_Text ScoreText;
+
     [Button("Gain Points")]
     private void TempGainPoints()
     {
@@ -38,11 +41,13 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private void Start()
     {
         points = StartingPointValue;
+        ScoreText.text = "Score: " + 0.ToString();
     }
 
     public void GainPoints()
     {
         points += PointIncreases;
+        ScoreText.text = "Score: " + points.ToString();
     }
 
     public void LosePoints()
@@ -52,5 +57,6 @@ public class LawnmowerPointsSystem : MonoBehaviour
         {
             points = MinimumPointValue;
         }
+        ScoreText.text = "Score: " + points.ToString();
     }
 }
