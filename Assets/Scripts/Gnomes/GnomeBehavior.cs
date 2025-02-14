@@ -13,7 +13,6 @@ using UnityEngine;
 
 public class GnomeBehavior : MonoBehaviour
 {
-    public GameObject GnomeModel;
     #region Variables
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
@@ -30,7 +29,6 @@ public class GnomeBehavior : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
-    private bool isDead;
     #endregion
 
     private void Awake()
@@ -44,17 +42,14 @@ public class GnomeBehavior : MonoBehaviour
     void Start()
     {
         isMoving = true;
-        if (target != null)
-        {
-            StartCoroutine(MoveTowardTarget());
-        }
+        StartCoroutine(MoveTowardTarget());
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Invoke("Die", 1f);
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         
     }
@@ -73,18 +68,11 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="killingBlowVelocity"></param>
     public void Die(Vector3 killingBlowVelocity)
     {
-        if (!isDead)
-        {
-            isDead = true;
-            isMoving = false;
-            isAttacking = false;
-            transform.parent = null;
-            if(pointsSystem != null)
-                pointsSystem.GainPoints();
-            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-            shatter.BreakObject(killingBlowVelocity);
-        }
+        Debug.Log(this.name + " has died.");
+        isMoving = false;
+        isAttacking = false;
+        pointsSystem.GainPoints();
+        shatter.BreakObject(killingBlowVelocity);
     }
 
     /// <summary>
@@ -95,8 +83,6 @@ public class GnomeBehavior : MonoBehaviour
     {
         isMoving = false;
         isAttacking = true;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
         transform.SetParent(cart);
         StartCoroutine(Attack());
     }
@@ -111,7 +97,6 @@ public class GnomeBehavior : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             
-            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
             yield return new WaitForFixedUpdate();
@@ -127,8 +112,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            if(pointsSystem != null)
-                pointsSystem.LosePoints();
+            pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
         }

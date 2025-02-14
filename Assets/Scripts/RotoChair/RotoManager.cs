@@ -11,6 +11,7 @@ using NaughtyAttributes;
 using Roto.Control;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -67,34 +68,9 @@ public class RotoManager : MonoBehaviour
 
     //this is for the pseudo-recursion of MoveChair
     //keeps track of the current index of RotoTimeline
-    [SerializeField, ReadOnly, Tooltip("What index in the list the chair is currently on"), Foldout("Debug"),
+    [SerializeField, ReadOnly, Tooltip("What index in the list the chair is currently on"), Foldout("Debug"), 
         Header("Readonlys")]
     private int placeInTimeline;
-
-    [SerializeField, ReadOnly, Tooltip("This becomes true when the chair emergency stop is pressed"), Foldout("Debug")]
-    private bool EmergencyStopChair = false;
-    private RotoDir currentDir;
-
-    [Button("Emergency Stop Chair")]
-    public void StopChair()
-    {
-        EmergencyStopChair = true;
-        switch (currentDir)
-        {
-            case RotoDir.turnRight:
-                rotoCon.TurnLeftToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() + degreesOff), 30);
-                break;
-            case RotoDir.turnLeft:
-                rotoCon.TurnRightToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() - degreesOff), 30);
-                break;
-        }
-    }
-
-    [Button("Continue Chair After Stop")]
-    public void ContinueChair()
-    {
-        EmergencyStopChair = false;
-    }
 
     //TEMPORARY VARIABLE
     //allows for testing before we have the eventsystem set up
@@ -110,13 +86,6 @@ public class RotoManager : MonoBehaviour
     private Coroutine chairMoving;
 
 
-    [Button("Move Chair Manually")]
-    private void MoveChairWithoutCheckpointsNOW()
-    {
-        //starts action queue
-       MoveChairWithoutCheckpoints(RotoTimeline[0]);
-    }
-
 
     /// <summary>
     /// instantiates variables
@@ -131,8 +100,11 @@ public class RotoManager : MonoBehaviour
         //sets max power to 100
         rotoCon.SetChairTurnPower(100);
 
-        //defaults the emergency stop on the chair to false;
-        EmergencyStopChair = false;
+        if (!checkpointsOn)
+        {
+            //starts action queue
+            MoveChairWithoutCheckpoints(RotoTimeline[0]);
+        }
 
         //adds all the right listeners to the eventsystem
         AddListenersToEventSystem();
@@ -163,44 +135,72 @@ public class RotoManager : MonoBehaviour
     /// the direction is not a possible value in the enum</exception>
     public void MoveChairWithoutCheckpoints(RotoInstructions rotoIns)
     {
-        //checks to see the type of action
-        switch (rotoIns.direction)
+        //checks to see if there are still actions queued up
+        if (placeInTimeline < RotoTimeline.Count)
         {
-            //turns left
-            case RotoDir.turnLeft:
+            int tempAngle = 0;
+            //checks to see the type of action
+            switch (rotoIns.direction)
+            {
+                //turns left
+                case RotoDir.turnLeft:
 
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnLeft;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    //makes sure the angle is between 0 and 359
+                    tempAngle = ClampAngle(rotoIns.angle + degreesOff);
 
-                break;
+                    //yippee the rotochair is always 4 degrees off so we have to note angles like this
+                    //while loop cus the roto funcs need to be constantly run instead of run once
+                    while (rotoCon.GetOutputRotation() != tempAngle)
+                    {
+                        rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                    }
 
-            //turns right
-            case RotoDir.turnRight:
+                    //in order to get waiting working, I have to run this like recursion
+                    placeInTimeline++;
 
-                 if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnRight;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    //if too big, exit the loop 
+                    if (placeInTimeline >= RotoTimeline.Count)
+                    {
+                        return;
+                    }
 
-                break;
+                    MoveChairWithoutCheckpoints(RotoTimeline[placeInTimeline]);
+                    break;
 
-            //waits for specified time limit
-            case RotoDir.wait:
+                //turns right
+                case RotoDir.turnRight:
 
-                //just waits before starting the next command
-                StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
-                break;
-            default:
-                throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+                    //makes sure the angle is between 0 and 359
+                    tempAngle = ClampAngle(rotoIns.angle - degreesOff);
+
+                    //yippee the rotochair is always 4 degrees off so we have to note angles like this
+                    //while loop cus the roto funcs need to be constantly run instead of run once
+                    while (rotoCon.GetOutputRotation() != tempAngle)
+                    {
+                        rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                    }
+
+                    //in order to get waiting working, I have to run this like recursion
+                    placeInTimeline++;
+
+                    //if too big, exit the loop 
+                    if (placeInTimeline >= RotoTimeline.Count)
+                    {
+                        return;
+                    }
+                    MoveChairWithoutCheckpoints(RotoTimeline[placeInTimeline]);
+                    break;
+
+                //waits for specified time limit
+                case RotoDir.wait:
+
+                    //just waits before starting the next command
+                    StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
+                    break;
+                default:
+                    throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+            }
         }
-
-        
     }
 
     /// <summary>
@@ -210,92 +210,52 @@ public class RotoManager : MonoBehaviour
     /// refer to the RotoInstructions class at the top of the script</param>
     /// <exception cref="UnityException">Throws an out of bounds exception if
     /// the direction is not a possible value in the enum</exception>
-    public void MoveChair(RotoInstructions rotoIns)
+    public IEnumerator MoveChair(RotoInstructions rotoIns)
     {
-        /* int tempAngle = 0;
-         //checks to see the type of action
-         switch (rotoIns.direction)
-         {
-             //turns left
-             case RotoDir.turnLeft:
+            int tempAngle = 0;
+            //checks to see the type of action
+            switch (rotoIns.direction)
+            {
+                //turns left
+                case RotoDir.turnLeft:
 
-                 //makes sure the angle is between 0 and 359
-                 tempAngle = ClampAngle(rotoIns.angle + degreesOff);
+                    //makes sure the angle is between 0 and 359
+                    tempAngle = ClampAngle(rotoIns.angle + degreesOff);
 
-                 //yippee the rotochair is always 4 degrees off so we have to note angles like this
-                 //while loop cus the roto funcs need to be constantly run instead of run once
-                 while (rotoCon.GetOutputRotation() != tempAngle && !EmergencyStopChair)
-                 {
-                     rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                     yield return null;
-                 }
-
-                 break;
-
-             //turns right
-             case RotoDir.turnRight:
-
-                 //makes sure the angle is between 0 and 359
-                 tempAngle = ClampAngle(rotoIns.angle - degreesOff);
-
-                 //yippee the rotochair is always 4 degrees off so we have to note angles like this
-                 //while loop cus the roto funcs need to be constantly run instead of run once
-                 while (rotoCon.GetOutputRotation() != tempAngle && !EmergencyStopChair)
-                 {
-                     rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                     yield return null;
-                 }
-                 break;
-
-             //waits for specified time limit
-             case RotoDir.wait:
-
-                 //just waits 
-                 StartCoroutine(countdownTimer(rotoIns.time));
-                 break;
-             default:
-                 throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
-         }*/
-
-
-        //checks to see the type of action
-        switch (rotoIns.direction)
-        {
-            //turns left
-            case RotoDir.turnLeft:
-
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnLeft;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    //yippee the rotochair is always 4 degrees off so we have to note angles like this
+                    //while loop cus the roto funcs need to be constantly run instead of run once
+                    while (rotoCon.GetOutputRotation() != tempAngle)
+                    {
+                        rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                        yield return null;
+                    }
 
                 break;
 
-            //turns right
-            case RotoDir.turnRight:
+                //turns right
+                case RotoDir.turnRight:
 
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnRight;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    //makes sure the angle is between 0 and 359
+                    tempAngle = ClampAngle(rotoIns.angle - degreesOff);
 
-                break;
+                    //yippee the rotochair is always 4 degrees off so we have to note angles like this
+                    //while loop cus the roto funcs need to be constantly run instead of run once
+                    while (rotoCon.GetOutputRotation() != tempAngle)
+                    {
+                        rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                        yield return null;
+                    }
+                    break;
 
-            //waits for specified time limit
-            case RotoDir.wait:
+                //waits for specified time limit
+                case RotoDir.wait:
 
-                //just waits before starting the next command
-                StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
-                break;
-            default:
-                throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
-        }
-
-
+                    //just waits 
+                    StartCoroutine(countdownTimer(rotoIns.time));
+                    break;
+                default:
+                    throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+            }
     }
 
     #region PRIVATEFUNCS
@@ -355,13 +315,11 @@ public class RotoManager : MonoBehaviour
 
     private void HandleEvents(RotoInstructions RotoIns)
     {
-        /*if (chairMoving != null)
+        if (chairMoving != null)
         {
             StopCoroutine(chairMoving);
         }
-        chairMoving = StartCoroutine(MoveChair(RotoIns));*/
-
-        MoveChair(RotoIns);
+        chairMoving = StartCoroutine(MoveChair(RotoIns));
     }
 
     private void OnDestroy()

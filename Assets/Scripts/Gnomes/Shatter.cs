@@ -19,27 +19,21 @@ using UnityEngine;
 public class Shatter : MonoBehaviour
 {
     #region Variables
-    [SerializeField, Tooltip("The object that contains the mesh to be shattered.")]
+    [SerializeField, Tooltip("The object that contains the mesh to be shattered.")] 
     private GameObject target;
 
-    [SerializeField, Tooltip("The parent object of the points which determine the Voronoi pattern.")]
+    [SerializeField, Tooltip("The parent object of the points which determine the Voronoi pattern.")] 
     private Transform breakPointsParent;
-
-    [SerializeField, Tooltip("The parent object that broken mesh pieces will be placed under.")]
-    private Transform fragmentsParent;
 
     [SerializeField, Tooltip("The material for the inner sides of the new broken mesh pieces")]
     private Material meshInterior;
 
-    [SerializeField, Tooltip("A value between zero and one that scales the broken mesh pieces." +
+    [SerializeField, Tooltip("A value between zero and one that scales the broken mesh pieces." + 
         " A value of zero will make pieces infinitely small. A value of one will not scale pieces."), Range(0f, 1f)]
     private float fragmentScale;
 
-    [SerializeField, Tooltip("The force applied to new broken pieces; will be multiplied by the weapon's velocity")]
-    private float breakForce;
-
-    [SerializeField, Tooltip("The time, in seconds, before broken pieces will despawn")]
-    private float fragmentLifetime;
+    [SerializeField, Tooltip("The parent object that broken mesh pieces will be placed under.")]
+    private Transform fragmentsParent;
 
     private static MeshDemolisher meshDemolisher = new MeshDemolisher();
     #endregion
@@ -47,14 +41,7 @@ public class Shatter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Transform> breakPoints
-            = Enumerable.Range(0, breakPointsParent.childCount).Select(x => breakPointsParent.GetChild(x)).ToList();
-
-        bool res = meshDemolisher.VerifyDemolishInput(target, breakPoints);
-        if (res)
-        {
-            Debug.Log("Demolish input looks good.");
-        }
+        
     }
 
     // Update is called once per frame
@@ -81,7 +68,7 @@ public class Shatter : MonoBehaviour
 
         //Add physics components to all of the new pieces.
         results.ForEach(x => x.AddComponent<MeshCollider>().convex = true);
-        results.ForEach(x => x.AddComponent<Rigidbody>().AddExplosionForce(/*fragmentVelocity.magnitude **/ breakForce, 
+        results.ForEach(x => x.AddComponent<Rigidbody>().AddExplosionForce(fragmentVelocity.magnitude, 
             transform.position, 1, 0, ForceMode.Impulse));
         
         //Scales the results pieces by the fragmentScale.
@@ -90,12 +77,5 @@ public class Shatter : MonoBehaviour
         
         //Hides the original full mesh
         target.gameObject.SetActive(false);
-        StartCoroutine(FragmentDespawn());
-    }
-
-    public IEnumerator FragmentDespawn()
-    {
-        yield return new WaitForSeconds(fragmentLifetime);
-        Destroy(this.gameObject);
     }
 }

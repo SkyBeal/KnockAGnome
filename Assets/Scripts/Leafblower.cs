@@ -53,35 +53,34 @@ public class Leafblower : MonoBehaviour
     {
         //Enables inputs
         activeLeafBlower = playerInput.currentActionMap.FindAction("ActivateLeafblower");
-        activeLeafBlower.started += Suck_Leaf_Blower;
+        activeLeafBlower.performed += context => isLeafBlowerActive = true;
+        activeLeafBlower.performed += Suck_Leaf_Blower;
         activeLeafBlower.canceled += Shoot_Leaf_Blower;
     }
 
     private void OnDisable()
     {
         //Disables inputs
-        activeLeafBlower.started -= Suck_Leaf_Blower;
+        activeLeafBlower.performed -= context => isLeafBlowerActive = true;
+        activeLeafBlower.performed -= Suck_Leaf_Blower;
         activeLeafBlower.canceled -= Shoot_Leaf_Blower;
     }
 
     private void Update()
     {
-        
         //Rotates for checks
-        //transform.Rotate(new Vector3(2, 2, 0));
+        transform.Rotate(new Vector3(2, 2, 0));
 
         //Draws a line for debugging
         //This can be commented out
         if (hitbox.target != null)
         {
-            Debug.DrawRay(transform.position, (hitbox.target.transform.position - transform.position), Color.green);
+            Debug.DrawLine(transform.position, (hitbox.target.transform.position - transform.position), Color.green);
         }
-        
     }
 
     private void Suck_Leaf_Blower(InputAction.CallbackContext obj)
     {
-        Debug.Log("AHHHHHHHHH");
         isLeafBlowerActive = true;
 
         //Sucks up an object that is in the leaf blower's range
@@ -115,25 +114,22 @@ public class Leafblower : MonoBehaviour
                 RaycastHit rayCast;
 
                 //If the raycast hits anything, save the target data
-                if (Physics.Raycast(transform.position, (hitbox.target.transform.position - transform.position), out rayCast, rayCastDistance))
+                if (Physics.Raycast(transform.position, hitbox.target.transform.position - transform.position, out rayCast, rayCastDistance))
                 {
-                    Debug.Log(rayCast.transform.gameObject.name);
                     //If the raycast hit a gnome
-                    if (rayCast.transform.GetComponentInParent<GnomeBehavior>())
+                    if (rayCast.transform.CompareTag("Gnome"))
                     {
                         //Sets target
                         target = hitbox.target;
                         //Sets rotation
                         target.transform.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
                         //Disables gravity
-                        target.GetComponentInParent<Rigidbody>().useGravity = false;
+                        target.GetComponent<Rigidbody>().useGravity = false;
 
                         //Sucks the gnome to the vaccumm
                         if (Vector3.Distance(target.transform.position, origin.position) > gnomeSnapDistance)
                         {
-                            Vector3 direction = target.transform.position - origin.position;
-                            target.GetComponentInParent<Rigidbody>().velocity = direction.normalized * leafBlowerSuckPower;
-                            //target.transform.position = Vector3.MoveTowards(target.transform.position, origin.position, Time.fixedDeltaTime * leafBlowerSuckPower * 10);
+                            target.transform.position = Vector3.MoveTowards(target.transform.position, origin.position, leafBlowerSuckPower);
                         }
                         else
                         {
@@ -160,18 +156,17 @@ public class Leafblower : MonoBehaviour
     /// </summary>
     private void LeafBlowerBlow()
     {
-        Debug.Log("Blow");
         //Checks if the target actually exists
         if (target != null)
         {
             //Re-enables gravity
-            target.GetComponentInParent<Rigidbody>().useGravity = true;
+            target.GetComponent<Rigidbody>().useGravity = true;
 
             //Rotates the target to be able to be properly shot at the correct angle
             target.transform.rotation *= Quaternion.Euler(-90, 0, 0);
 
             //Shoots the target
-            hitbox.target.GetComponentInParent<Rigidbody>().AddForce(target.transform.forward * leafBlowerBlowPower, ForceMode.Impulse);;
+            hitbox.target.GetComponent<Rigidbody>().AddForce(target.transform.forward * leafBlowerBlowPower, ForceMode.Impulse);;
 
             //Rotates target to look like it was shot at the specified angle
             target.transform.rotation *= Quaternion.Euler(-90, 0, 0);
