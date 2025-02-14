@@ -43,11 +43,6 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        if(pointsSystem == null)
-        {
-            Debug.LogError("No points system exists in the current level. Gnomes will not be able to be killed.");
-        }
-
         isMoving = true;
         if (target != null)
         {
@@ -83,6 +78,7 @@ public class GnomeBehavior : MonoBehaviour
             isDead = true;
             isMoving = false;
             isAttacking = false;
+            transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
             MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
