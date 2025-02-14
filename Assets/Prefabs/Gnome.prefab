@@ -131,7 +131,7 @@ MonoBehaviour:
   target: {fileID: 7791795142619561607}
   breakPointsParent: {fileID: 1673871430701138151}
   meshInterior: {fileID: 2100000, guid: 842f1b88643f1bb458ba6243088e344e, type: 2}
-  fragmentScale: 1
+  fragmentScale: 0.99
   breakForce: 20
   fragmentsParent: {fileID: 3467907161528049170}
 --- !u!54 &8661964909254828076
