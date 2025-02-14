@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 3377975654493784713}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8411095888128084689
 GameObject:
@@ -48,7 +48,12 @@ GameObject:
   - component: {fileID: 3339884790698773757}
   - component: {fileID: 8507892924846958454}
   - component: {fileID: 4001756053247252101}
+<<<<<<< HEAD
   - component: {fileID: 7180550206625707029}
+=======
+  - component: {fileID: 2232198103457528237}
+  - component: {fileID: 5954561341221985954}
+>>>>>>> main
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -63,8 +68,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411095888128084689}
-  m_LocalRotation: {x: 0, y: -0.617193, z: -0, w: 0.7868119}
-  m_LocalPosition: {x: 4.3937845, y: 0, z: -5.500818}
+  m_LocalRotation: {x: 0, y: 0.9999999, z: 0, w: 0.0005144755}
+  m_LocalPosition: {x: 3.2811067, y: 0.00000023841858, z: -6.296451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -85,7 +90,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineStartIndex: 0
-  splineCheckPoints: []
+  splineCheckPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!33 &7313764360925784715
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -172,9 +182,9 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
   m_LoopMode: 0
-  m_Method: 1
-  m_Duration: 4.6942606
-  m_MaxSpeed: 10
+  m_Method: 0
+  m_Duration: 3
+  m_MaxSpeed: 0.83991534
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
@@ -195,9 +205,9 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
   m_LoopMode: 0
-  m_Method: 1
-  m_Duration: 3.9329848
-  m_MaxSpeed: 20
+  m_Method: 0
+  m_Duration: 3
+  m_MaxSpeed: 0.3919976
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
@@ -218,9 +228,55 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
   m_LoopMode: 0
-  m_Method: 1
-  m_Duration: 9.400581
-  m_MaxSpeed: 5
+  m_Method: 0
+  m_Duration: 4
+  m_MaxSpeed: 1.3939562
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
+--- !u!114 &2232198103457528237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411095888128084689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 0
+  m_Method: 0
+  m_Duration: 3
+  m_MaxSpeed: 0.47395024
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
+--- !u!114 &5954561341221985954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411095888128084689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 0
+  m_Method: 0
+  m_Duration: 4
+  m_MaxSpeed: 1.3210125
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
@@ -402,6 +458,9 @@ PrefabInstance:
     - {fileID: 4088110610454198647, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 9173983156334026967, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 5895826684305351068, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+    - {fileID: 58445280694286476, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+    - {fileID: 2626757739553014894, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+    - {fileID: 2190828208922718286, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
