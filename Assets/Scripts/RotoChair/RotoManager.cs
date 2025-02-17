@@ -61,15 +61,16 @@ public class RotoManager : MonoBehaviour
     //This is the action queue for the chair
     [SerializeField, Tooltip("Action queue for the chair")]
     private List<RotoInstructions> RotoTimeline;
+    private Coroutine moveWithoutCheckpointCoroutine;
 
     //holds a ref to the roto controller
     private RotoController rotoCon;
 
     //this is for the pseudo-recursion of MoveChair
     //keeps track of the current index of RotoTimeline
-    [SerializeField, ReadOnly, Tooltip("What index in the list the chair is currently on"), Foldout("Debug"),
+   /* [SerializeField, ReadOnly, Tooltip("What index in the list the chair is currently on"), Foldout("Debug"),
         Header("Readonlys")]
-    private int placeInTimeline;
+    private int placeInTimeline;*/
 
     [SerializeField, ReadOnly, Tooltip("This becomes true when the chair emergency stop is pressed"), Foldout("Debug")]
     private bool EmergencyStopChair = false;
@@ -96,6 +97,7 @@ public class RotoManager : MonoBehaviour
         EmergencyStopChair = false;
     }
 
+
     //TEMPORARY VARIABLE
     //allows for testing before we have the eventsystem set up
     [Tooltip("Does the script work based off checkpoints or not"), Foldout("Debug")]
@@ -114,10 +116,27 @@ public class RotoManager : MonoBehaviour
     private void MoveChairWithoutCheckpointsNOW()
     {
         //starts action queue
-       MoveChairWithoutCheckpoints(RotoTimeline[0]);
+        moveWithoutCheckpointCoroutine = StartCoroutine(MoveChairWithoutCheckpoints(RotoTimeline));
     }
 
 
+    [Button("Move chair to 0")]
+    public void MoveChairToZero()
+    {
+        rotoCon.MoveChairToZero(30);
+    }
+
+    [Button("ConnectChair")]
+    public void ConnectChair()
+    {
+        rotoCon.ConnectChair();
+    }
+
+    [Button("DisconnectChair")]
+    public void DisconnectChair()
+    {
+        rotoCon.DisconnectChair();
+    }
     /// <summary>
     /// instantiates variables
     /// </summary>
@@ -136,6 +155,8 @@ public class RotoManager : MonoBehaviour
 
         //adds all the right listeners to the eventsystem
         AddListenersToEventSystem();
+
+         
 
         /*PublicEventManager.RotateChair?.Invoke(RotoTimeline[0]);
         PublicEventManager.TestingCheckpointTwo?.Invoke(RotoTimeline[1]);
@@ -161,46 +182,48 @@ public class RotoManager : MonoBehaviour
     /// refer to the RotoInstructions class</param>
     /// <exception cref="UnityException">Throws an out of bounds exception if 
     /// the direction is not a possible value in the enum</exception>
-    public void MoveChairWithoutCheckpoints(RotoInstructions rotoIns)
+    public IEnumerator MoveChairWithoutCheckpoints(List<RotoInstructions> rotoIns)
     {
-        //checks to see the type of action
-        switch (rotoIns.direction)
+        foreach (RotoInstructions instruction in rotoIns)
         {
-            //turns left
-            case RotoDir.turnLeft:
+            //checks to see the type of action
+            switch (instruction.direction)
+            {
+                //turns left
+                case RotoDir.turnLeft:
 
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnLeft;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    if (!EmergencyStopChair)
+                    {
+                        currentDir = RotoDir.turnLeft;
+                        Debug.Log("Turning Chair");
+                        rotoCon.TurnLeftToAngleAtSpeed(instruction.angle, instruction.power);
+                    }
 
-                break;
+                    break;
 
-            //turns right
-            case RotoDir.turnRight:
+                //turns right
+                case RotoDir.turnRight:
 
-                 if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnRight;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    if (!EmergencyStopChair)
+                    {
+                        currentDir = RotoDir.turnRight;
+                        Debug.Log("Turning Chair");
+                        rotoCon.TurnRightToAngleAtSpeed(instruction.angle, instruction.power);
+                    }
 
-                break;
+                    break;
 
-            //waits for specified time limit
-            case RotoDir.wait:
+                //waits for specified time limit
+                case RotoDir.wait:
 
-                //just waits before starting the next command
-                StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
-                break;
-            default:
-                throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+                    yield return new WaitForSeconds(instruction.time);
+                    break;
+                default:
+                    throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+            }
         }
 
-        
+        yield return null;
     }
 
     /// <summary>
@@ -289,7 +312,7 @@ public class RotoManager : MonoBehaviour
             case RotoDir.wait:
 
                 //just waits before starting the next command
-                StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
+                //StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
                 break;
             default:
                 throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
@@ -304,12 +327,12 @@ public class RotoManager : MonoBehaviour
     /// </summary>
     /// <param name="timeToWait">how long to set the timer</param>
     /// <returns>nothing</returns>
-    private IEnumerator countdownTimerForNoCheckpoints(float timeToWait)
+   /* private IEnumerator countdownTimerForNoCheckpoints(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
         placeInTimeline++;
         MoveChairWithoutCheckpoints(RotoTimeline[placeInTimeline]);
-    }
+    }*/
 
     /// <summary>
     /// Timer that doesnt call the next action
