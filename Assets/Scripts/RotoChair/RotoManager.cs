@@ -11,6 +11,7 @@ using NaughtyAttributes;
 using Roto.Control;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -40,7 +41,7 @@ public class RotoManager : MonoBehaviour
         [Tooltip("The type of action")] public RotoDir direction;
         [Tooltip("If turning, what angle to turn to"), Range(0, 359)] public int angle;
         [Tooltip("If turning, how fast to turn"), Range(0, 100)] public int power;
-        [Tooltip("If waiting, how long to wait")] public float time;
+        //[Tooltip("If waiting, how long to wait")] public float time;
 
         /// <summary>
         /// Constructor
@@ -49,11 +50,11 @@ public class RotoManager : MonoBehaviour
         /// <param name="power">How fast the chair turns: 0-100</param>
         /// <param name="time">If not moving the chair, how long to wait for</param>
         /// <param name="angle">What angle to turn the chair to: 0-359</param>
-        public RotoInstructions(RotoDir direction, int power, float time, int angle)
+        public RotoInstructions(RotoDir direction, int power, int angle)
         {
             this.direction = direction;
             this.power = power;
-            this.time = time;
+            //this.time = time;
             this.angle = angle;
         }
     }
@@ -215,8 +216,8 @@ public class RotoManager : MonoBehaviour
 
                 //waits for specified time limit
                 case RotoDir.wait:
-
-                    yield return new WaitForSeconds(instruction.time);
+                    StopChair();
+                    //yield return new WaitForSeconds(instruction.time);
                     break;
                 default:
                     throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
@@ -310,7 +311,7 @@ public class RotoManager : MonoBehaviour
 
             //waits for specified time limit
             case RotoDir.wait:
-
+                StopChair();
                 //just waits before starting the next command
                 //StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
                 break;
