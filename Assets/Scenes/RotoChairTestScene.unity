@@ -368,15 +368,6 @@ MonoBehaviour:
     angle: 287
     power: 30
     time: 0
-  - direction: 2
-    angle: 311
-    power: 80
-    time: 2
-  - direction: 1
-    angle: 311
-    power: 80
-    time: 0
-  placeInTimeline: 0
   EmergencyStopChair: 0
   checkpointsOn: 0
   degreesOff: 4
@@ -441,6 +432,7 @@ MonoBehaviour:
   StartingPointValue: 20
   MinimumPointValue: 0
   points: 0
+  ScoreText: {fileID: 0}
 --- !u!4 &2035182335
 Transform:
   m_ObjectHideFlags: 0
