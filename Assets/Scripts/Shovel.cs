@@ -18,13 +18,13 @@ public class Shovel : MonoBehaviour
         
     }
 
-    public void OnCollisionEnter(Collision collision, Vector3 killingVelocity)
+    public void OnCollisionEnter(Collision collision)
     {
         
         if(collision.gameObject.GetComponent<GnomeBehavior>() != null)
         {
 
-            collision.gameObject.GetComponent<GnomeBehavior>().Die(killingVelocity);
+            collision.gameObject.GetComponent<GnomeBehavior>().Die(this.GetComponent<Rigidbody>().velocity);
 
         }
 
