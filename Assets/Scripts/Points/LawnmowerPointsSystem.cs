@@ -41,13 +41,17 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private void Start()
     {
         points = StartingPointValue;
-        ScoreText.text = "Score: " + 0.ToString();
+        
+        if(ScoreText != null)
+            ScoreText.text = "Score: " + 0.ToString();
     }
 
     public void GainPoints()
     {
         points += PointIncreases;
-        ScoreText.text = "Score: " + points.ToString();
+        
+        if (ScoreText != null)
+            ScoreText.text = "Score: " + points.ToString();
     }
 
     public void LosePoints()
@@ -57,6 +61,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
         {
             points = MinimumPointValue;
         }
-        ScoreText.text = "Score: " + points.ToString();
+        
+        if(ScoreText != null)
+            ScoreText.text = "Score: " + points.ToString();
     }
 }
