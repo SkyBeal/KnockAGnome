@@ -49,7 +49,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Shatter);
+        //attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Attach);
         isMoving = true;
         if (target != null)
         {
@@ -148,7 +148,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Attack, transform.position);
             if (pointsSystem != null)
                 pointsSystem.LosePoints();
             
