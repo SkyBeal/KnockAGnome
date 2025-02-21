@@ -216,7 +216,15 @@ public class RotoManager : MonoBehaviour
 
                 //waits for specified time limit
                 case RotoDir.wait:
-                    StopChair();
+                    /*switch (currentDir)
+                    {
+                        case RotoDir.turnRight:
+                            rotoCon.TurnLeftToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() + degreesOff), 30);
+                            break;
+                        case RotoDir.turnLeft:
+                            rotoCon.TurnRightToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() - degreesOff), 30);
+                            break;
+                    }*/
                     //yield return new WaitForSeconds(instruction.time);
                     break;
                 default:
@@ -311,7 +319,15 @@ public class RotoManager : MonoBehaviour
 
             //waits for specified time limit
             case RotoDir.wait:
-                StopChair();
+                /*switch (currentDir)
+                {
+                    case RotoDir.turnRight:
+                        rotoCon.TurnLeftToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() + degreesOff), 30);
+                        break;
+                    case RotoDir.turnLeft:
+                        rotoCon.TurnRightToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() - degreesOff), 30);
+                        break;
+                }*/
                 //just waits before starting the next command
                 //StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
                 break;
