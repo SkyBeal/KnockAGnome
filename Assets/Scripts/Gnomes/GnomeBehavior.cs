@@ -24,6 +24,8 @@ public class GnomeBehavior : MonoBehaviour
     [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
     private float attackInterval;
 
+    public MeshRenderer mr2;
+
     private Rigidbody rb;
     private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
@@ -73,6 +75,7 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="killingBlowVelocity"></param>
     public void Die(Vector3 killingBlowVelocity)
     {
+        Debug.Log("hi");
         if (!isDead)
         {
             isDead = true;
@@ -83,6 +86,7 @@ public class GnomeBehavior : MonoBehaviour
                 pointsSystem.GainPoints();
             MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
             mr.enabled = false;
+            mr2.enabled = true;
             shatter.BreakObject(killingBlowVelocity);
         }
     }

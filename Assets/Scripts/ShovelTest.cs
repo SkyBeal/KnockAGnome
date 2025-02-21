@@ -29,6 +29,7 @@ public class ShovelTest : MonoBehaviour
         {
             //Debug.Log("collision with gnome occurs");
             collision.gameObject.GetComponent<GnomeBehavior>().Die(rb.velocity);
+            Debug.Log("THIS");
         }
     }
 }

@@ -116,6 +116,7 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 2
   attackInterval: 1
+  mr2: {fileID: 1538118321353465997}
 --- !u!114 &3369705200362762596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7791795142619561607}
   breakPointsParent: {fileID: 1673871430701138151}
+  fragmentsParent: {fileID: 3467907161528049170}
   meshInterior: {fileID: 2100000, guid: 842f1b88643f1bb458ba6243088e344e, type: 2}
   fragmentScale: 0.99
   breakForce: 20
-  fragmentsParent: {fileID: 3467907161528049170}
+  fragmentLifetime: 2
 --- !u!54 &8661964909254828076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -383,7 +385,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
