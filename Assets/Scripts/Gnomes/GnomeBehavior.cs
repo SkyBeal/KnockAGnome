@@ -7,12 +7,15 @@
  *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(Shatter))]
 
 public class GnomeBehavior : MonoBehaviour
 {
+    public GameObject GnomeModel;
     #region Variables
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
@@ -29,6 +32,9 @@ public class GnomeBehavior : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
+    private bool isDead;
+
+    private EventInstance attachSFX;
     #endregion
 
     private void Awake()
@@ -41,17 +47,21 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Shatter);
         isMoving = true;
-        StartCoroutine(MoveTowardTarget());
+        if (target != null)
+        {
+            StartCoroutine(MoveTowardTarget());
+        }
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Invoke("Die", 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
-        
+        attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,6 +69,17 @@ public class GnomeBehavior : MonoBehaviour
         if(collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
         {
             AttachToCart(collision.transform);
+            PLAYBACK_STATE playbackState;
+            attachSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                attachSFX.start();
+            }
+            else
+            {
+                attachSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+
         }
     }
 
@@ -68,11 +89,19 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="killingBlowVelocity"></param>
     public void Die(Vector3 killingBlowVelocity)
     {
-        Debug.Log(this.name + " has died.");
-        isMoving = false;
-        isAttacking = false;
-        pointsSystem.GainPoints();
-        shatter.BreakObject(killingBlowVelocity);
+        if (!isDead)
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            isDead = true;
+            isMoving = false;
+            isAttacking = false;
+            transform.parent = null;
+            if(pointsSystem != null)
+                pointsSystem.GainPoints();
+            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+            shatter.BreakObject(killingBlowVelocity);
+        }
     }
 
     /// <summary>
@@ -83,6 +112,8 @@ public class GnomeBehavior : MonoBehaviour
     {
         isMoving = false;
         isAttacking = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         transform.SetParent(cart);
         StartCoroutine(Attack());
     }
@@ -97,6 +128,7 @@ public class GnomeBehavior : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
             yield return new WaitForFixedUpdate();
@@ -112,7 +144,9 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            pointsSystem.LosePoints();
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            if (pointsSystem != null)
+                pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
         }

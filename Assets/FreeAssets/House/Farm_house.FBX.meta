@@ -3,7 +3,22 @@ guid: 0dc3cf16ec7222a40894450990b1cca2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farm_house_D
+    second: {fileID: 2100000, guid: d2c5b33f9e4132248b1e710a53bafc2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: House_Side_D
+    second: {fileID: 2100000, guid: ab9612d9522891849939a2fe70084a88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_D
+    second: {fileID: 2100000, guid: d2fd0fd7f230ce14d89e18fb555b7469, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
