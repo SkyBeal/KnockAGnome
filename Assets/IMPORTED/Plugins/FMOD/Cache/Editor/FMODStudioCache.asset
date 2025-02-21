@@ -15,7 +15,11 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< Updated upstream
   lastModified: 638757389229872607
+=======
+  lastModified: 638748837318056749
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,10 +39,17 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
+<<<<<<< Updated upstream
   lastModified: 638757389570474030
   FileSizes:
   - Name: Desktop
     Value: 494
+=======
+  lastModified: 638757381513474524
+  FileSizes:
+  - Name: Desktop
+    Value: 734848
+>>>>>>> Stashed changes
   Exists: 1
 --- !u!114 &-6421885237119319552
 MonoBehaviour:
@@ -87,13 +98,13 @@ MonoBehaviour:
     Data4: -16663238
   Banks:
   - {fileID: -3481361832903948002}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 4000
 --- !u!114 &-5988215452043849182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +147,11 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< Updated upstream
   lastModified: 638757389570484034
+=======
+  lastModified: 638757381513474524
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
     Value: 1550
@@ -210,10 +225,17 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
+<<<<<<< Updated upstream
   lastModified: 638757389570494033
   FileSizes:
   - Name: Desktop
     Value: 14368
+=======
+  lastModified: 638757381513494664
+  FileSizes:
+  - Name: Desktop
+    Value: 616064
+>>>>>>> Stashed changes
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -334,7 +356,11 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
+<<<<<<< Updated upstream
   cacheTime: 638757389570494033
+=======
+  cacheTime: 638757381513494664
+>>>>>>> Stashed changes
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -417,6 +443,36 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+<<<<<<< Updated upstream
+=======
+--- !u!114 &2066315449085885621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/Attack
+  Guid:
+    Data1: 1042189195
+    Data2: 1298750366
+    Data3: 428116894
+    Data4: -619556703
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 700
+>>>>>>> Stashed changes
 --- !u!114 &3866357040580319825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +527,36 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+<<<<<<< Updated upstream
+=======
+--- !u!114 &6073969529956675715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/TempBGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/TempBGM
+  Guid:
+    Data1: -1553044456
+    Data2: 1199386203
+    Data3: 1598903434
+    Data4: 599998617
+  Banks:
+  - {fileID: -6729135784664890556}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 53394
+>>>>>>> Stashed changes
 --- !u!114 &7758847007063380390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +583,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 900
 --- !u!114 &8130050484014970184
 MonoBehaviour:
   m_ObjectHideFlags: 0
