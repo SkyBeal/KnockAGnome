@@ -48,8 +48,6 @@ GameObject:
   - component: {fileID: 3339884790698773757}
   - component: {fileID: 8507892924846958454}
   - component: {fileID: 4001756053247252101}
-  - component: {fileID: 7180550206625707029}
-=======
   - component: {fileID: 2232198103457528237}
   - component: {fileID: 5954561341221985954}
   - component: {fileID: 6410778703715478390}
@@ -385,10 +383,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.067
       objectReference: {fileID: 0}
-    - target: {fileID: 1319746311, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
@@ -436,10 +430,6 @@ PrefabInstance:
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2449787133337329438, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

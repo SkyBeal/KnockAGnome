@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1108805611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,9 +364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotoTimeline:
-  - direction: 1
-    angle: 287
-    power: 30
+  - direction: 0
+    angle: 66
+    power: 62
     time: 0
   - direction: 2
     angle: 311
@@ -377,8 +377,7 @@ MonoBehaviour:
     power: 80
     time: 0
   placeInTimeline: 0
-  EmergencyStopChair: 0
-  checkpointsOn: 0
+  checkpointsOn: 1
   degreesOff: 4
 --- !u!114 &1108805612
 MonoBehaviour:
@@ -423,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2035182334
 MonoBehaviour:
   m_ObjectHideFlags: 0
