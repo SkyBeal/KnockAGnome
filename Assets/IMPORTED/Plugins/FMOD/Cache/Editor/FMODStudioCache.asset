@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638751281298571724
+  lastModified: 638756657728904061
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638733221250975749
+  lastModified: 638756659683996266
   FileSizes:
   - Name: Desktop
-    Value: 494
+    Value: 1488
   Exists: 1
 --- !u!114 &-6421885237119319552
 MonoBehaviour:
@@ -136,10 +136,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638751281298631515
+  lastModified: 638756657728929216
   FileSizes:
   - Name: Desktop
-    Value: 1550
+    Value: 1630
   Exists: 1
 --- !u!114 &-4086482918099840889
 MonoBehaviour:
@@ -210,10 +210,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638751281298691316
+  lastModified: 638756659684172089
   FileSizes:
   - Name: Desktop
-    Value: 14368
+    Value: 15288
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -329,12 +329,14 @@ MonoBehaviour:
   - {fileID: -6421885237119319552}
   - {fileID: 1537537334369754697}
   - {fileID: 3866357040580319825}
+  - {fileID: 2066315449085885621}
+  - {fileID: 6073969529956675715}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638751281298691316
+  cacheTime: 638756659684172089
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -417,6 +419,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2066315449085885621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/Attack
+  Guid:
+    Data1: 1042189195
+    Data2: 1298750366
+    Data3: 428116894
+    Data4: -619556703
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3866357040580319825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +493,33 @@ MonoBehaviour:
     Data4: 287612969
   Banks:
   - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6073969529956675715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/TempBGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/TempBGM
+  Guid:
+    Data1: -1553044456
+    Data2: 1199386203
+    Data3: 1598903434
+    Data4: 599998617
+  Banks:
+  - {fileID: -6729135784664890556}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

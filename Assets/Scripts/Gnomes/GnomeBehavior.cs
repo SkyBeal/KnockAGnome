@@ -7,6 +7,8 @@
  *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(Shatter))]
@@ -31,6 +33,8 @@ public class GnomeBehavior : MonoBehaviour
     private bool isMoving;
     private bool isAttacking;
     private bool isDead;
+
+    private EventInstance attachSFX;
     #endregion
 
     private void Awake()
@@ -43,6 +47,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Shatter);
         isMoving = true;
         if (target != null)
         {
@@ -56,7 +61,7 @@ public class GnomeBehavior : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
-        
+        attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -64,6 +69,17 @@ public class GnomeBehavior : MonoBehaviour
         if(collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
         {
             AttachToCart(collision.transform);
+            PLAYBACK_STATE playbackState;
+            attachSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                attachSFX.start();
+            }
+            else
+            {
+                attachSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+
         }
     }
 
@@ -75,6 +91,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         if (!isDead)
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
             isDead = true;
             isMoving = false;
             isAttacking = false;
@@ -127,7 +144,8 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            if(pointsSystem != null)
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            if (pointsSystem != null)
                 pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
