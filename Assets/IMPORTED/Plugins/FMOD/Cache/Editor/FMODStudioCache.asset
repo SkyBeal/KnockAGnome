@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638756657728904061
+  lastModified: 638751281298571724
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638756659683996266
+  lastModified: 638757402714618767
   FileSizes:
   - Name: Desktop
-    Value: 1488
+    Value: 734848
   Exists: 1
 --- !u!114 &-6421885237119319552
 MonoBehaviour:
@@ -87,13 +87,13 @@ MonoBehaviour:
     Data4: -16663238
   Banks:
   - {fileID: -3481361832903948002}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 4000
 --- !u!114 &-5988215452043849182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638756657728929216
+  lastModified: 638757402714628745
   FileSizes:
   - Name: Desktop
     Value: 1630
@@ -210,10 +210,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638756659684172089
+  lastModified: 638757402714668738
   FileSizes:
   - Name: Desktop
-    Value: 15288
+    Value: 616064
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -336,7 +336,7 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638756659684172089
+  cacheTime: 638757402714668738
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -445,7 +445,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 700
 --- !u!114 &3866357040580319825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,13 +520,13 @@ MonoBehaviour:
     Data4: 599998617
   Banks:
   - {fileID: -6729135784664890556}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 53394
 --- !u!114 &7758847007063380390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 900
 --- !u!114 &8130050484014970184
 MonoBehaviour:
   m_ObjectHideFlags: 0
