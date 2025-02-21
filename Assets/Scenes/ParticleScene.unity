@@ -499,10 +499,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1575542609}
-    - target: {fileID: 2742003890636414217, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
-      propertyPath: gnomeAction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8268631164133716473, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -168,7 +168,6 @@ public class GnomeBehavior : MonoBehaviour
         //Gnome wrecks the garden
         else
         {
-            print("POYO");
             animator.SetTrigger("Activate");
         }
     }

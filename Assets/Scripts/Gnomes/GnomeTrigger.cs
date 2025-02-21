@@ -6,7 +6,6 @@ public class GnomeTrigger : MonoBehaviour
     private void Start()
     {
         gnomeBehavior = GetComponentInParent<GnomeBehavior>();
-        print(gnomeBehavior);
     }
     private void OnTriggerEnter(Collider other)
     {
