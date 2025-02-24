@@ -55,24 +55,41 @@ public class SplineController : MonoBehaviour
             }
         }
         
-        if(currentSplineIndex >= splinePath.Length)
+        //if(currentSplineIndex >= splinePath.Length)
+        //{
+
+        //    if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+        //    {
+        //        float timer = 0;
+        //        timer += Time.deltaTime;
+
+        //        if (timer >= endingTimer)
+        //        {
+
+        //            EndScreen.SetActive(true);
+        //            Time.timeScale = 0;
+
+        //        }
+        //    }
+
+        //}
+
+        if(currentSplineIndex == 14)
         {
 
-            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+            float timer = 0;
+            timer += Time.deltaTime;
+
+            if (timer >= endingTimer)
             {
-                float timer = 0;
-                timer += Time.deltaTime;
 
-                if (timer >= endingTimer)
-                {
+                EndScreen.SetActive(true);
+                Time.timeScale = 0;
 
-                    EndScreen.SetActive(true);
-                    Time.timeScale = 0;
-
-                }
             }
 
         }
+
     }
 
     /// <summary>
