@@ -397,6 +397,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  endingTimer: 0
+  EndScreen: {fileID: 0}
 --- !u!1 &8411095888128084689
 GameObject:
   m_ObjectHideFlags: 0

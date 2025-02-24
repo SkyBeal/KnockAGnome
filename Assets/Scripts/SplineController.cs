@@ -21,6 +21,11 @@ public class SplineController : MonoBehaviour
     [SerializeField] private SplineCheckpoint[] splineCheckPoints;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
+
+    //FOR ENDING THE GAME
+    [SerializeField] float endingTimer;
+    public GameObject EndScreen;
+
     private void Start()
     {
         //Sets current spline
@@ -48,6 +53,21 @@ public class SplineController : MonoBehaviour
                 //switches to next spline
                 SwitchSpline();
             }
+        }
+        else if(currentSplineIndex >= splinePath.Length)
+        {
+
+            float timer = 0;
+            timer += Time.deltaTime;
+
+            if (timer >= endingTimer)
+            {
+
+                EndScreen.SetActive(true);
+                Time.timeScale = 0;
+
+            }
+
         }
     }
 
