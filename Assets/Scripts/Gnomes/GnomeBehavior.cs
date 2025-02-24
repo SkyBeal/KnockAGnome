@@ -26,7 +26,9 @@ public class GnomeBehavior : MonoBehaviour
     [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
     private float attackInterval;
 
+    //temporary
     public MeshRenderer mr2;
+
 
     private Rigidbody rb;
     private Shatter shatter;
@@ -91,7 +93,6 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="killingBlowVelocity"></param>
     public void Die(Vector3 killingBlowVelocity)
     {
-        Debug.Log("hi");
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
@@ -101,9 +102,14 @@ public class GnomeBehavior : MonoBehaviour
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
+
+
+            //temp fix for gnome mesh destruction
             MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
             mr.enabled = false;
             mr2.enabled = true;
+
+
             shatter.BreakObject(killingBlowVelocity);
         }
     }
