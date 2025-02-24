@@ -53,7 +53,6 @@ public class Shatter : MonoBehaviour
         bool res = meshDemolisher.VerifyDemolishInput(target, breakPoints);
         if (res)
         {
-            Debug.Log("Demolish input looks good.");
         }
     }
 

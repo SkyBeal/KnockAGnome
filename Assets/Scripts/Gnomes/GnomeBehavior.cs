@@ -26,6 +26,10 @@ public class GnomeBehavior : MonoBehaviour
     [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
     private float attackInterval;
 
+    //temporary
+    public MeshRenderer mr2;
+
+
     private Rigidbody rb;
     private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
@@ -47,7 +51,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Shatter);
+        //attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Attach);
         isMoving = true;
         if (target != null)
         {
@@ -98,8 +102,14 @@ public class GnomeBehavior : MonoBehaviour
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
+
+
+            //temp fix for gnome mesh destruction
             MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
             mr.enabled = false;
+            mr2.enabled = true;
+
+
             shatter.BreakObject(killingBlowVelocity);
         }
     }
@@ -144,7 +154,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Attack, transform.position);
             if (pointsSystem != null)
                 pointsSystem.LosePoints();
             
