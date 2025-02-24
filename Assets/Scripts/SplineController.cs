@@ -54,18 +54,22 @@ public class SplineController : MonoBehaviour
                 SwitchSpline();
             }
         }
-        else if(currentSplineIndex >= splinePath.Length)
+        
+        if(currentSplineIndex >= splinePath.Length)
         {
 
-            float timer = 0;
-            timer += Time.deltaTime;
-
-            if (timer >= endingTimer)
+            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
             {
+                float timer = 0;
+                timer += Time.deltaTime;
 
-                EndScreen.SetActive(true);
-                Time.timeScale = 0;
+                if (timer >= endingTimer)
+                {
 
+                    EndScreen.SetActive(true);
+                    Time.timeScale = 0;
+
+                }
             }
 
         }
