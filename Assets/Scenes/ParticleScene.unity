@@ -491,6 +491,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 208868459981543247, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 208868459981543247, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 208868459981543247, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 789535763280683588, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 789535763280683588, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 789535763280683588, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 916172501964241526, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894673455933832290, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894673455933832290, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2047944684220001796, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
       propertyPath: m_Name
       value: Gnome
@@ -499,6 +535,58 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1575542609}
+    - target: {fileID: 2742003890636414217, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: gnomeAction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491024543123309543, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491024543123309543, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491024543123309543, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703519671477221939, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703519671477221939, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703519671477221939, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358743609323874255, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358743609323874255, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470555981279085471, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470555981279085471, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806016378858565780, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806016378858565780, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8268631164133716473, guid: 550c53c313b1ad141a712f11960b7489, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -560,6 +648,7 @@ GameObject:
   - component: {fileID: 1575542608}
   - component: {fileID: 1575542607}
   - component: {fileID: 1575542606}
+  - component: {fileID: 1575542610}
   m_Layer: 0
   m_Name: Test Player
   m_TagString: Player
@@ -653,3 +742,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575542610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575542605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f437a298d457f504a862a2d1010f169a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineStartIndex: 0
+  splineCheckPoints: []

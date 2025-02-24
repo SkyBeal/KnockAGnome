@@ -9,7 +9,7 @@ public class GnomeTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.transform.GetComponent<SplineController>() != null)
         {
             gnomeBehavior.ActivateGnome();
         }
