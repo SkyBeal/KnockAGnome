@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4534435792553795079}
   m_Layer: 0
-  m_Name: Grass Pile G
+  m_Name: GrassPileG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,9 +73,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6005242352600864340}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 75aa92d3d54258748ba898e3a887ea40, type: 2}
@@ -84,6 +92,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4534435792553795079}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 15d219c8063a9a14d84d5c368a9a45b4, type: 3}
@@ -135,6 +144,9 @@ PrefabInstance:
       value: Grass Pile G
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d219c8063a9a14d84d5c368a9a45b4, type: 3}
 --- !u!4 &543450651826157310 stripped
 Transform:
