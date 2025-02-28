@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7918915011445861279
 MonoBehaviour:
@@ -44,6 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d30004278533b46ac6c428cc0a4fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <TempBGM>k__BackingField:
+    Guid:
+      Data1: -1553044456
+      Data2: 1199386203
+      Data3: 1598903434
+      Data4: 599998617
+    Path: event:/BGM/TempBGM
   <Ambience>k__BackingField:
     Guid:
       Data1: -1199360801
@@ -107,6 +114,13 @@ MonoBehaviour:
       Data3: -1099614323
       Data4: -806033332
     Path: event:/GnomeSFX/Squash
+  <Attack>k__BackingField:
+    Guid:
+      Data1: 1042189195
+      Data2: 1298750366
+      Data3: 428116894
+      Data4: -619556703
+    Path: event:/GnomeSFX/Attack
   <Damage>k__BackingField:
     Guid:
       Data1: -503615654

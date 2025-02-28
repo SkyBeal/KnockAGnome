@@ -7,6 +7,8 @@
  *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
@@ -29,6 +31,9 @@ public class GnomeBehavior : MonoBehaviour
 
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
+    //temporary
+    public MeshRenderer mr2;
+
 
     private Rigidbody rb;
     private Shatter shatter;
@@ -43,6 +48,7 @@ public class GnomeBehavior : MonoBehaviour
     private int numOfOnomatopeias;
 
     private Animator animator;
+    private EventInstance attachSFX;
     #endregion
 
     private void Awake()
@@ -64,6 +70,12 @@ public class GnomeBehavior : MonoBehaviour
         //Invoke("Die", 1f);
     }
 
+        // Update is called once per frame
+        void Update()
+    {
+        attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // If gnome should be attacking the player, and has made contact with the player
@@ -75,6 +87,17 @@ public class GnomeBehavior : MonoBehaviour
             {
                 AttachToCart(collision.transform);
             }
+            PLAYBACK_STATE playbackState;
+            attachSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                attachSFX.start();
+            }
+            else
+            {
+                attachSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+
         }
     }
 
@@ -86,14 +109,21 @@ public class GnomeBehavior : MonoBehaviour
     {
         if (!isDead)
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
             isDead = true;
             isMoving = false;
             isAttacking = false;
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
+
+
+            //temp fix for gnome mesh destruction
             MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
             mr.enabled = false;
+            mr2.enabled = true;
+
+
             shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
 
@@ -145,7 +175,8 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isAttacking)
         {
-            if(pointsSystem != null)
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Attack, transform.position);
+            if (pointsSystem != null)
                 pointsSystem.LosePoints();
             
             yield return new WaitForSeconds(attackInterval);
