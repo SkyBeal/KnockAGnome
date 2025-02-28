@@ -111,6 +111,7 @@ public class RotoManager : MonoBehaviour
     private int degreesOff = 4;
 
     private Coroutine chairMoving;
+    private Coroutine rotatingWithGO;
 
     [SerializeField]
     private GameObject objToRotateWith;
@@ -126,7 +127,13 @@ public class RotoManager : MonoBehaviour
     [Button("Set up chair to rotate with GO")]
     private void ConnectChairToGORotation()
     {
-        StartCoroutine(rotateWithObject());
+        rotatingWithGO = StartCoroutine(rotateWithObject());
+    }
+
+    [Button("Stop chair to rotate with GO")]
+    private void StopChairToGORotation()
+    {
+        StopCoroutine(rotatingWithGO);
     }
 
 
@@ -298,52 +305,53 @@ public class RotoManager : MonoBehaviour
                  throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
          }*/
 
-
-        //checks to see the type of action
-        switch (rotoIns.direction)
+        if (checkpointsOn)
         {
-            //turns left
-            case RotoDir.turnLeft:
+            //checks to see the type of action
+            switch (rotoIns.direction)
+            {
+                //turns left
+                case RotoDir.turnLeft:
 
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnLeft;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    if (!EmergencyStopChair)
+                    {
+                        currentDir = RotoDir.turnLeft;
+                        Debug.Log("Turning Chair");
+                        rotoCon.TurnLeftToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                    }
 
-                break;
+                    break;
 
-            //turns right
-            case RotoDir.turnRight:
+                //turns right
+                case RotoDir.turnRight:
 
-                if (!EmergencyStopChair)
-                {
-                    currentDir = RotoDir.turnRight;
-                    Debug.Log("Turning Chair");
-                    rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
-                }
+                    if (!EmergencyStopChair)
+                    {
+                        currentDir = RotoDir.turnRight;
+                        Debug.Log("Turning Chair");
+                        rotoCon.TurnRightToAngleAtSpeed(rotoIns.angle, rotoIns.power);
+                    }
 
-                break;
+                    break;
 
-            //waits for specified time limit
-            case RotoDir.wait:
-                /*switch (currentDir)
-                {
-                    case RotoDir.turnRight:
-                        rotoCon.TurnLeftToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() + degreesOff), 30);
-                        break;
-                    case RotoDir.turnLeft:
-                        rotoCon.TurnRightToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() - degreesOff), 30);
-                        break;
-                }*/
-                //just waits before starting the next command
-                //StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
-                break;
-            default:
-                throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+                //waits for specified time limit
+                case RotoDir.wait:
+                    /*switch (currentDir)
+                    {
+                        case RotoDir.turnRight:
+                            rotoCon.TurnLeftToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() + degreesOff), 30);
+                            break;
+                        case RotoDir.turnLeft:
+                            rotoCon.TurnRightToAngleAtSpeed(ClampAngle(rotoCon.GetOutputRotation() - degreesOff), 30);
+                            break;
+                    }*/
+                    //just waits before starting the next command
+                    //StartCoroutine(countdownTimerForNoCheckpoints(rotoIns.time));
+                    break;
+                default:
+                    throw new UnityException("Somehow the switch statement in MoveChair got to the default case");
+            }
         }
-
 
     }
 
