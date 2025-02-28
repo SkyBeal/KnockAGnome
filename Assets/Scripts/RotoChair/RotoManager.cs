@@ -112,12 +112,21 @@ public class RotoManager : MonoBehaviour
 
     private Coroutine chairMoving;
 
+    [SerializeField]
+    private GameObject objToRotateWith;
+
 
     [Button("Move Chair Manually")]
     private void MoveChairWithoutCheckpointsNOW()
     {
         //starts action queue
         moveWithoutCheckpointCoroutine = StartCoroutine(MoveChairWithoutCheckpoints(RotoTimeline));
+    }
+
+    [Button("Set up chair to rotate with GO")]
+    private void ConnectChairToGORotation()
+    {
+        StartCoroutine(rotateWithObject());
     }
 
 
@@ -410,7 +419,28 @@ public class RotoManager : MonoBehaviour
         PublicEventManager.TestingCheckpointTwo -= HandleEvents;
         PublicEventManager.TestingCheckpointThree -= HandleEvents;
     }
+
+
+    private IEnumerator rotateWithObject()
+    {
+        int lastEuler = Mathf.RoundToInt(objToRotateWith.transform.eulerAngles.y);
+        Debug.Log("Rotating with " + objToRotateWith.name);
+        while (!EmergencyStopChair)
+        {
+            yield return null;
+            if (lastEuler != Mathf.RoundToInt(objToRotateWith.transform.eulerAngles.y))
+            {
+                Debug.Log(rotoCon.MoveShortestRotationToPosition(Mathf.RoundToInt(objToRotateWith.transform.eulerAngles.y), 30)
+                    + " " + objToRotateWith.transform.eulerAngles.y);
+                lastEuler = Mathf.RoundToInt(objToRotateWith.transform.eulerAngles.y);
+            }
+            
+        }
+    }
     #endregion
+
+
+
 
     /// <summary>
     /// update is used for one off testing of the chair - depreciated once i got my 
