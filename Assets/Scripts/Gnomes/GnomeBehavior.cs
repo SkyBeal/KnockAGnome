@@ -1,6 +1,6 @@
 /******************************************************************************
  * Author: Campbell Dugal
- * Last Modified: 2/4/25
+ * Last Modified: 2/28/25
  * Description: A basic behavior script for the gnome enemies that run up to
  *              and attack the lawnmower. 
  * Collaborators: Ryan Herwig
@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
@@ -34,12 +35,11 @@ public class GnomeBehavior : MonoBehaviour
     //temporary
     public MeshRenderer mr2;
 
-
+    private NavMeshAgent agent;
     private Rigidbody rb;
     private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
 
-    private bool isMoving;
     private bool isAttacking;
     private bool isDead;
 
@@ -53,6 +53,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         rb = GetComponentInChildren<Rigidbody>();
         shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
@@ -61,6 +62,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        agent.enabled = true;
         isMoving = false;
         isChasingPlayer = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
@@ -80,7 +82,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         // If gnome should be attacking the player, and has made contact with the player
         // Grapple the player and start dealing damage
-        if (isAttacking && collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
+        if (isMoving && collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
         {
             AttachToCart(collision.transform);
             if (collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
@@ -145,22 +147,25 @@ public class GnomeBehavior : MonoBehaviour
         isAttacking = true;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        transform.SetParent(cart);
+        transform.SetParent(cart, true);
+        agent.enabled = false;
         StartCoroutine(Attack());
     }
 
     /// <summary>
-    /// Moves the gnome in the direction of its assigned target.
+    /// Assigns the target destination to the NavMesh Agent
     /// </summary>
     /// <returns></returns>
     IEnumerator MoveTowardTarget()
     {
         while (isMoving)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            
-            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-            rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
+            //Vector3 direction = (target.position - transform.position).normalized;
+
+            //transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+            //rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
+
+            agent.SetDestination(target.transform.position);
 
             yield return new WaitForFixedUpdate();
         }
@@ -192,6 +197,7 @@ public class GnomeBehavior : MonoBehaviour
         //Gnome chases the player
         if (gnomeAction == GnomeAction.ChasePlayer)
         {
+            agent.enabled = true;
             isMoving = true;
             isChasingPlayer = true;
             StartCoroutine(MoveTowardTarget());

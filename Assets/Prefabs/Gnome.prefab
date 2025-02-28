@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 3369705200362762596}
   - component: {fileID: 8661964909254828076}
   - component: {fileID: 1492989244240364034}
+  - component: {fileID: 3448557397746160622}
   m_Layer: 6
   m_Name: Gnome
   m_TagString: Gnome
@@ -101,7 +102,7 @@ Transform:
   - {fileID: 916172501964241526}
   - {fileID: 789535763280683588}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1585696424691625098
 Animator:
@@ -143,6 +144,7 @@ MonoBehaviour:
   gnomeAction: 0
   explosionParticles: {fileID: 6358743609323874255}
   onomatopeiasFolder: {fileID: 789535763280683588}
+  mr2: {fileID: 0}
 --- !u!114 &3369705200362762596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,28 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &3448557397746160622
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047944684220001796}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5097755596216374689
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,10 +437,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4318194414542332086
 MonoBehaviour:
