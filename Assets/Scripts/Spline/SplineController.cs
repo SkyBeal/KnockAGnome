@@ -76,7 +76,7 @@ public class SplineController : MonoBehaviour
 
         //}
 
-        if(currentSplineIndex == 14)
+        if(currentSplineIndex == splinePath.Length)
         {
 
             float timer = 0;
