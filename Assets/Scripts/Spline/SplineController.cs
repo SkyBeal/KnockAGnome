@@ -26,6 +26,8 @@ public class SplineController : MonoBehaviour
     [SerializeField] float endingTimer;
     public GameObject EndScreen;
 
+    bool endingCalled = false;
+
     private void Start()
     {
         //Sets current spline
@@ -80,11 +82,11 @@ public class SplineController : MonoBehaviour
             float timer = 0;
             timer += Time.deltaTime;
 
-            if (timer >= endingTimer)
+            if (timer >= endingTimer && endingCalled == false)
             {
 
-                EndScreen.SetActive(true);
-                Time.timeScale = 0;
+                endingCalled = true;
+                CallEnding();
 
             }
 
@@ -137,4 +139,12 @@ public class SplineController : MonoBehaviour
         SplineAnimate.ReachedEndOfSpline -= SwitchSpline;
     }
     */
+
+    public void CallEnding()
+    {
+
+        EndScreen.SetActive(true);
+        Time.timeScale = 0;
+
+    }
 }
