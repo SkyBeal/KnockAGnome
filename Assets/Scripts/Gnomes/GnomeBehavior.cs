@@ -10,6 +10,7 @@ using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
@@ -26,7 +27,7 @@ public class GnomeBehavior : MonoBehaviour
     [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
     private float attackInterval;
 
-    [SerializeField, Tooltip("What the gnome will do when activated")] private GnomeAction gnomeAction;
+    [Tooltip("What the gnome will do when activated")] public GnomeType gnomeAction;
 
     [SerializeField, Tooltip("The Particles for the gnome exploding")] private ParticleSystem explosionParticles;
 
@@ -193,7 +194,7 @@ public class GnomeBehavior : MonoBehaviour
     public void ActivateGnome()
     {
         //Gnome chases the player
-        if (gnomeAction == GnomeAction.ChasePlayer)
+        if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
             isChasingPlayer = true;
@@ -206,7 +207,7 @@ public class GnomeBehavior : MonoBehaviour
         }
     }
 
-    public enum GnomeAction
+    public enum GnomeType
     {
         ChasePlayer,
         WreckGarden

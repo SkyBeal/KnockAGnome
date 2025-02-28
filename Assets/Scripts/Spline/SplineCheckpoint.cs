@@ -1,10 +1,18 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class SplineCheckpoint : MonoBehaviour
 {
     [SerializeField] private RotoManager.RotoInstructions rotoInstructions;
-    [SerializeField] private Vector3[] spawnLocations;
+    [SerializeField] private GnomeBehavior.GnomeType[] gnomeTypes;
+    [SerializeField] private AnimatorController[] animatorControllers;
+    [SerializeField] private Transform[] spawnLocations;
 
+    private GnomeManager gnomeManager;
+    private void Start()
+    {
+        gnomeManager = GnomeManager.Instance;
+    }
     public void ActivateCheckPoint()
     {
         RotateChair();
@@ -19,6 +27,14 @@ public class SplineCheckpoint : MonoBehaviour
 
     private void SpawnGnomes()
     {
-
+        if (animatorControllers.Length != spawnLocations.Length && gnomeTypes.Length != animatorControllers.Length)
+        {
+            Debug.LogError("ERROR: NUMBER OF GNOME TYPES, ANIMATION CONTROLLERS, AND SPAWN LOCATIONS DO NOT MATCH IN SPLINE CHECK POINT");
+            return;
+        }
+        for (int i = 0; i < animatorControllers.Length; i++)
+        {
+            gnomeManager.SpawnGnome(gnomeTypes[i], animatorControllers[i], spawnLocations[i]);
+        }
     }
 }

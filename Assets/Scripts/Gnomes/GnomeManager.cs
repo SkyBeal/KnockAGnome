@@ -1,93 +1,93 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class GnomeManager : MonoBehaviour
 {
-    public List<GnomeBehavior> spawnedGnomes;
-    public List<Transform> spawnedGnomesTransform;
+    #region Singleton
+    private static GnomeManager instance;
 
-    //Connects enemy IDs to thier gameobject
-    public Dictionary<int, GameObject> gnomePrefab;
+    public static GnomeManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType(typeof(GnomeManager)) as GnomeManager;
+            return instance;
+        }
+        set { instance = value; }
+    }
+    #endregion
+    [SerializeField] private GameObject gnome;
+    [SerializeField] private Transform gnomesFolder;
+
+    [NonSerialized] public List<GnomeBehavior> spawnedGnomes;
 
     //Creates Object Pooling
-    public Dictionary<int, Queue<GnomeBehavior>> gnomeObjectPools;
+    [NonSerialized] public Queue<GnomeBehavior> gnomeObjectPools;
 
-    public Dictionary<Transform, GnomeBehavior> gnomeTransformDictionary;
-
-    public Transform[] SpawnPoints;
-
-    public bool isInitialized = false;
-    [SerializeField] private Transform gnomesFolder;
     public void Start()
     {
-        gnomePrefab = new();
         gnomeObjectPools = new();
-        gnomeTransformDictionary = new();
         spawnedGnomes = new();
-        spawnedGnomesTransform = new();
-
-        //Loads Enemy Data on runtime
-        GnomeData[] gnomes = Resources.LoadAll<GnomeData>("Enemies");
-
-        //Loads enemy data into Dictionaries
-        foreach (GnomeData gnome in gnomes)
-        {
-            gnomePrefab.Add(gnome.gnomeID, gnome.gnomePrefab);
-            gnomeObjectPools.Add(gnome.gnomeID, new Queue<GnomeBehavior>());
-        }
-
-        isInitialized = true;
     }
 
-    public GnomeBehavior SpawnGnome(Tuple<int, int> tuple)
+    /// <summary>
+    /// Takes a gnome out of the pool and adds it to the game.
+    /// If the pool is empty, create a new gnome.
+    /// </summary>
+    /// <param name="animatorController"></param>
+    /// <param name="spawnLocation"></param>
+    /// <returns></returns>
+    public GnomeBehavior SpawnGnome(GnomeBehavior.GnomeType gnomeType, AnimatorController animatorController, Transform spawnLocation)
     {
         GnomeBehavior spawnedGnome = null;
 
-        int gnomeID = tuple.Item1;
-        int spawnPointID = tuple.Item2;
-        if (gnomePrefab.ContainsKey(gnomeID))
+        //If pool is not empty, take a gnome out of the pool
+        if (gnomeObjectPools.Count > 0)
         {
-            Queue<GnomeBehavior> ReferencedQueue = gnomeObjectPools[gnomeID];
+            //Dequeue enemy and initialize it
+            spawnedGnome = gnomeObjectPools.Dequeue();
+            spawnedGnome.Init();
 
-            if (ReferencedQueue.Count > 0)
-            {
-                //Dequeue enemy and initialize it
-                spawnedGnome = ReferencedQueue.Dequeue();
-                spawnedGnome.Init();
-                spawnedGnome.transform.position = SpawnPoints[spawnPointID].position;
-                spawnedGnome.gameObject.SetActive(true);
-            }
-            else
-            {
-                //Instantiate new insatnce of enemy and initialize
-                GameObject newEnemy = Instantiate(gnomePrefab[gnomeID], SpawnPoints[spawnPointID].position, Quaternion.identity);
-                newEnemy.transform.parent = gnomesFolder;
-                spawnedGnome = newEnemy.GetComponent<GnomeBehavior>();
-                spawnedGnome.Init();
-            }
+            //Sets Attributes
+            spawnedGnome.gnomeAction = gnomeType;
+            spawnedGnome.GetComponent<Animator>().runtimeAnimatorController = animatorController;
+            spawnedGnome.transform.position = spawnLocation.position;
+            spawnedGnome.gameObject.SetActive(true);
         }
+        //If pool is empty, create a new gnome
         else
         {
-            print("ERROR: ENEMY WITH ID OF \"" + gnomeID + "\" DOES NOT EXIST!");
-            return null;
+            //Instantiate new insatnce of enemy and initialize
+            GameObject newEnemy = Instantiate(gnome, spawnLocation.position, Quaternion.identity);
+            newEnemy.transform.parent = gnomesFolder;
+            spawnedGnome = newEnemy.GetComponent<GnomeBehavior>();
+
+            //Sets attributes
+            spawnedGnome.gnomeAction = gnomeType;
+            newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
+            newEnemy.transform.position = spawnLocation.position;
+            spawnedGnome.Init();
         }
 
+        //If list does not contain this gnome, add it
         if (!spawnedGnomes.Contains(spawnedGnome)) spawnedGnomes.Add(spawnedGnome);
-        if (!spawnedGnomesTransform.Contains(spawnedGnome.transform)) spawnedGnomesTransform.Add(spawnedGnome.transform);
-        if (!gnomeTransformDictionary.ContainsKey(spawnedGnome.transform)) gnomeTransformDictionary.Add(spawnedGnome.transform, spawnedGnome);
-        spawnedGnome.ID = gnomeID;
+
         return spawnedGnome;
     }
 
+    /// <summary>
+    /// Removes a gnome and returns it to the pool
+    /// </summary>
+    /// <param name="gnomeToRemove">The gnome to remove</param>
     public void RemoveEnemy(GnomeBehavior gnomeToRemove)
     {
-        gnomeObjectPools[gnomeToRemove.ID].Enqueue(gnomeToRemove); //Makes enemy idle and inactive - extremely efficient
+        gnomeObjectPools.Enqueue(gnomeToRemove); //Makes enemy idle and inactive - extremely efficient
         gnomeToRemove.gameObject.SetActive(false);
         gnomeToRemove.isAlive = false;
 
-        gnomeTransformDictionary.Remove(gnomeToRemove.transform);
-        spawnedGnomesTransform.Remove(gnomeToRemove.transform);
         spawnedGnomes.Remove(gnomeToRemove);
     }
 }
