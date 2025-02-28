@@ -3,10 +3,10 @@
  * Last Modified: 2/4/25
  * Description: A basic behavior script for the gnome enemies that run up to
  *              and attack the lawnmower. 
- *
+ * Contributers: Ryan Herwig
  *****************************************************************************/
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -19,6 +19,7 @@ public class GnomeBehavior : MonoBehaviour
     #region Variables
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
+    [NonSerialized] public int ID;
 
     [SerializeField, Tooltip("How fast the gnome should move.")]
     private float moveSpeed;
@@ -39,6 +40,8 @@ public class GnomeBehavior : MonoBehaviour
     private bool isDead;
 
     private EventInstance attachSFX;
+
+    [NonSerialized] public bool isAlive;
     #endregion
 
     private void Awake()
@@ -49,7 +52,7 @@ public class GnomeBehavior : MonoBehaviour
     }
 
     //Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         //attachSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Attach);
         isMoving = true;

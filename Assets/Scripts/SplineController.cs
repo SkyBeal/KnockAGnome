@@ -84,7 +84,7 @@ public class SplineController : MonoBehaviour
             if (i == currentSplineIndex) //If this is the current spline
             {
                 splinePath[i].enabled = true;
-                splineCheckPoints[i].RotateChair();
+                splineCheckPoints[i].ActivateCheckPoint();
             }
             else //All other splines
                 splinePath[i].enabled = false;
