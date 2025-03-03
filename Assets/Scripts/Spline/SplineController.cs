@@ -21,6 +21,13 @@ public class SplineController : MonoBehaviour
     [SerializeField] private SplineCheckpoint[] splineCheckPoints;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
+
+    //FOR ENDING THE GAME
+    [SerializeField] float endingTimer;
+    public GameObject EndScreen;
+
+    bool endingCalled = false;
+
     private void Start()
     {
         //Sets current spline
@@ -49,6 +56,42 @@ public class SplineController : MonoBehaviour
                 SwitchSpline();
             }
         }
+        
+        //if(currentSplineIndex >= splinePath.Length)
+        //{
+
+        //    if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+        //    {
+        //        float timer = 0;
+        //        timer += Time.deltaTime;
+
+        //        if (timer >= endingTimer)
+        //        {
+
+        //            EndScreen.SetActive(true);
+        //            Time.timeScale = 0;
+
+        //        }
+        //    }
+
+        //}
+
+        if(currentSplineIndex == splinePath.Length)
+        {
+
+            float timer = 0;
+            timer += Time.deltaTime;
+
+            if (timer >= endingTimer && endingCalled == false)
+            {
+
+                endingCalled = true;
+                CallEnding();
+
+            }
+
+        }
+
     }
 
     /// <summary>
@@ -96,4 +139,12 @@ public class SplineController : MonoBehaviour
         SplineAnimate.ReachedEndOfSpline -= SwitchSpline;
     }
     */
+
+    public void CallEnding()
+    {
+
+        EndScreen.SetActive(true);
+        Time.timeScale = 0;
+
+    }
 }
