@@ -142,8 +142,8 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
-
-        EndScreen.SetActive(true);
+        if (EndScreen != null)
+            EndScreen.SetActive(true);
         Time.timeScale = 0;
 
     }

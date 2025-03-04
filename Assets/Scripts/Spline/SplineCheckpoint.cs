@@ -9,9 +9,10 @@ public class SplineCheckpoint : MonoBehaviour
     [SerializeField] private Transform[] spawnLocations;
 
     private GnomeManager gnomeManager;
-    private void Start()
+    private void Awake()
     {
         gnomeManager = GnomeManager.Instance;
+        print(gnomeManager);
     }
     public void ActivateCheckPoint()
     {
@@ -27,6 +28,8 @@ public class SplineCheckpoint : MonoBehaviour
 
     private void SpawnGnomes()
     {
+        if (gnomeManager == null)
+            gnomeManager = GnomeManager.Instance;
         if (animatorControllers.Length != spawnLocations.Length && gnomeTypes.Length != animatorControllers.Length)
         {
             Debug.LogError("ERROR: NUMBER OF GNOME TYPES, ANIMATION CONTROLLERS, AND SPAWN LOCATIONS DO NOT MATCH IN SPLINE CHECK POINT");

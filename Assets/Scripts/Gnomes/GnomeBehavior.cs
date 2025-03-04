@@ -10,6 +10,7 @@ using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
@@ -37,6 +38,8 @@ public class GnomeBehavior : MonoBehaviour
     public MeshRenderer mr2;
 
 
+
+
     private Rigidbody rb;
     private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
@@ -46,6 +49,7 @@ public class GnomeBehavior : MonoBehaviour
     private bool isDead;
 
     private bool isChasingPlayer;
+    [NonSerialized] public bool isRunningAway;
 
     private int numOfOnomatopeias;
 
@@ -53,6 +57,10 @@ public class GnomeBehavior : MonoBehaviour
     private EventInstance attachSFX;
 
     [NonSerialized] public bool isAlive;
+
+    public static UnityAction updateGnomesRunningAway;
+    GnomeManager gnomeManager;
+    ReserveGnomes reserveGnomes;
     #endregion
 
     private void Awake()
@@ -60,6 +68,9 @@ public class GnomeBehavior : MonoBehaviour
         rb = GetComponentInChildren<Rigidbody>();
         shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
+        isRunningAway = false;
+        gnomeManager = GnomeManager.Instance;
+        reserveGnomes = ReserveGnomes.Instance;
     }
 
     //Start is called before the first frame update
@@ -69,9 +80,30 @@ public class GnomeBehavior : MonoBehaviour
         isChasingPlayer = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
         animator = GetComponent<Animator>();
+        isRunningAway = false;
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Invoke("Die", 1f);
+    }
+
+    public void OnEnable()
+    {
+        updateGnomesRunningAway += UpdateGnomesRunningAway;
+    }
+
+    public void OnDisable()
+    {
+        updateGnomesRunningAway -= UpdateGnomesRunningAway;
+    }
+
+    public void UpdateGnomesRunningAway()
+    {
+        if (reserveGnomes.numberOfGnomesOnLawnMower < reserveGnomes.maxNumOfGnomesOnLawnMower)
+        {
+            isRunningAway = false;
+        }
+        else
+            isRunningAway = true;
     }
 
         // Update is called once per frame
@@ -114,6 +146,10 @@ public class GnomeBehavior : MonoBehaviour
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+
+            if (isAttacking)
+                reserveGnomes.numberOfGnomesOnLawnMower--;
+
             isDead = true;
             isMoving = false;
             isAttacking = false;
@@ -145,12 +181,17 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="cart"></param>
     void AttachToCart(Transform cart)
     {
-        isMoving = false;
-        isAttacking = true;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        transform.SetParent(cart);
-        StartCoroutine(Attack());
+        if (!isRunningAway)
+        {
+            isMoving = false;
+            isAttacking = true;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.SetParent(cart);
+            StartCoroutine(Attack());
+            updateGnomesRunningAway?.Invoke();
+            reserveGnomes.numberOfGnomesOnLawnMower++;
+        }
     }
 
     /// <summary>
@@ -164,6 +205,17 @@ public class GnomeBehavior : MonoBehaviour
             Vector3 direction = (target.position - transform.position).normalized;
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+
+            if (isRunningAway)
+            {
+                rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
+                if(Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
+                {
+                    gnomeManager.RemoveEnemy(this);
+                    reserveGnomes.AddGnomeToReserve();
+                }
+            }
+            else
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
             yield return new WaitForFixedUpdate();
