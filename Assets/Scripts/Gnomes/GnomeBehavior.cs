@@ -49,6 +49,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private Animator animator;
     private EventInstance attachSFX;
+    private GameObject shatterObject;
     #endregion
 
     private void Awake()
@@ -110,6 +111,7 @@ public class GnomeBehavior : MonoBehaviour
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            Instantiate(shatterObject, transform.position, Quaternion.identity);
             isDead = true;
             isMoving = false;
             isAttacking = false;
