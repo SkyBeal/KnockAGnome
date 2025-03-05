@@ -38,6 +38,12 @@ public class SplineController : MonoBehaviour
 
         //Gets all spline scripts on cart
         splinePath = gameObject.GetComponentsInChildren<SplineAnimate>();
+
+        for (int i = 1; i < splinePath.Length; i++)
+        {
+            splinePath[i].enabled = false;
+        }
+
         SetSplineTrack();
     }
 

@@ -7,6 +7,7 @@
  *****************************************************************************/
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -18,8 +19,8 @@ public class GnomeBehavior : MonoBehaviour
 {
     public GameObject GnomeModel;
     #region Variables
-    [SerializeField, Tooltip("The transform that the gnome should move towards.")]
-    private Transform target;
+    [Tooltip("The transform that the gnome should move towards.")]
+    public Transform target;
     [NonSerialized] public int ID;
 
     [SerializeField, Tooltip("How fast the gnome should move.")]
@@ -37,7 +38,7 @@ public class GnomeBehavior : MonoBehaviour
     //temporary
     public MeshRenderer mr2;
 
-
+    Transform attachedPosition;
 
 
     private Rigidbody rb;
@@ -150,8 +151,14 @@ public class GnomeBehavior : MonoBehaviour
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
 
+            //Reduces number of gnomes on the lawn mower
             if (isAttacking)
                 reserveGnomes.numberOfGnomesOnLawnMower--;
+
+            //Gnome is no longer occupying position
+            if (attachedPosition != null)
+                gnomeManager.gnomeAttachPosition[attachedPosition] = false;
+            
 
 
             Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
@@ -193,6 +200,20 @@ public class GnomeBehavior : MonoBehaviour
             isAttacking = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+
+            //Iterates over dictionary
+            foreach(KeyValuePair<Transform, bool> gnomePos in gnomeManager.gnomeAttachPosition)
+            {
+                //If a position is open, take it
+                if (!gnomePos.Value)
+                {
+                    attachedPosition = gnomePos.Key;
+                    gnomeManager.gnomeAttachPosition[gnomePos.Key] = true;
+                    transform.position = gnomePos.Key.transform.position;
+                    break;
+                }
+            }
+
             transform.SetParent(cart);
             StartCoroutine(Attack());
             updateGnomesRunningAway?.Invoke();
@@ -251,6 +272,7 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void ActivateGnome()
     {
+        print("GNOME ACTIVATED");
         //Gnome chases the player
         if (gnomeAction == GnomeType.ChasePlayer)
         {

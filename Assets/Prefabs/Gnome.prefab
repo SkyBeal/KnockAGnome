@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GnomeModel: {fileID: 584644744577491828}
   target: {fileID: 0}
-  moveSpeed: 0
+  moveSpeed: 3
   attackInterval: 1
   gnomeAction: 0
   explosionParticles: {fileID: 6358743609323874255}

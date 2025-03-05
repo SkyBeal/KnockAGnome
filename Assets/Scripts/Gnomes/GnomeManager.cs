@@ -21,8 +21,13 @@ public class GnomeManager : MonoBehaviour
     #endregion
     [SerializeField] private GameObject gnome;
     [SerializeField] private Transform gnomesFolder;
+    [SerializeField] private Transform playerPrefab;
     [Tooltip("Distance from the player the gnome has to be to despawn while running away")]
     public float distanceFromPlayerToDespawn;
+
+    [SerializeField] Transform gnomeAttachPosition1, gnomeAttachPosition2, gnomeAttachPosition3, gnomeAttachPosition4, gnomeAttachPosition5, gnomeAttachPosition6;
+    [NonSerialized] public Dictionary<Transform, bool> gnomeAttachPosition;
+
 
     [NonSerialized] public List<GnomeBehavior> spawnedGnomes;
 
@@ -33,6 +38,16 @@ public class GnomeManager : MonoBehaviour
     {
         gnomeObjectPools = new();
         spawnedGnomes = new();
+
+        gnomeAttachPosition = new()
+        {
+            { gnomeAttachPosition1, false },
+            { gnomeAttachPosition2, false },
+            { gnomeAttachPosition3, false },
+            { gnomeAttachPosition4, false },
+            { gnomeAttachPosition5, false },
+            { gnomeAttachPosition6, false }
+        };
     }
 
     /// <summary>
@@ -69,6 +84,7 @@ public class GnomeManager : MonoBehaviour
 
             //Sets attributes
             spawnedGnome.gnomeAction = gnomeType;
+            spawnedGnome.target = playerPrefab;
             newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             newEnemy.transform.position = spawnLocation.position;
             spawnedGnome.Init();
