@@ -61,6 +61,9 @@ public class GnomeBehavior : MonoBehaviour
     public static UnityAction updateGnomesRunningAway;
     GnomeManager gnomeManager;
     ReserveGnomes reserveGnomes;
+
+    [SerializeField] private GameObject shatterObject;
+
     #endregion
 
     private void Awake()
@@ -83,7 +86,7 @@ public class GnomeBehavior : MonoBehaviour
         isRunningAway = false;
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
-        //Invoke("Die", 1f);
+        //Die(this.GetComponent<Rigidbody>().velocity);
     }
 
     public void OnEnable()
@@ -107,7 +110,7 @@ public class GnomeBehavior : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
     }
@@ -149,6 +152,9 @@ public class GnomeBehavior : MonoBehaviour
 
             if (isAttacking)
                 reserveGnomes.numberOfGnomesOnLawnMower--;
+
+
+            Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
 
             isDead = true;
             isMoving = false;
