@@ -49,6 +49,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private Animator animator;
     private EventInstance attachSFX;
+    [SerializeField] private GameObject shatterObject;
     #endregion
 
     private void Awake()
@@ -67,11 +68,11 @@ public class GnomeBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
-        //Invoke("Die", 1f);
+        //Die(this.GetComponent<Rigidbody>().velocity);
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
     }
@@ -110,6 +111,7 @@ public class GnomeBehavior : MonoBehaviour
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
             isDead = true;
             isMoving = false;
             isAttacking = false;

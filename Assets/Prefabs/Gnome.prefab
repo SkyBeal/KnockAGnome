@@ -102,6 +102,7 @@ Transform:
   - {fileID: 789535763280683588}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1585696424691625098
 Animator:
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GnomeModel: {fileID: 584644744577491828}
   target: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 0
   attackInterval: 1
   gnomeAction: 0
   explosionParticles: {fileID: 6358743609323874255}
