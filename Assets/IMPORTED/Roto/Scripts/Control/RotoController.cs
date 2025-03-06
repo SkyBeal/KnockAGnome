@@ -188,6 +188,7 @@ namespace Roto.Control
             processThread = new Thread(StreamLoop) { };
             processThread.Start();
             isConnected = true;
+            Debug.Log("Chair has been connected: " + processThread.IsAlive);
         }
 
         public void DisconnectChair()
@@ -202,6 +203,8 @@ namespace Roto.Control
                     process.Kill();
 
             processThread.Join();
+
+            Debug.Log("Chair has been disconnected: " + processThread.IsAlive);
         }
 
         /// <summary>

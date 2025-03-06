@@ -101,7 +101,8 @@ Transform:
   - {fileID: 916172501964241526}
   - {fileID: 789535763280683588}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1585696424691625098
 Animator:
@@ -138,11 +139,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GnomeModel: {fileID: 584644744577491828}
   target: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 0
   attackInterval: 1
   gnomeAction: 0
   explosionParticles: {fileID: 6358743609323874255}
   onomatopeiasFolder: {fileID: 789535763280683588}
+  mr2: {fileID: 1538118321353465997}
 --- !u!114 &3369705200362762596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,10 +415,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4318194414542332086
 MonoBehaviour:
