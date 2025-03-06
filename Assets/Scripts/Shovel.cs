@@ -5,11 +5,13 @@ using UnityEngine;
 public class Shovel : MonoBehaviour
 
 {
+    [SerializeField] private Rigidbody hand;
+    [SerializeField] private ConfigurableJoint joint;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(AttachToHand());
     }
 
     // Update is called once per frame
@@ -28,5 +30,11 @@ public class Shovel : MonoBehaviour
 
         }
 
+    }
+
+    public IEnumerator AttachToHand()
+    {
+        yield return null;
+        joint.connectedBody = hand;
     }
 }
