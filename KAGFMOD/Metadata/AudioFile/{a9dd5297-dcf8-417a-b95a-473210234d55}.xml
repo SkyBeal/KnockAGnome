@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{a9dd5297-dcf8-417a-b95a-473210234d55}">
 		<property name="assetPath">
 			<value>BGM/Promotional Video.mp3</value>
