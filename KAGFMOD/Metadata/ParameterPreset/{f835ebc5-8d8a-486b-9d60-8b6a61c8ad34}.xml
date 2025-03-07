@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{f835ebc5-8d8a-486b-9d60-8b6a61c8ad34}">
+		<property name="name">
+			<value>GameplayAreaChange</value>
+		</property>
+		<relationship name="folder">
+			<destination>{083ccc2f-f5a4-4815-8c77-567a5bf59b93}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d6ded92f-2e32-489f-92ca-037a37af3463}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d6ded92f-2e32-489f-92ca-037a37af3463}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>4</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Normal</value>
+			<value>Farm</value>
+			<value>Fire</value>
+			<value>Tree</value>
+		</property>
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
