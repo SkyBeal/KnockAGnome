@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="EncodableAsset" id="{3fbc1e9e-dad3-4fdd-aaa5-66ff805f237d}">
 		<property name="assetPath">
 			<value>EnvironmentSFX/</value>
