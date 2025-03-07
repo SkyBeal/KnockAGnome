@@ -145,7 +145,7 @@ MonoBehaviour:
   explosionParticles: {fileID: 6358743609323874255}
   onomatopeiasFolder: {fileID: 789535763280683588}
   mr2: {fileID: 1538118321353465997}
-  shatterObject: {fileID: 0}
+  shatterObject: {fileID: 5499217459750255952, guid: 265132fcf75925d468aed94b9848f13c, type: 3}
 --- !u!114 &3369705200362762596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133d568afe6c77f4ab1a81784638563d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  givenAction: 0
 --- !u!4 &4142228831314430032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8449877739518732857, guid: ee98669cf99d08d459641a9235e40d5d, type: 3}
