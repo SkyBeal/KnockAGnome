@@ -6,7 +6,7 @@ using FMODUnity;
 public class FMODEvents : MonoBehaviour
 {
     [field: Header("BGM")]
-
+    [field: SerializeField] public EventReference TempBGM { get; private set; }
 
     [field: Header("EnvironmentSFX")]
     [field: SerializeField] public EventReference Ambience { get; private set; }
@@ -20,6 +20,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference Donk { get; private set; }
     [field: SerializeField] public EventReference Shatter { get; private set; }
     [field: SerializeField] public EventReference Squash { get; private set; }
+    [field: SerializeField] public EventReference Attack { get; private set; }
     //Section for voice acted SFX
 
     [field: Header("LawnmowerSFX")]
