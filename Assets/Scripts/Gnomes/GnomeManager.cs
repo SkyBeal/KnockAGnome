@@ -36,9 +36,13 @@ public class GnomeManager : MonoBehaviour
 
     public void Start()
     {
+        //Creates gnome pool
         gnomeObjectPools = new();
+        
+        //Creates list of gnomes
         spawnedGnomes = new();
 
+        //Sets attach position and if the gnome is attached to it
         gnomeAttachPosition = new()
         {
             { gnomeAttachPosition1, false },
@@ -65,14 +69,14 @@ public class GnomeManager : MonoBehaviour
         if (gnomeObjectPools.Count > 0)
         {
             //Dequeue enemy and initialize it
-            spawnedGnome = gnomeObjectPools.Dequeue();
-            //spawnedGnome.Init();
+            spawnedGnome = gnomeObjectPools.Dequeue(); //Removes gnome from pool and adds it in
+            //spawnedGnome.Init(); - TODO: When object pooling is active, uncomment this and set GnomeBehavior's Start method to Init()
 
             //Sets Attributes
-            spawnedGnome.gnomeAction = gnomeType;
-            spawnedGnome.GetComponent<Animator>().runtimeAnimatorController = animatorController;
-            spawnedGnome.transform.position = spawnLocation.position;
-            spawnedGnome.gameObject.SetActive(true);
+            spawnedGnome.gnomeAction = gnomeType; //Sets the gnome type
+            spawnedGnome.GetComponent<Animator>().runtimeAnimatorController = animatorController; //Sets animation - Probably needs to be removed
+            spawnedGnome.transform.position = spawnLocation.position; //Sets gnome position
+            spawnedGnome.gameObject.SetActive(true); //Activates the gnome
         }
         //If pool is empty, create a new gnome
         else
@@ -87,7 +91,7 @@ public class GnomeManager : MonoBehaviour
             spawnedGnome.target = playerPrefab;
             newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             newEnemy.transform.position = spawnLocation.position;
-            //spawnedGnome.Init();
+            //spawnedGnome.Init(); - TODO: When object pooling is active, uncomment this and set GnomeBehavior's Start method to Init()
         }
 
         //If list does not contain this gnome, add it
@@ -102,10 +106,11 @@ public class GnomeManager : MonoBehaviour
     /// <param name="gnomeToRemove">The gnome to remove</param>
     public void RemoveEnemy(GnomeBehavior gnomeToRemove)
     {
-        gnomeObjectPools.Enqueue(gnomeToRemove); //Makes enemy idle and inactive - extremely efficient
-        gnomeToRemove.gameObject.SetActive(false);
-        gnomeToRemove.isAlive = false;
+        //Makes enemy idle and inactive - extremely efficient
+        gnomeObjectPools.Enqueue(gnomeToRemove); //Gnome is added back to the pool
+        gnomeToRemove.gameObject.SetActive(false); //Gnome is disabled
+        gnomeToRemove.isAlive = false; //Gnome is dead
 
-        spawnedGnomes.Remove(gnomeToRemove);
+        spawnedGnomes.Remove(gnomeToRemove); //Removes gnome from the list of active gnomes
     }
 }

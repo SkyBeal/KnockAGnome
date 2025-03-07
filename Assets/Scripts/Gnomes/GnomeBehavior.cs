@@ -47,7 +47,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
-    private bool isDead;
+    [NonSerialized] public bool isDead;
 
     private bool isChasingPlayer;
     [NonSerialized] public bool isRunningAway;
@@ -57,11 +57,11 @@ public class GnomeBehavior : MonoBehaviour
     private GnomeAnimationManager gnomeAnim;
     private EventInstance attachSFX;
 
-    [NonSerialized] public bool isAlive;
+    private bool isAlive;
 
-    public static UnityAction updateGnomesRunningAway;
-    GnomeManager gnomeManager;
-    ReserveGnomes reserveGnomes;
+    public static UnityAction updateGnomesRunningAway; //If gnomes should be running away
+    GnomeManager gnomeManager; //Gets gnome manager
+    ReserveGnomes reserveGnomes; //Gnomes in reserve
 
     [SerializeField] private GameObject shatterObject;
 
@@ -147,6 +147,7 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="killingBlowVelocity"></param>
     public void Die(Vector3 killingBlowVelocity)
     {
+        //Do not kill object. instead call gnome manager's RemoveEnemy()
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
@@ -194,6 +195,7 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="cart"></param>
     void AttachToCart(Transform cart)
     {
+        //If gnome is not running away, attach to the cart
         if (!isRunningAway)
         {
             isMoving = false;
@@ -205,11 +207,13 @@ public class GnomeBehavior : MonoBehaviour
             foreach(KeyValuePair<Transform, bool> gnomePos in gnomeManager.gnomeAttachPosition)
             {
                 //If a position is open, take it
+                //Gives gnomes exact positions to go to when they attach to the cart
+                //Takes first available spot
                 if (!gnomePos.Value)
                 {
-                    attachedPosition = gnomePos.Key;
-                    gnomeManager.gnomeAttachPosition[gnomePos.Key] = true;
-                    transform.position = gnomePos.Key.transform.position;
+                    attachedPosition = gnomePos.Key; //Sets the gnome attached position for when the gnome gets knocked off
+                    gnomeManager.gnomeAttachPosition[gnomePos.Key] = true; //Sets the position as taken
+                    transform.position = gnomePos.Key.transform.position; //Sets gnome position
                     break;
                 }
             }
@@ -217,7 +221,7 @@ public class GnomeBehavior : MonoBehaviour
             transform.SetParent(cart);
             StartCoroutine(Attack());
             updateGnomesRunningAway?.Invoke();
-            reserveGnomes.numberOfGnomesOnLawnMower++;
+            reserveGnomes.numberOfGnomesOnLawnMower++; //Adds to the gnome reserves counter
         }
     }
 
@@ -233,15 +237,20 @@ public class GnomeBehavior : MonoBehaviour
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
+            //If gnome is running away, it goes the opposite direction of the cart
+            //TODO - Needs to be tested. No clue if this works lol
             if (isRunningAway)
             {
                 rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
+
+                //If the gnome reaches a certain distance away from the player, add the gnome to reserves
                 if(Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
                 {
                     gnomeManager.RemoveEnemy(this);
                     reserveGnomes.AddGnomeToReserve();
                 }
             }
+            //Chase the player
             else
             rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
 
