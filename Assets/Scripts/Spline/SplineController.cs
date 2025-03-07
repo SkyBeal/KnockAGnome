@@ -55,6 +55,7 @@ public class SplineController : MonoBehaviour
         //out of bounds check
         if (currentSplineIndex < splinePath.Length)
         {
+            
             //checks to see if current spline is finished
             if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
             {

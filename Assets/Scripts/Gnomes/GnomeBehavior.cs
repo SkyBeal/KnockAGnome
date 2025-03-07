@@ -54,7 +54,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private int numOfOnomatopeias;
 
-    private Animator animator;
+    private GnomeAnimationManager gnomeAnim;
     private EventInstance attachSFX;
 
     [NonSerialized] public bool isAlive;
@@ -78,12 +78,12 @@ public class GnomeBehavior : MonoBehaviour
     }
 
     //Start is called before the first frame update
-    public void Init()
+    public void Start()
     {
         isMoving = false;
         isChasingPlayer = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
-        animator = GetComponentInChildren<Animator>();
+        gnomeAnim = GetComponentInChildren<GnomeAnimationManager>();
         isRunningAway = false;
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
@@ -172,9 +172,9 @@ public class GnomeBehavior : MonoBehaviour
 
 
             //temp fix for gnome mesh destruction
-            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-            mr2.enabled = true;
+            //MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
+            //mr.enabled = false;
+            //mr2.enabled = true;
 
 
             shatter.BreakObject(killingBlowVelocity);
@@ -277,7 +277,8 @@ public class GnomeBehavior : MonoBehaviour
         {
             isMoving = true;
             isChasingPlayer = true;
-            animator.SetInteger("action", 1);
+            print(gnomeAnim.gameObject.name);
+            gnomeAnim.SetAnimation(1);
             StartCoroutine(MoveTowardTarget());
         }
         //Gnome wrecks the garden

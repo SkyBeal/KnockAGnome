@@ -5,12 +5,11 @@ public class GnomeTrigger : MonoBehaviour
     private GnomeBehavior gnomeBehavior;
     private void Start()
     {
-        //gnomeBehavior = GetComponentInParent<GnomeBehavior>();
+        gnomeBehavior = GetComponentInParent<GnomeBehavior>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("Boo");
-        if (other.transform.GetComponent<SplineController>() != null)
+        if (other.transform.CompareTag("Mower"))
         {
             print("D");
             gnomeBehavior.ActivateGnome();

@@ -66,7 +66,7 @@ public class GnomeManager : MonoBehaviour
         {
             //Dequeue enemy and initialize it
             spawnedGnome = gnomeObjectPools.Dequeue();
-            spawnedGnome.Init();
+            //spawnedGnome.Init();
 
             //Sets Attributes
             spawnedGnome.gnomeAction = gnomeType;
@@ -87,7 +87,7 @@ public class GnomeManager : MonoBehaviour
             spawnedGnome.target = playerPrefab;
             newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             newEnemy.transform.position = spawnLocation.position;
-            spawnedGnome.Init();
+            //spawnedGnome.Init();
         }
 
         //If list does not contain this gnome, add it
