@@ -178,11 +178,33 @@ namespace Roto.Control
                 process.Kill();
             }
 
+
+            ConnectChair();
+        }
+
+        public void ConnectChair()
+        {
             //TYLER MOVED THIS HERE
             processThread = new Thread(StreamLoop) { };
             processThread.Start();
             isConnected = true;
+            Debug.Log("Chair has been connected: " + processThread.IsAlive);
+        }
 
+        public void DisconnectChair()
+        {
+            isConnected = false;
+
+            if (process != null)
+                process.Kill();
+
+            if (process != null)
+                if (process.HasExited == false)
+                    process.Kill();
+
+            processThread.Join();
+
+            Debug.Log("Chair has been disconnected: " + processThread.IsAlive);
         }
 
         /// <summary>
