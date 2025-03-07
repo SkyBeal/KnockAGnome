@@ -150,7 +150,7 @@ public class SplineController : MonoBehaviour
     {
         if (EndScreen != null)
             EndScreen.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
 
     }
 }

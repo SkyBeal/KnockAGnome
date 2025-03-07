@@ -83,7 +83,7 @@ public class GnomeBehavior : MonoBehaviour
         isMoving = false;
         isChasingPlayer = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         isRunningAway = false;
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
@@ -272,18 +272,19 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void ActivateGnome()
     {
-        print("GNOME ACTIVATED");
         //Gnome chases the player
         if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
             isChasingPlayer = true;
+            animator.SetInteger("action", 1);
             StartCoroutine(MoveTowardTarget());
         }
         //Gnome wrecks the garden
         else
         {
-            animator.SetTrigger("Activate");
+            print("Wrecking Garden");
+            //animator.SetInteger("action", 1);
         }
     }
 
