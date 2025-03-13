@@ -13,9 +13,10 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TempBGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.TempBGM);]
+        TempBGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.TempBGM);
         LawnmowerHum = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Humming);
         LawnmowerHum.start();
+        TempBGM.start();
     }
 
     // Update is called once per frame
