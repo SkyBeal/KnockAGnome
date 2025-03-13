@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{2b6fa0fc-9d1d-4699-8c1e-6a3aaa7331b9}">
+		<property name="assetPath">
+			<value>BGM/GameplayTracks/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e3806a39-9d11-40c9-8a68-730387126901}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bb96003e-f94a-42a0-b878-11f11c6813db}">
+		<property name="assetPath">
+			<value>BGM/GameplayTracks/Gameplay Fire Pit.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>131.00408163265305</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e3806a39-9d11-40c9-8a68-730387126901}</destination>
+		</relationship>
+	</object>
+</objects>

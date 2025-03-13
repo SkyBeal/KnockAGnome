@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7252818901377539330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Gameplay/Normal
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Gameplay/Normal
+  Guid:
+    Data1: -2110106964
+    Data2: 1195180379
+    Data3: 2078248115
+    Data4: 901855687
+  Banks:
+  - {fileID: -6729135784664890556}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 131004
 --- !u!114 &-7239902350555940727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +42,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638757425258897540
+  lastModified: 638769579421519827
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,10 +62,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638757425258822450
+  lastModified: 638769579660311042
   FileSizes:
   - Name: Desktop
-    Value: 734848
+    Value: 7501760
   Exists: 1
 --- !u!114 &-6421885237119319552
 MonoBehaviour:
@@ -136,10 +163,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638757425258917537
+  lastModified: 638769579421546621
   FileSizes:
   - Name: Desktop
-    Value: 1630
+    Value: 1816
   Exists: 1
 --- !u!114 &-4086482918099840889
 MonoBehaviour:
@@ -210,7 +237,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638769531016056137
+  lastModified: 638769571138796824
   FileSizes:
   - Name: Desktop
     Value: 616064
@@ -242,6 +269,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2236421297355286040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Gameplay/Farm
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Gameplay/Farm
+  Guid:
+    Data1: 1695368658
+    Data2: 1088497532
+    Data3: 982461840
+    Data4: -487546536
+  Banks:
+  - {fileID: -6729135784664890556}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 131004
 --- !u!114 &-2209076877311404532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,13 +385,44 @@ MonoBehaviour:
   - {fileID: 3866357040580319825}
   - {fileID: 2066315449085885621}
   - {fileID: 6073969529956675715}
+  - {fileID: 4352225965755048406}
+  - {fileID: 369115411759020872}
+  - {fileID: -7252818901377539330}
+  - {fileID: -2236421297355286040}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638769531016056137
+  cacheTime: 638769579660311042
   cacheVersion: 131620
+--- !u!114 &369115411759020872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Gameplay/Tree
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Gameplay/Tree
+  Guid:
+    Data1: -1478964148
+    Data2: 1253736309
+    Data3: 340314766
+    Data4: 1453872364
+  Banks:
+  - {fileID: -6729135784664890556}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 131004
 --- !u!114 &717024869982552157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +585,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4352225965755048406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Gameplay/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Gameplay/Fire
+  Guid:
+    Data1: 631846685
+    Data2: 1216967705
+    Data3: -859038069
+    Data4: -1524853586
+  Banks:
+  - {fileID: -6729135784664890556}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 131004
 --- !u!114 &6073969529956675715
 MonoBehaviour:
   m_ObjectHideFlags: 0
