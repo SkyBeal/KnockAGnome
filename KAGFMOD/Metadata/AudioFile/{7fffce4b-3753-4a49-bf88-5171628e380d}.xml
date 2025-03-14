@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{f94b8a97-4c58-42f8-ad1d-350f9e4417f0}">
+	<object class="AudioFile" id="{7fffce4b-3753-4a49-bf88-5171628e380d}">
 		<property name="assetPath">
-			<value>Placeholders/07022374.wav</value>
+			<value>GnomeSFX/mower_damage_4.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>6.8578684807256236</value>
+			<value>0.90049886621315189</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{e3806a39-9d11-40c9-8a68-730387126901}</destination>
