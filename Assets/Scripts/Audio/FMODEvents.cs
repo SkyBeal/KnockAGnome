@@ -7,12 +7,14 @@ public class FMODEvents : MonoBehaviour
 {
     [field: Header("BGM")]
     [field: SerializeField] public EventReference TempBGM { get; private set; }
+    [field: SerializeField] public EventReference FinalBGM { get; private set; }
 
     [field: Header("EnvironmentSFX")]
     [field: SerializeField] public EventReference Ambience { get; private set; }
     [field: SerializeField] public EventReference Bird { get; private set; }
     [field: SerializeField] public EventReference Feeder { get; private set; }
     [field: SerializeField] public EventReference Fire { get; private set; }
+    [field: SerializeField] public EventReference Fountain { get; private set; }
     [field: SerializeField] public EventReference Leaves { get; private set; }
     [field: SerializeField] public EventReference Sparks { get; private set; }
 
