@@ -51,6 +51,13 @@ MonoBehaviour:
       Data3: 1598903434
       Data4: 599998617
     Path: event:/BGM/TempBGM
+  <FinalBGM>k__BackingField:
+    Guid:
+      Data1: -155986994
+      Data2: 1187611965
+      Data3: 175542445
+      Data4: 2121716167
+    Path: event:/BGM/FinalBGM
   <Ambience>k__BackingField:
     Guid:
       Data1: -1199360801
@@ -79,6 +86,13 @@ MonoBehaviour:
       Data3: 1636162489
       Data4: -1835262700
     Path: event:/EnvironmentSFX/Fire
+  <Fountain>k__BackingField:
+    Guid:
+      Data1: 466315220
+      Data2: 1332899253
+      Data3: -1317031252
+      Data4: -1683446427
+    Path: event:/EnvironmentSFX/Fountain
   <Leaves>k__BackingField:
     Guid:
       Data1: 518112577
