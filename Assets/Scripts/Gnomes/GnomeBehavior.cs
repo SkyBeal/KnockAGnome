@@ -11,7 +11,7 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-[RequireComponent(typeof(Shatter), typeof(Animator))]
+[RequireComponent(typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
     public GameObject GnomeModel;
@@ -36,7 +36,6 @@ public class GnomeBehavior : MonoBehaviour
 
 
     private Rigidbody rb;
-    private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
 
     private bool isMoving;
@@ -55,7 +54,6 @@ public class GnomeBehavior : MonoBehaviour
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody>();
-        shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
     }
 
@@ -119,14 +117,14 @@ public class GnomeBehavior : MonoBehaviour
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
 
+            GnomeModel.SetActive(false);
+            
+            //temp fix for gnome mesh destruction (replaced with above)
+            //MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
+            //mr.enabled = false;
+            //mr2.enabled = true;
 
-            //temp fix for gnome mesh destruction
-            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-            mr2.enabled = true;
 
-
-            shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
 
             //Gets a random int
