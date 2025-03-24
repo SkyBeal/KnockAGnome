@@ -57,7 +57,7 @@ public class GnomeBehavior : MonoBehaviour
     private GnomeAnimationManager gnomeAnim;
     private EventInstance attachSFX;
 
-    private bool isAlive;
+    [NonSerialized] public bool isAlive;
 
     public static UnityAction updateGnomesRunningAway; //If gnomes should be running away
     GnomeManager gnomeManager; //Gets gnome manager
