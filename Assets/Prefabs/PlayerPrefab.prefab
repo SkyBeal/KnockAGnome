@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2334565146022406582}
   - component: {fileID: 3111829004628468024}
-  - component: {fileID: 652773990676358909}
   - component: {fileID: 4098315794008860741}
   - component: {fileID: 5100445527811603717}
   - component: {fileID: 1192706847737781659}
@@ -48,7 +47,7 @@ Transform:
   m_Children:
   - {fileID: 3377975654493784713}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3111829004628468024
 MonoBehaviour:
@@ -73,39 +72,6 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
---- !u!114 &652773990676358909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640079733116926812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f437a298d457f504a862a2d1010f169a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineStartIndex: 0
-  splineCheckPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  endingTimer: 0
-  EndScreen: {fileID: 0}
 --- !u!114 &4098315794008860741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +483,6 @@ GameObject:
   - component: {fileID: 7313764360925784715}
   - component: {fileID: 8092925744761668002}
   - component: {fileID: 3056284726782348784}
-  - component: {fileID: 6410778703715478390}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -614,24 +579,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6410778703715478390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411095888128084689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd2ccf7cda35624ea642ba2c658095b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointIncreases: 5
-  PointLosses: 1
-  StartingPointValue: 20
-  MinimumPointValue: 0
-  points: 0
-  ScoreText: {fileID: 0}
 --- !u!1001 &2358781042522921185
 PrefabInstance:
   m_ObjectHideFlags: 0
