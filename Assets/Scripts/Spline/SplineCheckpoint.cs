@@ -9,10 +9,9 @@ public class SplineCheckpoint : MonoBehaviour
     [SerializeField] private Transform[] spawnLocations;
 
     private GnomeManager gnomeManager;
-    private void Awake()
+    private void Start()
     {
         gnomeManager = GnomeManager.Instance;
-        print(gnomeManager);
     }
     public void ActivateCheckPoint()
     {
@@ -28,16 +27,18 @@ public class SplineCheckpoint : MonoBehaviour
 
     private void SpawnGnomes()
     {
-        if (gnomeManager == null)
-            gnomeManager = GnomeManager.Instance;
         if (animatorControllers.Length != spawnLocations.Length && gnomeTypes.Length != animatorControllers.Length)
         {
             Debug.LogError("ERROR: NUMBER OF GNOME TYPES, ANIMATION CONTROLLERS, AND SPAWN LOCATIONS DO NOT MATCH IN SPLINE CHECK POINT");
             return;
         }
+
         for (int i = 0; i < animatorControllers.Length; i++)
         {
-            gnomeManager.SpawnGnome(gnomeTypes[i], animatorControllers[i], spawnLocations[i]);
+            gnomeManager.SpawnGnome(gnomeTypes[i], animatorControllers[i], spawnLocations[i].position);
         }
+
+        //Tells every gnome to update if they should be running away from the cart or not
+        GnomeBehavior.updateGnomesRunningAway?.Invoke();
     }
 }

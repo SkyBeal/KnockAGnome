@@ -61,7 +61,7 @@ public class GnomeManager : MonoBehaviour
     /// <param name="animatorController"></param>
     /// <param name="spawnLocation"></param>
     /// <returns></returns>
-    public GnomeBehavior SpawnGnome(GnomeBehavior.GnomeType gnomeType, AnimatorController animatorController, Transform spawnLocation)
+    public GnomeBehavior SpawnGnome(GnomeBehavior.GnomeType gnomeType, AnimatorController animatorController, Vector3 spawnLocation)
     {
         GnomeBehavior spawnedGnome = null;
 
@@ -75,14 +75,16 @@ public class GnomeManager : MonoBehaviour
             //Sets Attributes
             spawnedGnome.gnomeAction = gnomeType; //Sets the gnome type
             spawnedGnome.GetComponent<Animator>().runtimeAnimatorController = animatorController; //Sets animation - Probably needs to be removed
-            spawnedGnome.transform.position = spawnLocation.position; //Sets gnome position
+            spawnedGnome.transform.position = spawnLocation; //Sets gnome position
             spawnedGnome.gameObject.SetActive(true); //Activates the gnome
+            spawnedGnome.isAttacking = false;
+            spawnedGnome.isMoving = true;
         }
         //If pool is empty, create a new gnome
         else
         {
             //Instantiate new insatnce of enemy and initialize
-            GameObject newEnemy = Instantiate(gnome, spawnLocation.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(gnome, spawnLocation, Quaternion.identity);
             newEnemy.transform.parent = gnomesFolder;
             spawnedGnome = newEnemy.GetComponent<GnomeBehavior>();
 
@@ -90,13 +92,14 @@ public class GnomeManager : MonoBehaviour
             spawnedGnome.gnomeAction = gnomeType;
             spawnedGnome.target = playerPrefab;
             newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
-            newEnemy.transform.position = spawnLocation.position;
+            newEnemy.transform.position = spawnLocation;
             //spawnedGnome.Init(); - TODO: When object pooling is active, uncomment this and set GnomeBehavior's Start method to Init()
         }
 
         //If list does not contain this gnome, add it
         if (!spawnedGnomes.Contains(spawnedGnome)) spawnedGnomes.Add(spawnedGnome);
 
+        //Tells every gnome to update if they should be running away from the cart or not
         return spawnedGnome;
     }
 

@@ -12,19 +12,25 @@
  * ---------------------------------------------------------------------------------------------+/
  */
 
+using System;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class SplineController : MonoBehaviour
 {
+    //Extremely small class that holds data in one variable for organization
+    [Serializable] class Checkpoints { public SplineCheckpoint splineCheckPoint; public ReserveCheckpoint reserveCheckPoint; }
+
     [SerializeField] private int splineStartIndex;
-    [SerializeField] private SplineCheckpoint[] splineCheckPoints;
+
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
 
     //FOR ENDING THE GAME
     [SerializeField] float endingTimer;
     public GameObject EndScreen;
+
+    [SerializeField] private Checkpoints[] allCheckpoints;
 
     bool endingCalled = false;
 
@@ -57,7 +63,7 @@ public class SplineController : MonoBehaviour
         {
             
             //checks to see if current spline is finished
-            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+            if (splinePath[currentSplineIndex].ElapsedTime >= splinePath[currentSplineIndex].Duration)
             {
                 //switches to next spline
                 SwitchSpline();
@@ -134,7 +140,11 @@ public class SplineController : MonoBehaviour
             if (i == currentSplineIndex) //If this is the current spline
             {
                 splinePath[i].enabled = true;
-                splineCheckPoints[i].ActivateCheckPoint();
+                allCheckpoints[i].splineCheckPoint.ActivateCheckPoint();
+                if (allCheckpoints[i].reserveCheckPoint != null)
+                {
+                    allCheckpoints[i].reserveCheckPoint.ActivateReserves();
+                }
             }
             else //All other splines
                 splinePath[i].enabled = false;

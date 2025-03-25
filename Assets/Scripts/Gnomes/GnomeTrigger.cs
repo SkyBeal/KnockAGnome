@@ -11,7 +11,6 @@ public class GnomeTrigger : MonoBehaviour
     {
         if (other.transform.CompareTag("Mower"))
         {
-            print("D");
             gnomeBehavior.ActivateGnome();
         }
     }
