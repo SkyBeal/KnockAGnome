@@ -49,6 +49,11 @@ public class GnomeBehavior : MonoBehaviour
     private Animator animator;
     private EventInstance attachSFX;
     [SerializeField] private GameObject shatterObject;
+
+    //jay here!! these are variables that are specific to the first gnome in the scene (the one that will start the game)
+
+    [SerializeField] bool startingGnome;
+
     #endregion
 
     private void Awake()
@@ -132,6 +137,15 @@ public class GnomeBehavior : MonoBehaviour
 
             //Plays random onomatopeia
             onomatopeiasFolder.GetChild(randomInt).GetComponent<ParticleSystem>().Play();
+        }
+
+        if(startingGnome)
+        {
+
+            //starts the game!!
+
+
+
         }
     }
 
