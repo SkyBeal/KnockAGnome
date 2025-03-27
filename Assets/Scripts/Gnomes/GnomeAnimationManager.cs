@@ -20,7 +20,12 @@ public class GnomeAnimationManager : MonoBehaviour
         meditate,
         stuck,
         teter,
-        sit
+        sit,
+        sleep,
+        swing,
+        mock,
+        pull,
+        twirl
     }
     public AnimatedActions givenAction;
     // Start is called before the first frame update
@@ -55,10 +60,27 @@ public class GnomeAnimationManager : MonoBehaviour
             case AnimatedActions.sit:
                 SetAnimation(6);
                 break;
+            case AnimatedActions.sleep:
+                SetAnimation(7);
+                break;
+            case AnimatedActions.swing:
+                SetAnimation(8);
+                break;
+            case AnimatedActions.mock:
+                SetAnimation(9);
+                break;
+            case AnimatedActions.pull:
+                SetAnimation(10);
+                break;
+            case AnimatedActions.twirl:
+                SetAnimation(11);
+                break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
                 break;
         }
+        //Eventually I'll change this to be more efficient, with it just pulling from the order of the states in the enum and using that number
+       //to call the anims but for now this works lol
     }
 
     public void SetAnimation(int animID)
