@@ -10,12 +10,17 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
     public GameObject GnomeModel;
     #region Variables
+
+    [Tooltip("Check this box if this is the first gnome in the game!")]
+    [SerializeField] bool firstGnome;
+
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
 
@@ -57,6 +62,7 @@ public class GnomeBehavior : MonoBehaviour
         rb = GetComponentInChildren<Rigidbody>();
         shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
+
     }
 
     //Start is called before the first frame update
@@ -134,6 +140,14 @@ public class GnomeBehavior : MonoBehaviour
 
             //Plays random onomatopeia
             onomatopeiasFolder.GetChild(randomInt).GetComponent<ParticleSystem>().Play();
+
+            if(firstGnome)
+            {
+
+                GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
+
+            }
+
         }
     }
 

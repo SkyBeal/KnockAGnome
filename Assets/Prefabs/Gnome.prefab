@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GnomeModel: {fileID: 6809931693739772415}
+  firstGnome: 0
   target: {fileID: 0}
   moveSpeed: 0
   attackInterval: 1
