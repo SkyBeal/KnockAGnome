@@ -10,12 +10,18 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [RequireComponent(typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
+    [Tooltip("Should be the child with the skinned mesh renderer on it.")]
     public GameObject GnomeModel;
     #region Variables
+
+    [Tooltip("Check this box if this is the first gnome in the game!")]
+    [SerializeField] bool firstGnome;
+
     [SerializeField, Tooltip("The transform that the gnome should move towards.")]
     private Transform target;
 
@@ -31,8 +37,6 @@ public class GnomeBehavior : MonoBehaviour
 
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
-    //temporary
-    public MeshRenderer mr2;
 
 
     private Rigidbody rb;
@@ -55,6 +59,7 @@ public class GnomeBehavior : MonoBehaviour
     {
         rb = GetComponentInChildren<Rigidbody>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
+
     }
 
     //Start is called before the first frame update
@@ -124,6 +129,13 @@ public class GnomeBehavior : MonoBehaviour
             //mr.enabled = false;
             //mr2.enabled = true;
 
+            SkinnedMeshRenderer mr = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (mr != null)
+            {
+                mr.enabled = false;
+            }
+
 
             explosionParticles.Play(); // Plays explosion particle system
 
@@ -132,6 +144,14 @@ public class GnomeBehavior : MonoBehaviour
 
             //Plays random onomatopeia
             onomatopeiasFolder.GetChild(randomInt).GetComponent<ParticleSystem>().Play();
+
+            if(firstGnome)
+            {
+
+                GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
+
+            }
+
         }
     }
 
