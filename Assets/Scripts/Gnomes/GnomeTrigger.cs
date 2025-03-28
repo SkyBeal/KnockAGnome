@@ -9,7 +9,7 @@ public class GnomeTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.GetComponent<SplineController>() != null)
+        if (other.transform.CompareTag("Mower"))
         {
             gnomeBehavior.ActivateGnome();
         }
