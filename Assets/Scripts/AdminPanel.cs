@@ -2,13 +2,24 @@ using NaughtyAttributes;
 using Roto.Control;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AdminPanel : MonoBehaviour
 {
     //stores a refrence to the admin panel
-    [SerializeField, Foldout("Refs")] private GameObject panelCanvas;    
-    
+    [SerializeField, Foldout("Refs")] private GameObject panelCanvas;
+    private RotoManager rotoMan;
+    private bool ChairConnected;
+    private bool ChairStopped;
+
+    //Button Refs
+    [SerializeField, Foldout("Refs")] private Toggle ChairConnectedToggle;
+    [SerializeField, Foldout("Refs")] private Toggle ChairStoppedToggle;
+    [SerializeField, Foldout("Refs")] private TMP_Text chairConnectedButtonText;
+    [SerializeField, Foldout("Refs")] private TMP_Text chairEmerStopButtonText;
+    [SerializeField, Foldout("Refs")] private Button emergencyStopButton;
 
     /// <summary>
     /// Sets up displays
@@ -26,18 +37,76 @@ public class AdminPanel : MonoBehaviour
         //scene. This stops it from gumming up how the
         //scene looks.
         panelCanvas.SetActive(true);
+
+        rotoMan = FindObjectOfType<RotoManager>();  
     }
 
 
 
     #region BUTTON FUNCS
 
-    /// <summary>
-    /// testing function
-    /// </summary>
-    public void TestFunc()
+    public void ConnectChair()
+    {
+        if (ChairConnected)
+        {
+            rotoMan.DisconnectChair();
+            ChairConnected = false;
+            ChairConnectedToggle.isOn = false;
+            chairConnectedButtonText.text = "Connect Chair";
+            emergencyStopButton.interactable = false;
+        }
+        else
+        {
+            rotoMan.ConnectChair();
+            ChairConnected = true;
+            ChairConnectedToggle.isOn = true;
+            chairConnectedButtonText.text = "Disconnect Chair";
+            emergencyStopButton.interactable = true;
+            
+        }
+        if (ChairStopped)
+        {
+            EmergencyStopChair();
+        }
+    }
+
+    public void EmergencyStopChair()
+    {
+        if (ChairStopped)
+        {
+            rotoMan.ContinueChair();
+            ChairStopped = false;
+            ChairStoppedToggle.isOn = false;
+            chairEmerStopButtonText.text = "Emergency Stop Chair";
+        }
+        else
+        {
+            rotoMan.StopChair();
+            ChairStopped = true;
+            ChairStoppedToggle.isOn = true;
+            chairEmerStopButtonText.text = "Turn Off Emergency Stop";
+        }
+          
+    }
+
+    public void ResetChairAfterGameComplete()
     {
         
+        if (ChairStopped)
+        {
+            EmergencyStopChair();
+        }
+        rotoMan.ResetChairAfterGameComplete();
+    }
+
+    public void StartGame()
+    {
+        //start the game here
+    }
+
+    public void MoveChairToZero()
+    {
+        rotoMan.MoveChairToZero();
     }
 
     #endregion BUTTON FUNCS
