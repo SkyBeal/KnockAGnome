@@ -14,9 +14,17 @@ public class MusicManager : MonoBehaviour
 
     private EventInstance Ambience;
 
+    public static MusicManager instance { get; private set; }
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (instance != null)
+        {
+            Debug.Log("There is more than one FMODEvents in the scene");
+        }
+        instance = this;
+
         //TempBGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.TempBGM);
         FinalBGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FinalBGM);
         LawnmowerHum = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Humming);

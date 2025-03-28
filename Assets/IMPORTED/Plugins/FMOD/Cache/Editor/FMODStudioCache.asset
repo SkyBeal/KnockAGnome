@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638786846988839069
+  lastModified: 638787113134458678
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638786846988638133
+  lastModified: 638787113134346334
   FileSizes:
   - Name: Desktop
     Value: 3248288
@@ -109,10 +109,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638786846988878565
+  lastModified: 638787113134473952
   FileSizes:
   - Name: Desktop
-    Value: 1492
+    Value: 1528
   Exists: 1
 --- !u!114 &-4537943614158448564
 MonoBehaviour:
@@ -156,10 +156,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638786846989582875
+  lastModified: 638787113135266350
   FileSizes:
   - Name: Desktop
-    Value: 677984
+    Value: 678912
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -218,12 +218,13 @@ MonoBehaviour:
   - {fileID: 6073969529956675715}
   - {fileID: 6057283202784632706}
   - {fileID: -4537943614158448564}
+  - {fileID: 4665177545863108909}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638786846989582875
+  cacheTime: 638787113135266350
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -324,6 +325,33 @@ MonoBehaviour:
     Data2: 1133559279
     Data3: -648792424
     Data4: 287612969
+  Banks:
+  - {fileID: -3481361832903948002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4665177545863108909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GnomeSFX/InBush
+  m_EditorClassIdentifier: 
+  Path: event:/GnomeSFX/InBush
+  Guid:
+    Data1: 1441003350
+    Data2: 1169434301
+    Data3: -106349402
+    Data4: -1260139424
   Banks:
   - {fileID: -3481361832903948002}
   IsStream: 0
