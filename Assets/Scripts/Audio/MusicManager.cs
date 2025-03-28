@@ -42,7 +42,7 @@ public class MusicManager : MonoBehaviour
         
     }
 
-    public void switchMusic(int track)
+    public void switchMusic(float track)
     {
         FinalBGM.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         FinalBGM.setParameterByName("Music", track); //"track" should be either 0 for title or 1 for gameplay whenever called
