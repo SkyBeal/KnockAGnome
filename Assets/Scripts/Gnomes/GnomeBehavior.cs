@@ -29,9 +29,6 @@ public class GnomeBehavior : MonoBehaviour
     [Tooltip("Check this box if this is the first gnome in the game!")]
     [SerializeField] bool firstGnome;
 
-    [SerializeField, Tooltip("The transform that the gnome should move towards.")]
-    private Transform target;
-
     [SerializeField, Tooltip("How fast the gnome should move.")]
     private float moveSpeed;
 

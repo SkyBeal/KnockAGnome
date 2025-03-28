@@ -11,14 +11,16 @@
  *               next spline. This is continued until all splines are completed.
  * ---------------------------------------------------------------------------------------------+/
  */
-
+using System;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class SplineController : MonoBehaviour
 {
+    //Extremely small class that holds data in one variable for organization
+    [Serializable] class Checkpoints { public SplineCheckpoint splineCheckPoint; public ReserveCheckpoint reserveCheckPoint; }
+
     [SerializeField] private int splineStartIndex;
-    [SerializeField] private SplineCheckpoint[] splineCheckPoints;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
 
@@ -27,6 +29,8 @@ public class SplineController : MonoBehaviour
     public GameObject EndScreen;
 
     bool endingCalled = false;
+
+    [SerializeField] private Checkpoints[] allCheckpoints;
 
     private void Start()
     {
@@ -50,7 +54,7 @@ public class SplineController : MonoBehaviour
         if (currentSplineIndex < splinePath.Length)
         {
             //checks to see if current spline is finished
-            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
+            if (splinePath[currentSplineIndex].ElapsedTime >= splinePath[currentSplineIndex].Duration)
             {
                 //switches to next spline
                 SwitchSpline();
@@ -127,7 +131,12 @@ public class SplineController : MonoBehaviour
             if (i == currentSplineIndex) //If this is the current spline
             {
                 splinePath[i].enabled = true;
-                splineCheckPoints[i].RotateChair();
+
+                allCheckpoints[i].splineCheckPoint.ActivateCheckPoint();
+                if (allCheckpoints[i].reserveCheckPoint != null)
+                {
+                    allCheckpoints[i].reserveCheckPoint.ActivateReserves();
+                }
             }
             else //All other splines
                 splinePath[i].enabled = false;
