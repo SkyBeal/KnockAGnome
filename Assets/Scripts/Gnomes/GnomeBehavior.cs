@@ -108,12 +108,12 @@ public class GnomeBehavior : MonoBehaviour
     /// <summary>
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
-    /// <param name="killingBlowVelocity"></param>
-    public void Die(Vector3 killingBlowVelocity)
+    public void Die()
     {
+        Debug.Log("Die is called");
         if (!isDead)
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            //AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
             Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
             isDead = true;
             isMoving = false;
@@ -123,6 +123,7 @@ public class GnomeBehavior : MonoBehaviour
                 pointsSystem.GainPoints();
 
             GnomeModel.SetActive(false);
+            GetComponent<CapsuleCollider>().enabled = false;
             
             //temp fix for gnome mesh destruction (replaced with above)
             //MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
