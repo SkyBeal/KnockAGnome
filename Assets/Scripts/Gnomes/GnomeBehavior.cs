@@ -241,10 +241,11 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isMoving)
         {
+            print(target);
             Vector3 direction = (target.position - transform.position).normalized;
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-
+            
             //If the gnome reaches a certain distance away from the player, add the gnome to reserves
             if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
             {
@@ -294,6 +295,7 @@ public class GnomeBehavior : MonoBehaviour
         if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
+            print("Anim: " + gnomeAnim);
             gnomeAnim.SetAnimation(1);
             StartCoroutine(MoveTowardTarget());
         }
