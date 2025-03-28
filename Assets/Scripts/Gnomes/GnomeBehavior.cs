@@ -245,18 +245,17 @@ public class GnomeBehavior : MonoBehaviour
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
+            //If the gnome reaches a certain distance away from the player, add the gnome to reserves
+            if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
+            {
+                gnomeManager.RemoveEnemy(this);
+                reserveManager.AddGnomeToReserve();
+            }
+
             //If gnome is running away, it goes the opposite direction of the cart
-            //TODO - Needs to be tested. No clue if this works lol
             if (isRunningAway)
             {
                 rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
-
-                //If the gnome reaches a certain distance away from the player, add the gnome to reserves
-                if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
-                {
-                    gnomeManager.RemoveEnemy(this);
-                    reserveManager.AddGnomeToReserve();
-                }
             }
             //Chase the player
             else
