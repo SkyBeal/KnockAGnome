@@ -13,15 +13,24 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
+using UnityEngine.Splines;
 
 [RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
+    [Tooltip("Should be the child with the skinned mesh renderer on it.")]
     public GameObject GnomeModel;
     #region Variables
+
     [Tooltip("The transform that the gnome should move towards.")]
     public Transform target;
     [NonSerialized] public int ID;
+
+    [Tooltip("Check this box if this is the first gnome in the game!")]
+    [SerializeField] bool firstGnome;
+
+    [SerializeField, Tooltip("The transform that the gnome should move towards.")]
+    private Transform target;
 
     [SerializeField, Tooltip("How fast the gnome should move.")]
     private float moveSpeed;
@@ -35,8 +44,6 @@ public class GnomeBehavior : MonoBehaviour
 
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
-    //temporary
-    public MeshRenderer mr2;
 
     Transform attachedPosition;
 
@@ -165,6 +172,14 @@ public class GnomeBehavior : MonoBehaviour
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
+            SkinnedMeshRenderer mr = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (mr != null)
+            {
+                mr.enabled = false;
+            }
+
+
 
             shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
@@ -174,6 +189,14 @@ public class GnomeBehavior : MonoBehaviour
 
             //Plays random onomatopeia
             onomatopeiasFolder.GetChild(randomInt).GetComponent<ParticleSystem>().Play();
+
+            if(firstGnome)
+            {
+
+                GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
+
+            }
+
         }
     }
 

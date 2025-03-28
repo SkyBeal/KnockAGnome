@@ -12,25 +12,19 @@
  * ---------------------------------------------------------------------------------------------+/
  */
 
-using System;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class SplineController : MonoBehaviour
 {
-    //Extremely small class that holds data in one variable for organization
-    [Serializable] class Checkpoints { public SplineCheckpoint splineCheckPoint; public ReserveCheckpoint reserveCheckPoint; }
-
     [SerializeField] private int splineStartIndex;
-
+    [SerializeField] private SplineCheckpoint[] splineCheckPoints;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
 
     //FOR ENDING THE GAME
     [SerializeField] float endingTimer;
     public GameObject EndScreen;
-
-    [SerializeField] private Checkpoints[] allCheckpoints;
 
     bool endingCalled = false;
 
@@ -44,12 +38,6 @@ public class SplineController : MonoBehaviour
 
         //Gets all spline scripts on cart
         splinePath = gameObject.GetComponentsInChildren<SplineAnimate>();
-
-        for (int i = 1; i < splinePath.Length; i++)
-        {
-            splinePath[i].enabled = false;
-        }
-
         SetSplineTrack();
     }
 
@@ -61,9 +49,8 @@ public class SplineController : MonoBehaviour
         //out of bounds check
         if (currentSplineIndex < splinePath.Length)
         {
-            
             //checks to see if current spline is finished
-            if (splinePath[currentSplineIndex].ElapsedTime >= splinePath[currentSplineIndex].Duration)
+            if (splinePath[currentSplineIndex].elapsedTime >= splinePath[currentSplineIndex].duration)
             {
                 //switches to next spline
                 SwitchSpline();
@@ -140,11 +127,7 @@ public class SplineController : MonoBehaviour
             if (i == currentSplineIndex) //If this is the current spline
             {
                 splinePath[i].enabled = true;
-                allCheckpoints[i].splineCheckPoint.ActivateCheckPoint();
-                if (allCheckpoints[i].reserveCheckPoint != null)
-                {
-                    allCheckpoints[i].reserveCheckPoint.ActivateReserves();
-                }
+                splineCheckPoints[i].RotateChair();
             }
             else //All other splines
                 splinePath[i].enabled = false;
@@ -159,9 +142,8 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
-        if (EndScreen != null)
-            EndScreen.SetActive(true);
-        //Time.timeScale = 0;
+
+        EndScreen.SetActive(true);
 
     }
 }
