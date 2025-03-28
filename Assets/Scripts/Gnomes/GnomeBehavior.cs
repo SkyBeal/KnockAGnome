@@ -15,6 +15,7 @@ using UnityEngine.Splines;
 [RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
+    [Tooltip("Should be the child with the skinned mesh renderer on it.")]
     public GameObject GnomeModel;
     #region Variables
 
@@ -36,8 +37,6 @@ public class GnomeBehavior : MonoBehaviour
 
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
-    //temporary
-    public MeshRenderer mr2;
 
 
     private Rigidbody rb;
@@ -126,10 +125,12 @@ public class GnomeBehavior : MonoBehaviour
                 pointsSystem.GainPoints();
 
 
-            //temp fix for gnome mesh destruction
-            MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-            mr2.enabled = true;
+            SkinnedMeshRenderer mr = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (mr != null)
+            {
+                mr.enabled = false;
+            }
 
 
             shatter.BreakObject(killingBlowVelocity);
