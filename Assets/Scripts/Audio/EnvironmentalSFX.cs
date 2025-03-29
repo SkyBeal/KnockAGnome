@@ -10,11 +10,7 @@ public class EnvironmentalSFX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (this.tag.Equals("Feeder"))
-        {
-            loopingSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Feeder);
-        }
-        else if (this.tag.Equals("Fountain"))
+        if (this.tag.Equals("Fountain"))
         {
             loopingSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Fountain);
         }
