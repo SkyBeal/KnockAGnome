@@ -241,7 +241,6 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isMoving)
         {
-            print(target);
             Vector3 direction = (target.position - transform.position).normalized;
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
@@ -295,7 +294,6 @@ public class GnomeBehavior : MonoBehaviour
         if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
-            print("Anim: " + gnomeAnim);
             gnomeAnim.SetAnimation(1);
             StartCoroutine(MoveTowardTarget());
         }
