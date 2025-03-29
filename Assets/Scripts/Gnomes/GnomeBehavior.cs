@@ -113,7 +113,7 @@ public class GnomeBehavior : MonoBehaviour
         Debug.Log("Die is called");
         if (!isDead)
         {
-            //AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
             Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
             isDead = true;
             isMoving = false;
