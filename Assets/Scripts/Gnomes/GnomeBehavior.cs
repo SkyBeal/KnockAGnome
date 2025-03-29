@@ -15,7 +15,7 @@ using UnityEngine.Events;
 using Random = UnityEngine.Random;
 using UnityEngine.Splines;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
     [Tooltip("Should be the child with the skinned mesh renderer on it.")]
@@ -46,6 +46,7 @@ public class GnomeBehavior : MonoBehaviour
 
 
     private Rigidbody rb;
+    private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
 
     [NonSerialized] public bool isMoving;
@@ -72,6 +73,7 @@ public class GnomeBehavior : MonoBehaviour
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody>();
+        shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
         isRunningAway = false;
         gnomeManager = GnomeManager.Instance;
@@ -141,11 +143,10 @@ public class GnomeBehavior : MonoBehaviour
     /// <summary>
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
-    public void Die()
+    /// <param name="killingBlowVelocity"></param>
+    public void Die(Vector3 killingBlowVelocity)
     {
         //Do not kill object. instead call gnome manager's RemoveEnemy()
-        Debug.Log("Die is called");
-
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
@@ -168,23 +169,16 @@ public class GnomeBehavior : MonoBehaviour
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
-
-            GnomeModel.SetActive(false);
-            GetComponent<CapsuleCollider>().enabled = false;
-            
-            //temp fix for gnome mesh destruction (replaced with above)
-            //MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            //mr.enabled = false;
-            //mr2.enabled = true;
-
             SkinnedMeshRenderer mr = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
 
             if (mr != null)
             {
                 mr.enabled = false;
             }
-            shatter.BreakObject(killingBlowVelocity);
 
+
+
+            shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
 
             //Gets a random int
@@ -197,8 +191,6 @@ public class GnomeBehavior : MonoBehaviour
             {
 
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
-
-                MusicManager.instance.switchMusic(1);
 
             }
 

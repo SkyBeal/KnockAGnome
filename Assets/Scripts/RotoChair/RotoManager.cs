@@ -98,10 +98,6 @@ public class RotoManager : MonoBehaviour
         EmergencyStopChair = false;
     }
 
-    public void ResetChairAfterGameComplete()
-    {
-        rotoCon.TurnLeftToAngleAtSpeed(0, 30);
-    }
 
     //TEMPORARY VARIABLE
     //allows for testing before we have the eventsystem set up

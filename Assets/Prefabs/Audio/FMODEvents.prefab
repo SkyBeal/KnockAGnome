@@ -81,11 +81,11 @@ MonoBehaviour:
     Path: event:/EnvironmentSFX/Feeder
   <Fire>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 685789024
+      Data2: 1104666711
+      Data3: 1636162489
+      Data4: -1835262700
+    Path: event:/EnvironmentSFX/Fire
   <Fountain>k__BackingField:
     Guid:
       Data1: 466315220
