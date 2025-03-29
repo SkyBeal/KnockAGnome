@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b98ba6dd-dd62-43fa-8431-bcb27870f728}">
+		<property name="assetPath">
+			<value>GnomeSFX/GnomeBreak-05.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3409523809523809</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e3806a39-9d11-40c9-8a68-730387126901}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -147,6 +147,8 @@ public class GnomeBehavior : MonoBehaviour
 
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
 
+                MusicManager.instance.switchMusic(1);
+
             }
 
         }
