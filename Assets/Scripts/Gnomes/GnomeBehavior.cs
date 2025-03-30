@@ -22,8 +22,7 @@ public class GnomeBehavior : MonoBehaviour
     public GameObject GnomeModel;
     #region Variables
 
-    [Tooltip("The transform that the gnome should move towards.")]
-    public Transform target;
+    [NonSerialized] public Transform target;
     [NonSerialized] public int ID;
 
     [Tooltip("Check this box if this is the first gnome in the game!")]
@@ -81,6 +80,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     public void Start()
     {
+        target = gnomeManager.playerPrefab;
         isMoving = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
         gnomeAnim = GetComponentInChildren<GnomeAnimationManager>();
@@ -114,13 +114,15 @@ public class GnomeBehavior : MonoBehaviour
     void Update()
     {
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
+        if (isAttacking && attachedPosition != null)
+            transform.position = attachedPosition.position;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // If gnome should be attacking the player, and has made contact with the player
         // Grapple the player and start dealing damage
-        if (!isAttacking && collision.gameObject.transform == target)
+        if (!isAttacking && collision.gameObject.transform == target && gnomeAction == GnomeType.ChasePlayer)
         {
             AttachToCart(collision.transform);
 
@@ -187,7 +189,7 @@ public class GnomeBehavior : MonoBehaviour
 
 
 
-            shatter.BreakObject(killingBlowVelocity);
+            //shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
 
             //Gets a random int
@@ -252,11 +254,10 @@ public class GnomeBehavior : MonoBehaviour
     {
         while (isMoving)
         {
-            print(target);
             Vector3 direction = (target.position - transform.position).normalized;
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-            
+
             //If the gnome reaches a certain distance away from the player, add the gnome to reserves
             if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
             {
@@ -306,7 +307,6 @@ public class GnomeBehavior : MonoBehaviour
         if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
-            print("Anim: " + gnomeAnim);
             gnomeAnim.SetAnimation(1);
             StartCoroutine(MoveTowardTarget());
         }

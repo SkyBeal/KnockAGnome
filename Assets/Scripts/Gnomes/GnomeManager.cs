@@ -21,7 +21,7 @@ public class GnomeManager : MonoBehaviour
     #endregion
     [SerializeField] private GameObject gnome;
     [SerializeField] private Transform gnomesFolder;
-    [SerializeField] private Transform playerPrefab;
+    public Transform playerPrefab;
     [Tooltip("Distance from the player the gnome has to be to despawn while running away")]
     public float distanceFromPlayerToDespawn;
 
