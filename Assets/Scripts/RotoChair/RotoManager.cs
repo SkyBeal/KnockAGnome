@@ -41,6 +41,7 @@ public class RotoManager : MonoBehaviour
         [Tooltip("The type of action")] public RotoDir direction;
         [Tooltip("If turning, what angle to turn to"), Range(0, 359)] public int angle;
         [Tooltip("If turning, how fast to turn"), Range(0, 100)] public int power;
+        public float shovelVelocity;
         //[Tooltip("If waiting, how long to wait")] public float time;
 
         /// <summary>
@@ -50,12 +51,13 @@ public class RotoManager : MonoBehaviour
         /// <param name="power">How fast the chair turns: 0-100</param>
         /// <param name="time">If not moving the chair, how long to wait for</param>
         /// <param name="angle">What angle to turn the chair to: 0-359</param>
-        public RotoInstructions(RotoDir direction, int power, int angle)
+        public RotoInstructions(RotoDir direction, int power, int angle, float shovelVelocity)
         {
             this.direction = direction;
             this.power = power;
             //this.time = time;
             this.angle = angle;
+            this.shovelVelocity = shovelVelocity;
         }
     }
 

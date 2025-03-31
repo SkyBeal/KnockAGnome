@@ -14,6 +14,11 @@ public class Shovel : MonoBehaviour
     private float velocityMagnitude;
 
 
+    private void Awake()
+    {
+        PublicEventManager.RotateChair += SetVelocityThreshold;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,16 @@ public class Shovel : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetVelocityThreshold(RotoManager.RotoInstructions roto)
+    {
+        velocityToKill = roto.shovelVelocity;
+    }
+
+    private void OnDisable()
+    {
+        PublicEventManager.RotateChair -= SetVelocityThreshold;
     }
 
     public IEnumerator AttachToHand()
