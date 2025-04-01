@@ -42,11 +42,14 @@ public class Shatter : MonoBehaviour
     private float fragmentLifetime;
 
     private static MeshDemolisher meshDemolisher = new MeshDemolisher();
+
+    private GnomeManager gnomeManager;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        gnomeManager = GnomeManager.Instance;
         List<Transform> breakPoints
             = Enumerable.Range(0, breakPointsParent.childCount).Select(x => breakPointsParent.GetChild(x)).ToList();
 
@@ -95,6 +98,6 @@ public class Shatter : MonoBehaviour
     public IEnumerator FragmentDespawn()
     {
         yield return new WaitForSeconds(fragmentLifetime);
-        Destroy(this.gameObject);
+        gnomeManager.RemoveEnemy(GetComponent<GnomeBehavior>());
     }
 }

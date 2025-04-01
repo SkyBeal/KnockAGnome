@@ -3,27 +3,31 @@
  * Last Modified: 2/4/25
  * Description: A basic behavior script for the gnome enemies that run up to
  *              and attack the lawnmower. 
- * Collaborators: Ryan Herwig
+ * Contributers: Ryan Herwig
  *****************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 using UnityEngine.Splines;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Shatter), typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
     [Tooltip("Should be the child with the skinned mesh renderer on it.")]
     public GameObject GnomeModel;
     #region Variables
 
+    [Tooltip("The transform that the gnome should move towards.")]
+    public Transform target;
+    [NonSerialized] public int ID;
+
     [Tooltip("Check this box if this is the first gnome in the game!")]
     [SerializeField] bool firstGnome;
-
-    [SerializeField, Tooltip("The transform that the gnome should move towards.")]
-    private Transform target;
 
     [SerializeField, Tooltip("How fast the gnome should move.")]
     private float moveSpeed;
@@ -31,50 +35,84 @@ public class GnomeBehavior : MonoBehaviour
     [SerializeField, Tooltip("The time in seconds between a gnome's attacks.")]
     private float attackInterval;
 
-    [SerializeField, Tooltip("What the gnome will do when activated")] private GnomeAction gnomeAction;
+    [Tooltip("What the gnome will do when activated")] public GnomeType gnomeAction;
 
     [SerializeField, Tooltip("The Particles for the gnome exploding")] private ParticleSystem explosionParticles;
 
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
 
+    Transform attachedPosition;
+
 
     private Rigidbody rb;
+    private Shatter shatter;
     private LawnmowerPointsSystem pointsSystem;
 
-    private bool isMoving;
-    private bool isAttacking;
-    private bool isDead;
+    [NonSerialized] public bool isMoving;
+    [NonSerialized] public bool isAttacking;
+    [NonSerialized] public bool isDead;
 
-    private bool isChasingPlayer;
+    [NonSerialized] public bool isRunningAway;
 
     private int numOfOnomatopeias;
 
-    private Animator animator;
+    private GnomeAnimationManager gnomeAnim;
     private EventInstance attachSFX;
+
+    [NonSerialized] public bool isAlive;
+
+    public static UnityAction updateGnomesRunningAway; //If gnomes should be running away
+    GnomeManager gnomeManager; //Gets gnome manager
+    ReserveManager reserveManager; //Gnomes in reserve
+
     [SerializeField] private GameObject shatterObject;
+
     #endregion
 
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody>();
+        shatter = GetComponent<Shatter>();
         pointsSystem = FindObjectOfType<LawnmowerPointsSystem>();
-
+        isRunningAway = false;
+        gnomeManager = GnomeManager.Instance;
+        reserveManager = ReserveManager.Instance;
     }
 
     //Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         isMoving = false;
-        isChasingPlayer = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
-        animator = GetComponent<Animator>();
+        gnomeAnim = GetComponentInChildren<GnomeAnimationManager>();
+        isRunningAway = false;
 
         //Here for testing until theres a reliable way to kill the gnome in the scene.
         //Die(this.GetComponent<Rigidbody>().velocity);
     }
 
-        // Update is called once per frame
+    public void OnEnable()
+    {
+        updateGnomesRunningAway += UpdateGnomesRunningAway;
+    }
+
+    public void OnDisable()
+    {
+        updateGnomesRunningAway -= UpdateGnomesRunningAway;
+    }
+
+    public void UpdateGnomesRunningAway()
+    {
+        if (reserveManager.numberOfGnomesOnLawnMower < reserveManager.maxNumOfGnomesOnLawnMower)
+        {
+            isRunningAway = false;
+        }
+        else
+            isRunningAway = true;
+    }
+    
+    // Update is called once per frame
     void Update()
     {
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
@@ -84,13 +122,10 @@ public class GnomeBehavior : MonoBehaviour
     {
         // If gnome should be attacking the player, and has made contact with the player
         // Grapple the player and start dealing damage
-        if (isAttacking && collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
+        if (!isAttacking && collision.gameObject.transform == target)
         {
             AttachToCart(collision.transform);
-            if (collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
-            {
-                AttachToCart(collision.transform);
-            }
+
             PLAYBACK_STATE playbackState;
             attachSFX.getPlaybackState(out playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
@@ -108,28 +143,32 @@ public class GnomeBehavior : MonoBehaviour
     /// <summary>
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
-    public void Die()
+    /// <param name="killingBlowVelocity"></param>
+    public void Die(Vector3 killingBlowVelocity)
     {
-        Debug.Log("Die is called");
+        //Do not kill object. instead call gnome manager's RemoveEnemy()
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+
+            //Reduces number of gnomes on the lawn mower
+            if (isAttacking)
+                reserveManager.numberOfGnomesOnLawnMower--;
+
+            //Gnome is no longer occupying position
+            if (attachedPosition != null)
+                gnomeManager.gnomeAttachPosition[attachedPosition] = false;
+            
+
+
             Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
+
             isDead = true;
             isMoving = false;
             isAttacking = false;
             transform.parent = null;
             if(pointsSystem != null)
                 pointsSystem.GainPoints();
-
-            GnomeModel.SetActive(false);
-            GetComponent<CapsuleCollider>().enabled = false;
-            
-            //temp fix for gnome mesh destruction (replaced with above)
-            //MeshRenderer mr = GnomeModel.GetComponent<MeshRenderer>();
-            //mr.enabled = false;
-            //mr2.enabled = true;
-
             SkinnedMeshRenderer mr = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
 
             if (mr != null)
@@ -138,6 +177,8 @@ public class GnomeBehavior : MonoBehaviour
             }
 
 
+
+            shatter.BreakObject(killingBlowVelocity);
             explosionParticles.Play(); // Plays explosion particle system
 
             //Gets a random int
@@ -151,8 +192,6 @@ public class GnomeBehavior : MonoBehaviour
 
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
 
-                MusicManager.instance.switchMusic(1);
-
             }
 
         }
@@ -164,12 +203,34 @@ public class GnomeBehavior : MonoBehaviour
     /// <param name="cart"></param>
     void AttachToCart(Transform cart)
     {
-        isMoving = false;
-        isAttacking = true;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        transform.SetParent(cart);
-        StartCoroutine(Attack());
+        //If gnome is not running away, attach to the cart
+        if (!isRunningAway)
+        {
+            isMoving = false;
+            isAttacking = true;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            //Iterates over dictionary
+            foreach(KeyValuePair<Transform, bool> gnomePos in gnomeManager.gnomeAttachPosition)
+            {
+                //If a position is open, take it
+                //Gives gnomes exact positions to go to when they attach to the cart
+                //Takes first available spot
+                if (!gnomePos.Value)
+                {
+                    attachedPosition = gnomePos.Key; //Sets the gnome attached position for when the gnome gets knocked off
+                    gnomeManager.gnomeAttachPosition[gnomePos.Key] = true; //Sets the position as taken
+                    transform.position = gnomePos.Key.transform.position; //Sets gnome position
+                    break;
+                }
+            }
+
+            transform.SetParent(cart);
+            StartCoroutine(Attack());
+            reserveManager.numberOfGnomesOnLawnMower++; //Adds to the gnome reserves counter
+            updateGnomesRunningAway?.Invoke();
+        }
     }
 
     /// <summary>
@@ -183,11 +244,28 @@ public class GnomeBehavior : MonoBehaviour
             Vector3 direction = (target.position - transform.position).normalized;
             
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-            rb.velocity = new Vector3 (direction.x, rb.velocity.y, direction.z) * moveSpeed;
+            
+            //If the gnome reaches a certain distance away from the player, add the gnome to reserves
+            if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
+            {
+                gnomeManager.RemoveEnemy(this);
+                reserveManager.AddGnomeToReserve();
+            }
+
+            //If gnome is running away, it goes the opposite direction of the cart
+            if (isRunningAway)
+            {
+                rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
+            }
+            //Chase the player
+            else
+            {
+                rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * moveSpeed;
+                updateGnomesRunningAway?.Invoke();
+            }
 
             yield return new WaitForFixedUpdate();
         }
-        
     }
 
     /// <summary>
@@ -213,20 +291,21 @@ public class GnomeBehavior : MonoBehaviour
     public void ActivateGnome()
     {
         //Gnome chases the player
-        if (gnomeAction == GnomeAction.ChasePlayer)
+        if (gnomeAction == GnomeType.ChasePlayer)
         {
             isMoving = true;
-            isChasingPlayer = true;
+            gnomeAnim.SetAnimation(1);
             StartCoroutine(MoveTowardTarget());
         }
         //Gnome wrecks the garden
         else
         {
-            animator.SetTrigger("Activate");
+            print("Wrecking Garden");
+            //animator.SetInteger("action", 1);
         }
     }
 
-    public enum GnomeAction
+    public enum GnomeType
     {
         ChasePlayer,
         WreckGarden
