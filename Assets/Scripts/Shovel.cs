@@ -20,8 +20,7 @@ public class Shovel : MonoBehaviour
         StartCoroutine(AttachToHand());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         velocityMagnitude = (pointToTrack.position - previousPos).magnitude / Time.deltaTime;
         previousPos = pointToTrack.position;
