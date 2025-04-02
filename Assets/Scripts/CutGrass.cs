@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 /// <summary>
 /// BIG HELP FROM THE BIG GAME DESIGN JOURNEY'S GUIDE ON CUTTING GRASS
 /// </summary>
@@ -12,7 +13,7 @@ public class CutGrass : MonoBehaviour
 
 
     protected int[,] BackupMap;
-    Terrain te;
+    [HideInInspector] public Terrain te;
 
     // Use this for initialization
     void Start()
@@ -116,16 +117,13 @@ public class CutGrass : MonoBehaviour
         t.terrainData.SetDetailLayer(0, 0, 0, map);
     }
 
-    void CreateBackup(Terrain t)
+    void CreateBackup()
     {
         Debug.Log("DetailBackup Done");
-        BackupMap = t.terrainData.GetDetailLayer(0, 0, t.terrainData.detailWidth, t.terrainData.detailHeight, 0);
-    }
-
-    void OnDestroy()
-    {
-        Debug.Log("I work !!! ");
-        te.terrainData.SetDetailLayer(0, 0, 0, BackupMap);
+        BackupMap = te.terrainData.GetDetailLayer(0, 0, t.terrainData.detailWidth, t.terrainData.detailHeight, 0);
+        var copy = Instantiate(te.gameObject);
+        te.gameObject.SetActive(false);
+        te = copy.GetComponent<Terrain>();
     }
 
     private void OnDrawGizmos()
