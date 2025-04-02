@@ -11,8 +11,8 @@ public class AdminPanel : MonoBehaviour
     //stores a refrence to the admin panel
     [SerializeField, Foldout("Refs")] private GameObject panelCanvas;
     private RotoManager rotoMan;
-    private bool ChairConnected;
-    private bool ChairStopped;
+    private bool ChairConnected = false;
+    private bool ChairStopped = false;
 
     //Button Refs
     [SerializeField, Foldout("Refs")] private Toggle ChairConnectedToggle;
