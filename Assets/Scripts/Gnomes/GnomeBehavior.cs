@@ -15,7 +15,6 @@ using UnityEngine.Events;
 using Random = UnityEngine.Random;
 using UnityEngine.Splines;
 
-[RequireComponent(typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
 {
     [Tooltip("Should be the child with the skinned mesh renderer on it.")]
@@ -109,13 +108,15 @@ public class GnomeBehavior : MonoBehaviour
         else
             isRunningAway = true;
     }
-    
-    // Update is called once per frame
+
     void Update()
     {
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
         if (isAttacking && attachedPosition != null)
+        {
             transform.position = attachedPosition.position;
+            transform.LookAt(target);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -125,6 +126,7 @@ public class GnomeBehavior : MonoBehaviour
         if (!isAttacking && collision.gameObject.transform == target && gnomeAction == GnomeType.ChasePlayer)
         {
             AttachToCart(collision.transform);
+            
 
             PLAYBACK_STATE playbackState;
             attachSFX.getPlaybackState(out playbackState);
@@ -235,11 +237,12 @@ public class GnomeBehavior : MonoBehaviour
                     attachedPosition = gnomePos.Key; //Sets the gnome attached position for when the gnome gets knocked off
                     gnomeManager.gnomeAttachPosition[gnomePos.Key] = true; //Sets the position as taken
                     transform.position = gnomePos.Key.transform.position; //Sets gnome position
+                    GetComponentInChildren<GnomeAnimationManager>().SetAnimation(12);
                     break;
                 }
             }
 
-            transform.SetParent(cart);
+            //transform.SetParent(cart);
             StartCoroutine(Attack());
             reserveManager.numberOfGnomesOnLawnMower++; //Adds to the gnome reserves counter
             updateGnomesRunningAway?.Invoke();
@@ -256,7 +259,7 @@ public class GnomeBehavior : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             
-            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+            transform.LookAt(target);
 
             //If the gnome reaches a certain distance away from the player, add the gnome to reserves
             if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
@@ -313,7 +316,6 @@ public class GnomeBehavior : MonoBehaviour
         //Gnome wrecks the garden
         else
         {
-            print("Wrecking Garden");
             //animator.SetInteger("action", 1);
         }
     }

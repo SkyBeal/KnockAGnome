@@ -25,7 +25,8 @@ public class GnomeAnimationManager : MonoBehaviour
         swing,
         mock,
         pull,
-        twirl
+        twirl,
+        beat
     }
     public AnimatedActions givenAction;
     // Start is called before the first frame update
@@ -75,6 +76,9 @@ public class GnomeAnimationManager : MonoBehaviour
             case AnimatedActions.twirl:
                 SetAnimation(11);
                 break;
+            case AnimatedActions.beat:
+                SetAnimation(12);
+                break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
                 break;
@@ -85,6 +89,7 @@ public class GnomeAnimationManager : MonoBehaviour
 
     public void SetAnimation(int animID)
     {
+        print("Changed anim to: " + animID);
         anim.SetInteger("action", animID);
         if (animID == 1)
         {

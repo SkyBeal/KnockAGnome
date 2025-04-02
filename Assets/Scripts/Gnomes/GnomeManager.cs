@@ -25,7 +25,7 @@ public class GnomeManager : MonoBehaviour
     [Tooltip("Distance from the player the gnome has to be to despawn while running away")]
     public float distanceFromPlayerToDespawn;
 
-    [SerializeField] Transform gnomeAttachPosition1, gnomeAttachPosition2, gnomeAttachPosition3, gnomeAttachPosition4, gnomeAttachPosition5, gnomeAttachPosition6;
+    [SerializeField] Transform gnomeAttachPosition1, gnomeAttachPosition2, gnomeAttachPosition3, gnomeAttachPosition4;
     [NonSerialized] public Dictionary<Transform, bool> gnomeAttachPosition;
 
 
@@ -48,9 +48,7 @@ public class GnomeManager : MonoBehaviour
             { gnomeAttachPosition1, false },
             { gnomeAttachPosition2, false },
             { gnomeAttachPosition3, false },
-            { gnomeAttachPosition4, false },
-            { gnomeAttachPosition5, false },
-            { gnomeAttachPosition6, false }
+            { gnomeAttachPosition4, false }
         };
     }
 
