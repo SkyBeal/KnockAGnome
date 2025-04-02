@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.SceneManagement;
 
 public class DevDebug : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class DevDebug : MonoBehaviour
 
             MusicManager.instance.switchMusic(1);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }
