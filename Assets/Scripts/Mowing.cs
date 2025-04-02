@@ -21,7 +21,6 @@ public class Mowing : MonoBehaviour
     private void OnDrawGizmos()
     {
         {
-
             CG = FindAnyObjectByType<CutGrass>();
         }
         Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(CG.GrassCutterRadius, CG.GrassCutterRadius, CG.GrassCutterRadius));

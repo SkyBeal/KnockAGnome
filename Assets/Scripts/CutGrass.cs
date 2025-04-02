@@ -15,11 +15,14 @@ public class CutGrass : MonoBehaviour
     protected int[,] BackupMap;
     [HideInInspector] public Terrain te;
 
+    private TerrainData OGTerrainData;
+    private TerrainData modifiedTerrainData;
+
     // Use this for initialization
     void Start()
     {
         te = GameObject.FindObjectOfType<Terrain>();
-        CreateBackup(te);
+        CreateBackup();
     }
 
     ///
@@ -120,10 +123,18 @@ public class CutGrass : MonoBehaviour
     void CreateBackup()
     {
         Debug.Log("DetailBackup Done");
-        BackupMap = te.terrainData.GetDetailLayer(0, 0, t.terrainData.detailWidth, t.terrainData.detailHeight, 0);
-        var copy = Instantiate(te.gameObject);
-        te.gameObject.SetActive(false);
-        te = copy.GetComponent<Terrain>();
+        //BackupMap = te.terrainData.GetDetailLayer(0, 0, te.terrainData.detailWidth, te.terrainData.detailHeight, 0);
+        OGTerrainData = te.terrainData;
+        var copy = Instantiate(OGTerrainData);
+        modifiedTerrainData = copy;
+    }
+
+    private void OnDestroy()
+    {
+        if (modifiedTerrainData != null)
+        {
+            Destroy(modifiedTerrainData);
+        }
     }
 
     private void OnDrawGizmos()

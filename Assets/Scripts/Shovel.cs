@@ -25,7 +25,7 @@ public class Shovel : MonoBehaviour
     {
         velocityMagnitude = (pointToTrack.position - previousPos).magnitude / Time.deltaTime;
         previousPos = pointToTrack.position;
-        Debug.Log(velocityMagnitude);
+        //Debug.Log(velocityMagnitude);
     }
 
     public void OnCollisionEnter(Collision collision)
