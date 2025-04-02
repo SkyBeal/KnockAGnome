@@ -67,6 +67,7 @@ public class GnomeBehavior : MonoBehaviour
 
     #endregion
 
+    private float originalMoveSpeed;
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody>();
@@ -79,6 +80,7 @@ public class GnomeBehavior : MonoBehaviour
     //Start is called before the first frame update
     public void Start()
     {
+        originalMoveSpeed = moveSpeed;
         target = gnomeManager.playerPrefab;
         isMoving = false;
         numOfOnomatopeias = onomatopeiasFolder.childCount;
@@ -259,11 +261,12 @@ public class GnomeBehavior : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             
-            transform.LookAt(target);
+            
 
             //If the gnome reaches a certain distance away from the player, add the gnome to reserves
             if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
             {
+                moveSpeed = originalMoveSpeed;
                 gnomeManager.RemoveEnemy(this);
                 reserveManager.AddGnomeToReserve();
             }
@@ -271,11 +274,14 @@ public class GnomeBehavior : MonoBehaviour
             //If gnome is running away, it goes the opposite direction of the cart
             if (isRunningAway)
             {
+                moveSpeed = originalMoveSpeed * 2;
+                transform.rotation = Quaternion.LookRotation(transform.position - target.position);
                 rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
             }
             //Chase the player
             else
             {
+                transform.LookAt(target);
                 rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * moveSpeed;
                 updateGnomesRunningAway?.Invoke();
             }
