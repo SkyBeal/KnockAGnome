@@ -90,7 +90,7 @@ public class GnomeBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(speedBeforePhysicsUpdate);        
+        //Debug.Log(speedBeforePhysicsUpdate);        
         if(speedBeforePhysicsUpdate > speedToBreak)
         {
             Die();
@@ -124,7 +124,7 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        Debug.Log("Die is called");
+        Debug.Log(gameObject.name + " was killed");
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
