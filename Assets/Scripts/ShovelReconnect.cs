@@ -23,7 +23,6 @@ public class ShovelReconnect : MonoBehaviour
     {
         connectedShovel.SetActive(false);
         connectedShovel.transform.position = this.transform.position;
-        connectedShovel.transform.rotation = this.transform.rotation;
         
         connectedShovel.transform.rotation = Quaternion.Euler(
             this.transform.rotation.eulerAngles.x + shovelOffset.x, 
