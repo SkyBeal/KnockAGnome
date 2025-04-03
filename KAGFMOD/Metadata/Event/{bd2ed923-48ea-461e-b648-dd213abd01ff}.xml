@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{52994cfa-eeda-4af0-bb76-661ef37de2fe}" />
 	<object class="GroupTrack" id="{26c02ea1-9a1d-4e47-baa5-9790b79c6d4d}">
 		<relationship name="modules">
-			<destination>{bb4574e0-f9c5-47e0-bb15-42bd3c33ece0}</destination>
+			<destination>{18cc2c32-e1bf-4e5b-935b-2a9b59273d5d}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{0a68d435-aee2-4ed3-891f-e2d569ec88d2}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{e080b233-5933-4953-a2b2-91d30e23b3f3}">
 		<relationship name="modules">
-			<destination>{bb4574e0-f9c5-47e0-bb15-42bd3c33ece0}</destination>
+			<destination>{18cc2c32-e1bf-4e5b-935b-2a9b59273d5d}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{1dbdd324-0fcb-4842-989a-a6a407199e21}</destination>
@@ -91,23 +91,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9b94998f-8dfc-45c7-be3f-c0e45e569e92}" />
-	<object class="SingleSound" id="{bb4574e0-f9c5-47e0-bb15-42bd3c33ece0}">
+	<object class="SingleSound" id="{18cc2c32-e1bf-4e5b-935b-2a9b59273d5d}">
 		<property name="length">
-			<value>4</value>
+			<value>10</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>21.5</value>
-		</property>
-		<property name="pitch">
-			<value>3.60000014</value>
+			<value>4</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{1ff57bbd-cb9b-4b05-bed4-7c6d2f5e34b1}</destination>
+			<destination>{0c01b2c0-7f86-4856-a36f-5abb85db33a8}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{0a68d435-aee2-4ed3-891f-e2d569ec88d2}">
 		<property name="volume">
-			<value>-32</value>
+			<value>-25.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -127,7 +124,7 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>4</value>
+			<value>10</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{e080b233-5933-4953-a2b2-91d30e23b3f3}</destination>
