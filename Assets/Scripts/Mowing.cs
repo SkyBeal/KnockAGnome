@@ -15,6 +15,7 @@ public class Mowing : MonoBehaviour
     public float GrassCutterRadius;
 
     private Terrain terrain;
+    private int[,] map = null;
 
     /// <summary>
     /// obtains terrain and terrain data
@@ -50,10 +51,6 @@ public class Mowing : MonoBehaviour
     /// </summary>
     public void CutTheGrass(Terrain t, Vector3 position, float radius)
     {
-        if (t == null)
-        {
-            t = GameObject.FindObjectOfType<Terrain>();
-        }
 
         //gets the size of the terrain to compare to the terrain data size
         int TerrainDetailMapSize = terrain.terrainData.detailResolution;
@@ -76,7 +73,7 @@ public class Mowing : MonoBehaviour
         xymaxmin[3] = TexturePoint3D.x - radius;
 
 
-        int[,] map = terrain.terrainData.GetDetailLayer(0, 0, terrain.terrainData.detailWidth, terrain.terrainData.detailHeight, 0);
+        map = terrain.terrainData.GetDetailLayer(0, 0, terrain.terrainData.detailWidth, terrain.terrainData.detailHeight, 0);
 
         for (int y = 0; y < terrain.terrainData.detailHeight; y++)
         {
