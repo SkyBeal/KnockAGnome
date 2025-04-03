@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gnome
+  - Tree
+  - Feeder
+  - Fountain
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Particle No Collide
-  - 
+  - Shovel
   - 
   - 
   - 

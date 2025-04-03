@@ -144,7 +144,6 @@ public class SplineController : MonoBehaviour
     {
 
         EndScreen.SetActive(true);
-        Time.timeScale = 0;
 
     }
 }

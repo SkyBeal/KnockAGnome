@@ -53,7 +53,7 @@
 			<destination>{2054944f-1316-474c-b62c-c7e7fa4cb2b6}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{1eacff38-22f1-4bed-9cae-47e30a8a3d98}</destination>
+			<destination>{e315c4e7-4aca-4958-a02f-44adabfa446a}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{1fe7ba1c-f429-4486-ad5a-b930c2656159}" />
@@ -146,6 +146,9 @@
 	<object class="MixerBusPanner" id="{ce6a3ccf-c62e-4f74-b6a5-89fc1f4063b1}" />
 	<object class="MixerBusFader" id="{fbb6a02c-490f-4645-b660-3678d04b1344}" />
 	<object class="SpatialiserEffect" id="{8fe56901-9b80-4539-bec7-d4982b6d705a}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="distanceRolloffType">
 			<value>4</value>
 		</property>
