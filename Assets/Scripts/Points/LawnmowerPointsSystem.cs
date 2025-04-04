@@ -7,7 +7,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
     #region VARIABLES
     [Foldout("Design Vars"), SerializeField, Tooltip("This changes how much " +
         "each gnome is worth when you kill them")]
-    private int PointIncreases = 5;
+    private float minPointIncrease = 0.1f;
+    private float maxPointIncrease = 0.05f;
 
     [Foldout("Design Vars"), SerializeField, Tooltip("This changes how many points " +
         "you lose when a gnome hits you")]
@@ -20,7 +21,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private int MinimumPointValue = 0;
 
     [SerializeField, ReadOnly, Foldout("Debug")]
-    private int points;
+    private float points;
 
     public TMP_Text ScoreText;
 
@@ -45,12 +46,23 @@ public class LawnmowerPointsSystem : MonoBehaviour
         points = StartingPointValue;
 
         numberConverter = new NumberConverter();
+        string test = numberConverter.ConvertNumber(0.5f);
+        print(test);
         GainPoints();
     }
 
     public void GainPoints()
     {
-        points += PointIncreases;
+        float randomPointGain = Random.Range(minPointIncrease, maxPointIncrease);
+        points = Mathf.Round((points + randomPointGain) * 100) / 100f;
+
+        if (ScoreText != null)
+            ScoreText.text = numberConverter.ConvertNumber(points);
+    }
+
+    public void GainPointBonus(float pointBonus)
+    {
+        points = Mathf.Round((points + pointBonus) * 100) / 100f;
 
         if (ScoreText != null)
             ScoreText.text = numberConverter.ConvertNumber(points);
