@@ -266,6 +266,7 @@ public class GnomeBehavior : MonoBehaviour
             //If the gnome reaches a certain distance away from the player, add the gnome to reserves
             if (Vector3.Distance(target.position, transform.position) > gnomeManager.distanceFromPlayerToDespawn)
             {
+                StopCoroutine(MoveTowardTarget());
                 moveSpeed = originalMoveSpeed;
                 gnomeManager.RemoveEnemy(this);
                 reserveManager.AddGnomeToReserve();

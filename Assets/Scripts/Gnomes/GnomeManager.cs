@@ -76,7 +76,9 @@ public class GnomeManager : MonoBehaviour
             spawnedGnome.transform.position = spawnLocation; //Sets gnome position
             spawnedGnome.gameObject.SetActive(true); //Activates the gnome
             spawnedGnome.isAttacking = false;
-            spawnedGnome.isMoving = true;
+            spawnedGnome.isMoving = false;
+            spawnedGnome.isDead = false;
+            spawnedGnome.GetComponent<GnomeAnimationManager>().SetAnimation(0);
         }
         //If pool is empty, create a new gnome
         else
@@ -91,6 +93,7 @@ public class GnomeManager : MonoBehaviour
             spawnedGnome.target = playerPrefab;
             newEnemy.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             newEnemy.transform.position = spawnLocation;
+            spawnedGnome.GetComponent<GnomeAnimationManager>().SetAnimation(0);
             //spawnedGnome.Init(); - TODO: When object pooling is active, uncomment this and set GnomeBehavior's Start method to Init()
         }
 
