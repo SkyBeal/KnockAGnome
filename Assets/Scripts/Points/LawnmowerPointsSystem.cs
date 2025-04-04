@@ -45,6 +45,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
         points = StartingPointValue;
 
         numberConverter = new NumberConverter();
+        GainPoints();
     }
 
     public void GainPoints()
