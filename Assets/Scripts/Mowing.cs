@@ -72,6 +72,8 @@ public class Mowing : MonoBehaviour
         xymaxmin[2] = TexturePoint3D.x + radius;
         xymaxmin[3] = TexturePoint3D.x - radius;
 
+        Debug.Log(terrain.terrainData.detailHeight);
+        Debug.Log(terrain.terrainData.detailWidth);
 
         map = terrain.terrainData.GetDetailLayer(0, 0, terrain.terrainData.detailWidth, terrain.terrainData.detailHeight, 0);
 
