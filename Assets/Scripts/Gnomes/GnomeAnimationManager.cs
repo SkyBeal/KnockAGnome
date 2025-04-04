@@ -32,6 +32,7 @@ public class GnomeAnimationManager : MonoBehaviour
         beaten,
         wave,
         pluckgrass,
+        balloon,
     }
     public AnimatedActions givenAction;
     // Start is called before the first frame update
@@ -98,6 +99,9 @@ public class GnomeAnimationManager : MonoBehaviour
                 break;
             case AnimatedActions.pluckgrass:
                 SetAnimation(17);
+                break;
+            case AnimatedActions.balloon:
+                SetAnimation(18);
                 break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
