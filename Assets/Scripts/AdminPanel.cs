@@ -11,13 +11,10 @@ public class AdminPanel : MonoBehaviour
     //stores a refrence to the admin panel
     [SerializeField, Foldout("Refs")] private GameObject panelCanvas;
     private RotoManager rotoMan;
-    private bool ChairConnected = false;
     private bool ChairStopped = false;
 
     //Button Refs
-    [SerializeField, Foldout("Refs")] private Toggle ChairConnectedToggle;
     [SerializeField, Foldout("Refs")] private Toggle ChairStoppedToggle;
-    [SerializeField, Foldout("Refs")] private TMP_Text chairConnectedButtonText;
     [SerializeField, Foldout("Refs")] private TMP_Text chairEmerStopButtonText;
     [SerializeField, Foldout("Refs")] private Button emergencyStopButton;
 
@@ -45,30 +42,7 @@ public class AdminPanel : MonoBehaviour
 
     #region BUTTON FUNCS
 
-    public void ConnectChair()
-    {
-        if (ChairConnected)
-        {
-            rotoMan.DisconnectChair();
-            ChairConnected = false;
-            ChairConnectedToggle.isOn = false;
-            chairConnectedButtonText.text = "Connect Chair";
-            emergencyStopButton.interactable = false;
-        }
-        else
-        {
-            rotoMan.ConnectChair();
-            ChairConnected = true;
-            ChairConnectedToggle.isOn = true;
-            chairConnectedButtonText.text = "Disconnect Chair";
-            emergencyStopButton.interactable = true;
-            
-        }
-        if (ChairStopped)
-        {
-            EmergencyStopChair();
-        }
-    }
+    
 
     public void EmergencyStopChair()
     {
