@@ -121,12 +121,13 @@ public class GnomeBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // If gnome should be attacking the player, and has made contact with the player
         // Grapple the player and start dealing damage
         if (!isAttacking && collision.gameObject.transform == target && gnomeAction == GnomeType.ChasePlayer)
         {
+            
             AttachToCart(collision.transform);
             
 
@@ -149,7 +150,6 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void Die()
     {
-
         //Do not kill object. instead call gnome manager's RemoveEnemy()
         Debug.Log("Die is called");
 
@@ -274,9 +274,15 @@ public class GnomeBehavior : MonoBehaviour
             //If gnome is running away, it goes the opposite direction of the cart
             if (isRunningAway)
             {
-                moveSpeed = originalMoveSpeed * 2;
                 transform.rotation = Quaternion.LookRotation(transform.position - target.position);
-                rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
+                
+                Debug.DrawRay(transform.position, transform.forward, Color.green, 0.25f);
+
+                if (!Physics.Raycast(transform.position, transform.forward, 0.2f))
+                {
+                    moveSpeed = originalMoveSpeed * 2;
+                    rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z) * -moveSpeed;
+                }
             }
             //Chase the player
             else

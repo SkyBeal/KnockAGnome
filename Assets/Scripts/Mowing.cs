@@ -31,13 +31,12 @@ public class Mowing : MonoBehaviour
     void Update()
     {
         CutTheGrass(terrain, gameObject.transform.position, GrassCutterRadius);
-        OnDrawGizmos();
     }
 
     /// <summary>
     /// Draws a cube area of where the grass will be cut
     /// </summary>
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(GrassCutterRadius * 2, GrassCutterRadius * 2, GrassCutterRadius * 2));
     }

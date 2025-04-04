@@ -89,7 +89,6 @@ public class GnomeAnimationManager : MonoBehaviour
 
     public void SetAnimation(int animID)
     {
-        print("Changed anim to: " + animID);
         anim.SetInteger("action", animID);
         if (animID == 1)
         {
