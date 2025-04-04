@@ -50,9 +50,12 @@ public class GnomeBehavior : MonoBehaviour
 
     private int numOfOnomatopeias;
 
+    private float speedBeforePhysicsUpdate;
+
     private Animator animator;
     private EventInstance attachSFX;
     [SerializeField] private GameObject shatterObject;
+    [SerializeField] private float speedToBreak;
     #endregion
 
     private void Awake()
@@ -80,8 +83,19 @@ public class GnomeBehavior : MonoBehaviour
         attachSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), rb));
     }
 
+    private void FixedUpdate()
+    {
+        speedBeforePhysicsUpdate = rb.velocity.magnitude;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log(speedBeforePhysicsUpdate);        
+        if(speedBeforePhysicsUpdate > speedToBreak)
+        {
+            Die();
+        }
+
         // If gnome should be attacking the player, and has made contact with the player
         // Grapple the player and start dealing damage
         if (isAttacking && collision.gameObject.GetComponent<LawnmowerPointsSystem>() != null)
@@ -110,7 +124,7 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        Debug.Log("Die is called");
+        Debug.Log(gameObject.name + " was killed");
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
