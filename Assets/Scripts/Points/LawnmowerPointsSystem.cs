@@ -24,6 +24,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
 
     public TMP_Text ScoreText;
 
+    NumberConverter numberConverter;
+
     [Button("Gain Points")]
     private void TempGainPoints()
     {
@@ -41,17 +43,17 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private void Start()
     {
         points = StartingPointValue;
-        
-        if(ScoreText != null)
-            ScoreText.text = "Score: " + 0.ToString();
+
+        numberConverter = new NumberConverter();
+        GainPoints();
     }
 
     public void GainPoints()
     {
         points += PointIncreases;
-        
+
         if (ScoreText != null)
-            ScoreText.text = "Score: " + points.ToString();
+            ScoreText.text = numberConverter.ConvertNumber(points);
     }
 
     public void LosePoints()
@@ -61,8 +63,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
         {
             points = MinimumPointValue;
         }
-        
-        if(ScoreText != null)
-            ScoreText.text = "Score: " + points.ToString();
+
+        if (ScoreText != null)
+            ScoreText.text = numberConverter.ConvertNumber(points);
     }
 }
