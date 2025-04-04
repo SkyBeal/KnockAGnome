@@ -20,11 +20,11 @@ public class Shovel : MonoBehaviour
         StartCoroutine(AttachToHand());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         velocityMagnitude = (pointToTrack.position - previousPos).magnitude / Time.deltaTime;
         previousPos = pointToTrack.position;
+        //Debug.Log(velocityMagnitude);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -32,9 +32,10 @@ public class Shovel : MonoBehaviour
         
         if(collision.gameObject.GetComponent<GnomeBehavior>() != null)
         {
+            Debug.Log("shovel hit at " + velocityMagnitude + " speed");
             if (velocityMagnitude >= velocityToKill)
             {
-                collision.gameObject.GetComponent<GnomeBehavior>().Die(this.GetComponent<Rigidbody>().velocity);
+                collision.gameObject.GetComponent<GnomeBehavior>().Die();
             }
         }
 
