@@ -456,11 +456,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCanvas: {fileID: 3359588177065977640}
-  ChairConnectedToggle: {fileID: 0}
-  ChairStoppedToggle: {fileID: 0}
-  chairConnectedButtonText: {fileID: 0}
-  chairEmerStopButtonText: {fileID: 0}
-  emergencyStopButton: {fileID: 0}
+  ChairConnectedToggle: {fileID: 5665614694515097222}
+  ChairStoppedToggle: {fileID: 9058082036020679033}
+  chairConnectedButtonText: {fileID: 4670034397028899311}
+  chairEmerStopButtonText: {fileID: 1812904761195408293}
+  emergencyStopButton: {fileID: 1246137788831282745}
 --- !u!1 &2651009318590288447
 GameObject:
   m_ObjectHideFlags: 0
