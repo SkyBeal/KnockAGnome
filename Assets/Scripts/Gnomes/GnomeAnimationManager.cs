@@ -25,7 +25,13 @@ public class GnomeAnimationManager : MonoBehaviour
         swing,
         mock,
         pull,
-        twirl
+        twirl,
+        taunt,
+        booty,
+        beating,
+        beaten,
+        wave,
+        pluckgrass,
     }
     public AnimatedActions givenAction;
     // Start is called before the first frame update
@@ -74,6 +80,24 @@ public class GnomeAnimationManager : MonoBehaviour
                 break;
             case AnimatedActions.twirl:
                 SetAnimation(11);
+                break;
+            case AnimatedActions.taunt:
+                SetAnimation(12);
+                break;
+            case AnimatedActions.booty:
+                SetAnimation(13);
+                break;
+            case AnimatedActions.beating:
+                SetAnimation(14);
+                break;
+            case AnimatedActions.beaten:
+                SetAnimation(15);
+                break;
+            case AnimatedActions.wave:
+                SetAnimation(16);
+                break;
+            case AnimatedActions.pluckgrass:
+                SetAnimation(17);
                 break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
