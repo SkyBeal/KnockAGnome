@@ -38,6 +38,8 @@ public class GnomeBehavior : MonoBehaviour
     //Pick random Particle System inside folder to play
     [SerializeField, Tooltip("The folder containing all of the onomatopeias")] private Transform onomatopeiasFolder;
 
+    [SerializeField, Tooltip("")] private BalloonScript balloon;
+
 
     private Rigidbody rb;
     private LawnmowerPointsSystem pointsSystem;
@@ -162,11 +164,11 @@ public class GnomeBehavior : MonoBehaviour
 
             if(firstGnome)
             {
-
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
+                if (balloon != null)
+                    balloon.StartBalloonFly();
 
                 MusicManager.instance.switchMusic(1);
-
             }
 
         }
