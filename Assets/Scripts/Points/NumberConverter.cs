@@ -25,15 +25,28 @@ public class NumberConverter
             if (num % 10 > 0)
                 snum += onesArray[Mathf.FloorToInt(num) % 10];
         }
-        else if (num >= 1)
+        else if (num >= 0)
         {
             snum += onesArray[Mathf.FloorToInt(num)];
         }
 
-        int decimalValue = (int) ((num -  Mathf.FloorToInt(num)) * 100) + 1;
+        int decimalValue = (int) ((num -  Mathf.FloorToInt(num)) * 100);
 
-        if (decimalValue > 0)
-            snum += " and " + decimalValue + "/100 dollars";
+        snum += " dollars and ";
+
+        if (decimalValue > 20)
+        {
+            snum += tensArray[Mathf.FloorToInt(decimalValue) / 10] + " ";
+            if (decimalValue % 10 > 0)
+                snum += onesArray[Mathf.FloorToInt(decimalValue) % 10];
+        }
+        else if (decimalValue >= 1)
+        {
+            snum += onesArray[Mathf.FloorToInt(decimalValue)];
+        }
+
+        snum += " cents";
+
         snum = snum.ToUpper();
         
         return snum;
