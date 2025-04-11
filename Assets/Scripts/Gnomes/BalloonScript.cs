@@ -25,6 +25,7 @@ public class BalloonScript : MonoBehaviour
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        Destroy(gameObject);
         yield return null;
     }
 }
