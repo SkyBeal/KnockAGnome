@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shovel : MonoBehaviour
@@ -38,7 +37,6 @@ public class Shovel : MonoBehaviour
                 collision.gameObject.GetComponent<GnomeBehavior>().Die();
             }
         }
-
     }
 
     public IEnumerator AttachToHand()
