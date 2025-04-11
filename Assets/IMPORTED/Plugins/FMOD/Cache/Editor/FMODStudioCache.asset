@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638799775773373690
+  lastModified: 638799787977042084
   FileSizes:
   - Name: Desktop
     Value: 3054208
@@ -224,7 +224,7 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638799775773423700
+  cacheTime: 638799787977042084
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
