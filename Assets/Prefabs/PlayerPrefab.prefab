@@ -105,6 +105,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lawnmowerPointsSystem: {fileID: 0}
   endingTimer: 0
   EndScreen: {fileID: 0}
 --- !u!114 &4098315794008860741
@@ -628,7 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd2ccf7cda35624ea642ba2c658095b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointIncreases: 5
+  minPointIncrease: 0.1
   PointLosses: 1
   StartingPointValue: 20
   MinimumPointValue: 0
