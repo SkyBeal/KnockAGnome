@@ -23,6 +23,13 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private int points;
 
     public TMP_Text ScoreText;
+    public TMP_Text NumberScoreText;
+
+    int gnomesKilled;
+    public TMP_Text GnomesKilledText;
+
+    int scoreNumberTens;
+    int scoreNumberOnes;
 
     NumberConverter numberConverter;
 
@@ -50,10 +57,10 @@ public class LawnmowerPointsSystem : MonoBehaviour
 
     public void GainPoints()
     {
-        points += PointIncreases;
 
-        if (ScoreText != null)
-            ScoreText.text = numberConverter.ConvertNumber(points);
+        points += PointIncreases;
+        gnomesKilled += 1;
+
     }
 
     public void LosePoints()
@@ -64,7 +71,61 @@ public class LawnmowerPointsSystem : MonoBehaviour
             points = MinimumPointValue;
         }
 
+    }
+
+    public void UpdateScore()
+    {
+
         if (ScoreText != null)
             ScoreText.text = numberConverter.ConvertNumber(points);
+
+        if(NumberScoreText != null)
+        {
+
+            if(points > 20)
+            {
+
+                scoreNumberTens = Mathf.FloorToInt(points / 10);
+
+                if(points % 10 > 0)
+                {
+
+                    scoreNumberOnes = Mathf.FloorToInt(points % 10);
+
+                }
+
+            }
+            else if (points >= 1)
+            {
+
+                scoreNumberOnes = Mathf.FloorToInt(points);
+
+            }
+
+            int decimalValue = (int)((points - Mathf.FloorToInt(points)) * 100) + 1;
+
+            if(decimalValue < 10)
+            {
+
+                NumberScoreText.text = "$" + scoreNumberTens.ToString() + scoreNumberOnes.ToString() + ".0" + decimalValue.ToString();
+
+            }
+            else
+            {
+
+                NumberScoreText.text = "$" + scoreNumberTens.ToString() + scoreNumberOnes.ToString() + decimalValue.ToString();
+
+            }
+
+
+        }
+
+        if(GnomesKilledText != null)
+        {
+
+
+
+        }
+
     }
 }
