@@ -104,6 +104,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lawnmowerPointsSystem: {fileID: 0}
   endingTimer: 0
   EndScreen: {fileID: 0}
 --- !u!114 &4098315794008860741
@@ -539,6 +540,7 @@ Transform:
   m_Children:
   - {fileID: 6527361542500062839}
   - {fileID: 6678701677089522853}
+  - {fileID: 2825634524740484874}
   - {fileID: 7629021444023264520}
   m_Father: {fileID: 2334565146022406582}
   m_RootOrder: 2
@@ -626,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd2ccf7cda35624ea642ba2c658095b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointIncreases: 5
+  minPointIncrease: 0.1
   PointLosses: 1
   StartingPointValue: 20
   MinimumPointValue: 0
@@ -638,7 +640,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2227903969575604002}
+    m_TransformParent: {fileID: 3377975654493784713}
     m_Modifications:
     - target: {fileID: -8910758295439120689, guid: 8a211dd0f0c753249bcd47e57a6ba750, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -981,6 +983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
+    - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1033,17 +1039,9 @@ PrefabInstance:
     - {fileID: 58445280694286476, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 2626757739553014894, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 2190828208922718286, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6981642495833523204, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2825634524740484874}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!4 &2227903969575604002 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6981642495833523204, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 9081750571967400742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7629021444023264520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
