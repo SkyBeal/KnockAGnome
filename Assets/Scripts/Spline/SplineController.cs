@@ -19,6 +19,7 @@ public class SplineController : MonoBehaviour
 {
     [SerializeField] private int splineStartIndex;
     [SerializeField] private SplineCheckpoint[] splineCheckPoints;
+    [SerializeField] private LawnmowerPointsSystem lawnmowerPointsSystem;
     private int currentSplineIndex;
     private SplineAnimate[] splinePath;
 
@@ -84,7 +85,6 @@ public class SplineController : MonoBehaviour
 
             if (timer >= endingTimer && endingCalled == false)
             {
-
                 endingCalled = true;
                 CallEnding();
 
@@ -142,6 +142,8 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
+        float randomPointGain = Random.Range(0.5f, 0.75f);
+        lawnmowerPointsSystem.GainPointBonus(randomPointGain);
         EndScreen.SetActive(true);
     }
 }
