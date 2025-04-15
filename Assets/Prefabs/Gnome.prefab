@@ -244,15 +244,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105433509483118228, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.02662
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 105433509483118228, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8252053
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 105433509483118228, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.56508887
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 105433509483118228, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -290,6 +290,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gnome
       objectReference: {fileID: 0}
+    - target: {fileID: 676772917179943839, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676772917179943839, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676772917179943839, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2637413957584256152, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_Name
       value: Onomatopoeias
@@ -302,6 +314,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gnome
       objectReference: {fileID: 0}
+    - target: {fileID: 4319218070522371895, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319218070522371895, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319218070522371895, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4678875611656883077, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -309,6 +333,18 @@ PrefabInstance:
     - target: {fileID: 4678875611656883077, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_TagString
       value: Gnome
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387483386800514787, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387483386800514787, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387483386800514787, guid: 261480a082af439459ade9bda8b697ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7347382967263358092, guid: 261480a082af439459ade9bda8b697ba, type: 3}
       propertyPath: m_Layer
