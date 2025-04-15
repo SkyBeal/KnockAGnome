@@ -7,7 +7,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
     #region VARIABLES
     [Foldout("Design Vars"), SerializeField, Tooltip("This changes how much " +
         "each gnome is worth when you kill them")]
-    private int PointIncreases = 5;
+    private float minPointIncrease = 0.1f;
+    private float maxPointIncrease = 0.05f;
 
     [Foldout("Design Vars"), SerializeField, Tooltip("This changes how many points " +
         "you lose when a gnome hits you")]
@@ -20,16 +21,9 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private int MinimumPointValue = 0;
 
     [SerializeField, ReadOnly, Foldout("Debug")]
-    private int points;
+    private float points;
 
     public TMP_Text ScoreText;
-    public TMP_Text NumberScoreText;
-
-    int gnomesKilled;
-    public TMP_Text GnomesKilledText;
-
-    int scoreNumberTens;
-    int scoreNumberOnes;
 
     NumberConverter numberConverter;
 
@@ -52,15 +46,26 @@ public class LawnmowerPointsSystem : MonoBehaviour
         points = StartingPointValue;
 
         numberConverter = new NumberConverter();
+        string test = numberConverter.ConvertNumber(0.5f);
+        print(test);
         GainPoints();
     }
 
     public void GainPoints()
     {
+        float randomPointGain = Random.Range(minPointIncrease, maxPointIncrease);
+        points = Mathf.Round((points + randomPointGain) * 100) / 100f;
 
-        points += PointIncreases;
-        gnomesKilled += 1;
+        if (ScoreText != null)
+            ScoreText.text = numberConverter.ConvertNumber(points);
+    }
 
+    public void GainPointBonus(float pointBonus)
+    {
+        points = Mathf.Round((points + pointBonus) * 100) / 100f;
+
+        if (ScoreText != null)
+            ScoreText.text = numberConverter.ConvertNumber(points);
     }
 
     public void LosePoints()
@@ -71,61 +76,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
             points = MinimumPointValue;
         }
 
-    }
-
-    public void UpdateScore()
-    {
-
         if (ScoreText != null)
             ScoreText.text = numberConverter.ConvertNumber(points);
-
-        if(NumberScoreText != null)
-        {
-
-            if(points > 20)
-            {
-
-                scoreNumberTens = Mathf.FloorToInt(points / 10);
-
-                if(points % 10 > 0)
-                {
-
-                    scoreNumberOnes = Mathf.FloorToInt(points % 10);
-
-                }
-
-            }
-            else if (points >= 1)
-            {
-
-                scoreNumberOnes = Mathf.FloorToInt(points);
-
-            }
-
-            int decimalValue = (int)((points - Mathf.FloorToInt(points)) * 100) + 1;
-
-            if(decimalValue < 10)
-            {
-
-                NumberScoreText.text = "$" + scoreNumberTens.ToString() + scoreNumberOnes.ToString() + ".0" + decimalValue.ToString();
-
-            }
-            else
-            {
-
-                NumberScoreText.text = "$" + scoreNumberTens.ToString() + scoreNumberOnes.ToString() + decimalValue.ToString();
-
-            }
-
-
-        }
-
-        if(GnomesKilledText != null)
-        {
-
-
-
-        }
-
     }
 }
