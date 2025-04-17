@@ -15,11 +15,8 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-<<<<<<< HEAD
-  lastModified: 638793585467303364
-=======
-  lastModified: 638793168712886808
->>>>>>> 726e709 (im gonna die.)
+  lastModified: 638799775773399151
+
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -39,11 +36,8 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-<<<<<<< HEAD
-  lastModified: 638793585467222055
-=======
-  lastModified: 638793754853960292
->>>>>>> 726e709 (im gonna die.)
+  lastModified: 638799787977042084
+
   FileSizes:
   - Name: Desktop
     Value: 3054208
@@ -117,11 +111,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-<<<<<<< HEAD
-  lastModified: 638793585467303364
-=======
-  lastModified: 638793168712886808
->>>>>>> 726e709 (im gonna die.)
+  lastModified: 638799775773399151
   FileSizes:
   - Name: Desktop
     Value: 1528
@@ -168,11 +158,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-<<<<<<< HEAD
-  lastModified: 638793585467303364
-=======
-  lastModified: 638793168712916644
->>>>>>> 726e709 (im gonna die.)
+  lastModified: 638799775773423700
   FileSizes:
   - Name: Desktop
     Value: 542080
@@ -240,11 +226,7 @@ MonoBehaviour:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-<<<<<<< HEAD
-  cacheTime: 638793585467303364
-=======
-  cacheTime: 638793754853960292
->>>>>>> 726e709 (im gonna die.)
+  cacheTime: 638799787977042084
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
