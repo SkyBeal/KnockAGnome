@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shovel : MonoBehaviour
@@ -20,12 +19,11 @@ public class Shovel : MonoBehaviour
         StartCoroutine(AttachToHand());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         velocityMagnitude = (pointToTrack.position - previousPos).magnitude / Time.deltaTime;
         previousPos = pointToTrack.position;
-        Debug.Log(velocityMagnitude);
+        //Debug.Log(velocityMagnitude);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -39,7 +37,6 @@ public class Shovel : MonoBehaviour
                 collision.gameObject.GetComponent<GnomeBehavior>().Die();
             }
         }
-
     }
 
     public IEnumerator AttachToHand()
