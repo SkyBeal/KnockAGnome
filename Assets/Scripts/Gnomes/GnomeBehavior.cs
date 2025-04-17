@@ -58,6 +58,8 @@ public class GnomeBehavior : MonoBehaviour
     private EventInstance attachSFX;
     [SerializeField] private GameObject shatterObject;
     [SerializeField] private float speedToBreak;
+
+    public bool playOno = true;
     #endregion
 
     private void Awake()
@@ -130,6 +132,10 @@ public class GnomeBehavior : MonoBehaviour
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
+            if (playOno)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Onomatopoeia, transform.position);
+            }
             Instantiate(shatterObject, transform.position, Quaternion.identity); // spawns particle gameobject, which gives the illusion of gnome shattering
             isDead = true;
             isMoving = false;
