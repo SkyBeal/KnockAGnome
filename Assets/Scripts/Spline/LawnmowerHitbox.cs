@@ -6,6 +6,8 @@ public class LawnmowerHitbox : MonoBehaviour
     {
         if (collider.gameObject.GetComponent<GnomeBehavior>() != null)
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Squash, transform.position);
+            collider.gameObject.GetComponent<GnomeBehavior>().playOno = false;
             collider.gameObject.GetComponent<GnomeBehavior>().Die();
         }
     }
