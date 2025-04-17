@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638793722506415661
+  lastModified: 638788669140195547
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638804287755915361
+  lastModified: 638793744997107772
   FileSizes:
   - Name: Desktop
     Value: 3054208
@@ -109,10 +109,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638804329483781551
+  lastModified: 638788669140446328
   FileSizes:
   - Name: Desktop
-    Value: 1562
+    Value: 1528
   Exists: 1
 --- !u!114 &-4537943614158448564
 MonoBehaviour:
@@ -156,10 +156,10 @@ MonoBehaviour:
   Path: KAGFMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638804329483941297
+  lastModified: 638788669140772505
   FileSizes:
   - Name: Desktop
-    Value: 648896
+    Value: 542080
   Exists: 1
 --- !u!114 &-2402311404581063885
 MonoBehaviour:
@@ -219,13 +219,12 @@ MonoBehaviour:
   - {fileID: 6057283202784632706}
   - {fileID: -4537943614158448564}
   - {fileID: 4665177545863108909}
-  - {fileID: 7969573383493140194}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7239902350555940727}
   StringsBanks:
   - {fileID: -4934615888628326578}
-  cacheTime: 638804329483941297
+  cacheTime: 638793744997107772
   cacheVersion: 131620
 --- !u!114 &717024869982552157
 MonoBehaviour:
@@ -355,13 +354,13 @@ MonoBehaviour:
     Data4: -1260139424
   Banks:
   - {fileID: -3481361832903948002}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 10332
+  Length: 0
 --- !u!114 &6057283202784632706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,33 +443,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 900
---- !u!114 &7969573383493140194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/EnvironmentSFX/Pot
-  m_EditorClassIdentifier: 
-  Path: event:/EnvironmentSFX/Pot
-  Guid:
-    Data1: -1867528146
-    Data2: 1184224635
-    Data3: -1885377113
-    Data4: -921012635
-  Banks:
-  - {fileID: -3481361832903948002}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 900
 --- !u!114 &8130050484014970184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,13 +463,13 @@ MonoBehaviour:
     Data4: 1700724003
   Banks:
   - {fileID: -3481361832903948002}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 10332
+  Length: 0
 --- !u!114 &9054634079693177145
 MonoBehaviour:
   m_ObjectHideFlags: 0
