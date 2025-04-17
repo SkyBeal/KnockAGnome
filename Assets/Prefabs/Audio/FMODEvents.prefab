@@ -65,27 +65,6 @@ MonoBehaviour:
       Data3: -1315999090
       Data4: -1092339384
     Path: event:/EnvironmentSFX/Ambience
-  <Bird>k__BackingField:
-    Guid:
-      Data1: -2049634796
-      Data2: 1282554270
-      Data3: 937472921
-      Data4: 1159369188
-    Path: event:/EnvironmentSFX/Bird
-  <Feeder>k__BackingField:
-    Guid:
-      Data1: 1738452921
-      Data2: 1206645311
-      Data3: 813441704
-      Data4: -176665697
-    Path: event:/EnvironmentSFX/Feeder
-  <Fire>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
   <Fountain>k__BackingField:
     Guid:
       Data1: 466315220
@@ -100,20 +79,6 @@ MonoBehaviour:
       Data3: 630854333
       Data4: 1700724003
     Path: event:/EnvironmentSFX/Leaves
-  <Sparks>k__BackingField:
-    Guid:
-      Data1: 870051654
-      Data2: 1189894825
-      Data3: 1286514847
-      Data4: -563112380
-    Path: event:/EnvironmentSFX/Sparks
-  <Donk>k__BackingField:
-    Guid:
-      Data1: -1997232309
-      Data2: 1238395133
-      Data3: -1469387602
-      Data4: -1292760371
-    Path: event:/GnomeSFX/Donk
   <Shatter>k__BackingField:
     Guid:
       Data1: 1984915524
@@ -128,6 +93,13 @@ MonoBehaviour:
       Data3: -1099614323
       Data4: -806033332
     Path: event:/GnomeSFX/Squash
+  <Onomatopoeia>k__BackingField:
+    Guid:
+      Data1: 513495720
+      Data2: 1192530698
+      Data3: 213725618
+      Data4: -1410845159
+    Path: event:/GnomeSFX/Onomatopoeia
   <Attack>k__BackingField:
     Guid:
       Data1: 1042189195
@@ -163,17 +135,3 @@ MonoBehaviour:
       Data3: -1924172877
       Data4: 2031151987
     Path: event:/LawnmowerSFX/OverRock
-  <Smoking>k__BackingField:
-    Guid:
-      Data1: -1500644706
-      Data2: 1312991528
-      Data3: 1382334091
-      Data4: -1787945186
-    Path: event:/LawnmowerSFX/Smoking
-  <Shovel>k__BackingField:
-    Guid:
-      Data1: -781627849
-      Data2: 1311770502
-      Data3: -876521287
-      Data4: 630901612
-    Path: event:/PlayerSFX/Shovel
