@@ -16,6 +16,7 @@ MonoBehaviour:
   Name: Master
   StudioPath: bank:/Master
   lastModified: 638799775773399151
+
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -36,6 +37,7 @@ MonoBehaviour:
   Name: BGM
   StudioPath: bank:/BGM
   lastModified: 638799787977042084
+
   FileSizes:
   - Name: Desktop
     Value: 3054208
