@@ -17,6 +17,7 @@ public class FMODEvents : MonoBehaviour
     [field: Header("GnomeSFX")]
     [field: SerializeField] public EventReference Shatter { get; private set; }
     [field: SerializeField] public EventReference Squash { get; private set; }
+    [field: SerializeField] public EventReference Onomatopoeia { get; private set; }
     [field: SerializeField] public EventReference Attack { get; private set; }
     //Section for voice acted SFX
 
