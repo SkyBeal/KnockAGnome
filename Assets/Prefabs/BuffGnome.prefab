@@ -15008,7 +15008,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: f757f20b8b492bf4795c5407b60f4e84, type: 3}
+  - {fileID: 2100000, guid: 7c794345ca8d56641af28212a8cd4880, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29788,6 +29788,7 @@ GameObject:
   - component: {fileID: 2452181622666084867}
   - component: {fileID: 6161912200091027199}
   - component: {fileID: 4625222688266898139}
+  - component: {fileID: 7541582437252518979}
   - component: {fileID: 7540580799204401205}
   - component: {fileID: 220099352390005409}
   m_Layer: 0
@@ -29842,11 +29843,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5642734890573015904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3f10603a0a694f41a2cd6944f4423da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7541582437252518979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642734890573015904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36121fca8c2bfc042bd45c36bfbc19af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffGnomeScript: {fileID: 0}
 --- !u!135 &7540580799204401205
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44818,7 +44832,7 @@ Transform:
   m_GameObject: {fileID: 7969722753699316257}
   m_LocalRotation: {x: 0, y: 0.6978342, z: 0, w: 0.71625936}
   m_LocalPosition: {x: -53.478, y: 8.08, z: -49.948}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.1999999, y: 1.2, z: 1.1999999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2452181622666084867}
@@ -44830,7 +44844,7 @@ Transform:
   - {fileID: 7306469515798071425}
   - {fileID: 8658687879398967951}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 88.507, z: 0}
 --- !u!95 &1781449357763923561
 Animator:

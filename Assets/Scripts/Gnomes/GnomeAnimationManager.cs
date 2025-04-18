@@ -128,4 +128,8 @@ public class GnomeAnimationManager : MonoBehaviour
         }
     }
 
+    public void Jumpscare()
+    {
+        anim.SetTrigger("jumpscare");
+    }
 }
