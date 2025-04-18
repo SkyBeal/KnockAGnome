@@ -9,7 +9,7 @@ public class GnomeTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.GetComponent<SplineController>() != null)
+        if (other.transform.GetComponent<Mowing>() != null)
         {
             //gnomeBehavior.ActivateGnome();
             Debug.Log("Gnome has been triggered");
