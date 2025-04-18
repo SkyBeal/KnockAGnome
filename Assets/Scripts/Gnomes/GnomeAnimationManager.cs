@@ -102,6 +102,7 @@ public class GnomeAnimationManager : MonoBehaviour
                 break;
             case AnimatedActions.popout:
                 SetAnimation(18);
+
                 break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
@@ -118,5 +119,10 @@ public class GnomeAnimationManager : MonoBehaviour
         {
             anim.SetInteger("runVariation", Random.Range(0, 3));
         }
+        if (animID == 18)
+        {
+            anim.speed = Random.Range(.75f, 1.25f);
+        }
     }
+
 }
