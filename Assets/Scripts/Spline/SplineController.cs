@@ -144,6 +144,7 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
+
         float randomPointGain = Random.Range(0.5f, 0.75f);
         lawnmowerPointsSystem.GainPointBonus(randomPointGain);
         EndScreen.SetActive(true);
@@ -151,6 +152,9 @@ public class SplineController : MonoBehaviour
         EndScreen.GetNamedChild("Score Text").GetComponent<Animator>().enabled = true;
         EndScreen.GetNamedChild("Number Score Text").GetComponent<Animator>().enabled = true;
         EndScreen.GetComponentInChildren<GnomesKilledIncrement>().enabled = true;
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.OldManRambles, transform.position);
+
     }
 
 }

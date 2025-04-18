@@ -29,6 +29,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("OldManJenkins")]
 
+    [field: SerializeField] public EventReference OldManRambles { get; private set; }
 
 
     public static FMODEvents instance { get; private set; }
