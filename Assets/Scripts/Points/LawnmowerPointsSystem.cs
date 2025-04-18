@@ -105,7 +105,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
         if (score > 20)
         {
 
-            numericalScore += Mathf.FloorToInt(score) / 10 + " ";
+            numericalScore += Mathf.FloorToInt(score) / 10 + "";
 
             if(score % 10 > 0)
             {
@@ -134,7 +134,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
         if (decimalValue > 20)
         {
 
-            numericalScore += Mathf.FloorToInt(decimalValue) / 10 + " ";
+            numericalScore += Mathf.FloorToInt(decimalValue) / 10 + "";
 
             if (decimalValue % 10 > 0)
             {
@@ -147,13 +147,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
         else if (decimalValue >= 1)
         {
 
-            numericalScore += "0" + Mathf.FloorToInt(decimalValue);
-
-        }
-        else
-        {
-
-            numericalScore += "00";
+            numericalScore += Mathf.FloorToInt(decimalValue);
 
         }
 
