@@ -31,7 +31,7 @@ public class GnomesKilledIncrement : MonoBehaviour
         while(currentValue < gnomesKilled)
         {
             currentValue += 1;
-            textBox.text = currentValue.ToString();
+            textBox.text = "DESTROYING " + currentValue.ToString() + " GNOMES";
 
             if(currentValue == gnomesKilled)
             {
