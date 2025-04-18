@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Max: 3.82
-    - _Min: -0.44
+    - _Min: 0.04
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shades: 0.16
