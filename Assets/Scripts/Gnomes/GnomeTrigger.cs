@@ -11,7 +11,8 @@ public class GnomeTrigger : MonoBehaviour
     {
         if (other.transform.GetComponent<SplineController>() != null)
         {
-            gnomeBehavior.ActivateGnome();
+            //gnomeBehavior.ActivateGnome();
+            Debug.Log("Gnome has been triggered");
         }
     }
 }
