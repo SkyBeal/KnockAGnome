@@ -10,11 +10,12 @@ public class GnomesKilledIncrement : MonoBehaviour
     TMP_Text textBox;
     int currentValue = 0;
     int gnomesKilled;
+    private Animator anim;
 
     private void Start()
     {
-
-        this.gameObject.GetNamedChild("Gnomes Killed Text").GetComponent<Animator>().enabled = true;
+        anim = this.gameObject.GetNamedChild("Gnomes Killed Text").GetComponent<Animator>();
+        anim.enabled = true;
         textBox = this.gameObject.GetNamedChild("Gnomes Killed Text").GetComponent<TMP_Text>();
         gnomesKilled = GameObject.FindObjectOfType<LawnmowerPointsSystem>().GnomesKilled;
 
@@ -22,31 +23,23 @@ public class GnomesKilledIncrement : MonoBehaviour
 
     public void StartIncrement()
     {
-
         StartCoroutine(CountUpToGnomesKilled());
-
     }
 
     IEnumerator CountUpToGnomesKilled()
     {
-
         while(currentValue < gnomesKilled)
         {
-
             currentValue += 1;
             textBox.text = currentValue.ToString();
 
             if(currentValue == gnomesKilled)
             {
-
-                this.gameObject.GetNamedChild("Gnomes Killed Text").GetComponent<Animator>().SetTrigger("Celebration");
-
+                anim.SetTrigger("Celebration");
             }
 
-            yield return new WaitForSeconds(0.0000000001f);
+            yield return null;
 
         }
-
     }
-
 }
