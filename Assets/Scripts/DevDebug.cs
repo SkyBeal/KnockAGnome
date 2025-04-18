@@ -4,7 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class DevDebug : MonoBehaviour
 {
-    [SerializeField] private BalloonScript balloon;
+    private BalloonScript balloon;
+    private void Start()
+    {
+        balloon = FindObjectOfType<BalloonScript>();
+    }
     public void Update()
     {
 
