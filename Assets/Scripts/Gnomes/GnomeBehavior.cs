@@ -171,6 +171,7 @@ public class GnomeBehavior : MonoBehaviour
             if(firstGnome)
             {
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
+
                 if (balloon != null)
                     balloon.StartBalloonFly();
 
