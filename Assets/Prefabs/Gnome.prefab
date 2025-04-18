@@ -80,6 +80,7 @@ MonoBehaviour:
   gnomeAction: 0
   explosionParticles: {fileID: 6358743609323874255}
   onomatopeiasFolder: {fileID: 789535763280683588}
+  balloon: {fileID: 0}
   shatterObject: {fileID: 5499217459750255952, guid: 265132fcf75925d468aed94b9848f13c, type: 3}
   speedToBreak: 12
 --- !u!54 &8661964909254828076
@@ -519,6 +520,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6506533419709375267, guid: ee98669cf99d08d459641a9235e40d5d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c794345ca8d56641af28212a8cd4880, type: 2}
     - target: {fileID: 8449877739518732857, guid: ee98669cf99d08d459641a9235e40d5d, type: 3}
       propertyPath: m_RootOrder
       value: 0

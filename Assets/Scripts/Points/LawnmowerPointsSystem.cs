@@ -1,6 +1,8 @@
 using NaughtyAttributes;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using System;
 
 public class LawnmowerPointsSystem : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class LawnmowerPointsSystem : MonoBehaviour
     private float points;
 
     public TMP_Text ScoreText;
+    public TMP_Text NumericalScoreText;
+
+    public int GnomesKilled = 0;
 
     NumberConverter numberConverter;
 
@@ -49,23 +54,25 @@ public class LawnmowerPointsSystem : MonoBehaviour
         string test = numberConverter.ConvertNumber(0.5f);
         print(test);
         GainPoints();
+
     }
 
     public void GainPoints()
     {
-        float randomPointGain = Random.Range(minPointIncrease, maxPointIncrease);
+        float randomPointGain = UnityEngine.Random.Range(minPointIncrease, maxPointIncrease);
         points = Mathf.Round((points + randomPointGain) * 100) / 100f;
 
-        if (ScoreText != null)
-            ScoreText.text = numberConverter.ConvertNumber(points);
+        GnomesKilled += 1;
+
+        UpdateScore();
+
     }
 
     public void GainPointBonus(float pointBonus)
     {
         points = Mathf.Round((points + pointBonus) * 100) / 100f;
 
-        if (ScoreText != null)
-            ScoreText.text = numberConverter.ConvertNumber(points);
+        UpdateScore();
     }
 
     public void LosePoints()
@@ -79,4 +86,88 @@ public class LawnmowerPointsSystem : MonoBehaviour
         if (ScoreText != null)
             ScoreText.text = numberConverter.ConvertNumber(points);
     }
+
+    public string AddToSecondTextBox(float score)
+    {
+
+        string numericalScore = "";
+
+
+        if (score < 0)
+        {
+
+            numericalScore += "-";
+
+        }
+
+        numericalScore += "$";
+
+        if (score > 20)
+        {
+
+            numericalScore += Mathf.FloorToInt(score) / 10 + " ";
+
+            if(score % 10 > 0)
+            {
+
+                numericalScore += Mathf.FloorToInt(score);
+
+            }
+            else
+            {
+
+                numericalScore += "0";
+
+            }
+
+        }
+        else if (score >=0)
+        {
+
+            numericalScore += Mathf.FloorToInt(score);
+        }
+
+        int decimalValue = (int) ((score - Mathf.FloorToInt(score)) * 100);
+
+        numericalScore += ".";
+
+        if (decimalValue > 20)
+        {
+
+            numericalScore += Mathf.FloorToInt(decimalValue) / 10 + " ";
+
+            if (decimalValue % 10 > 0)
+            {
+
+                numericalScore += Mathf.FloorToInt(decimalValue) % 10;
+
+            }
+                
+        }
+        else if (decimalValue >= 1)
+        {
+
+            numericalScore += "0" + Mathf.FloorToInt(decimalValue);
+
+        }
+        else
+        {
+
+            numericalScore += "00";
+
+        }
+
+        return numericalScore;
+
+    }
+    void UpdateScore()
+    {
+
+        if (ScoreText != null)
+            ScoreText.text = numberConverter.ConvertNumber(points);
+        if (NumericalScoreText != null)
+            NumericalScoreText.text = AddToSecondTextBox(points);
+
+    }
+
 }
