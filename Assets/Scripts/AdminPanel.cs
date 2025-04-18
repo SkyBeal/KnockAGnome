@@ -17,6 +17,7 @@ public class AdminPanel : MonoBehaviour
     [SerializeField, Foldout("Refs")] private Toggle ChairStoppedToggle;
     [SerializeField, Foldout("Refs")] private TMP_Text chairEmerStopButtonText;
     [SerializeField, Foldout("Refs")] private Button emergencyStopButton;
+    [SerializeField, Foldout("Refs")] private TMP_Text pointsText;
 
     /// <summary>
     /// Sets up displays
@@ -83,5 +84,12 @@ public class AdminPanel : MonoBehaviour
         rotoMan.MoveChairToZero();
     }
 
+
+
     #endregion BUTTON FUNCS
+
+    public void UpdatePoints(float pts)
+    {
+        pointsText.text = "Money Gained: " + pts;
+    }
 }

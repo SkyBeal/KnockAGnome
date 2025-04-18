@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using System.Collections;
 
 public class LawnmowerPointsSystem : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
     public int GnomesKilled = 0;
 
     NumberConverter numberConverter;
+    AdminPanel adminPanel;
 
     [Button("Gain Points")]
     private void TempGainPoints()
@@ -54,7 +56,17 @@ public class LawnmowerPointsSystem : MonoBehaviour
         string test = numberConverter.ConvertNumber(0.5f);
         print(test);
         GainPoints();
+        
+    }
 
+    private void Awake()
+    {
+        StartCoroutine(delayedAdminPanel());
+    }
+    private IEnumerator delayedAdminPanel()
+    {
+        yield return null;
+        adminPanel = FindObjectOfType<AdminPanel>();
     }
 
     public void GainPoints()
@@ -161,7 +173,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
             ScoreText.text = numberConverter.ConvertNumber(points);
         if (NumericalScoreText != null)
             NumericalScoreText.text = AddToSecondTextBox(points);
-
+        adminPanel.UpdatePoints(points);
     }
 
 }
