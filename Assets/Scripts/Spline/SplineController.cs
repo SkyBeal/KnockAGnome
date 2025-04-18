@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------------------+/
  */
 
+using Unity.VisualScripting;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -145,5 +147,10 @@ public class SplineController : MonoBehaviour
         float randomPointGain = Random.Range(0.5f, 0.75f);
         lawnmowerPointsSystem.GainPointBonus(randomPointGain);
         EndScreen.SetActive(true);
+        EndScreen.GetComponent<Animator>().enabled = true;
+        EndScreen.GetNamedChild("Score Text").GetComponent<Animator>().enabled = true;
+        EndScreen.GetNamedChild("Number Score Text").GetComponent<Animator>().enabled = true;
+        EndScreen.GetComponentInChildren<GnomesKilledIncrement>().enabled = true;
     }
+
 }

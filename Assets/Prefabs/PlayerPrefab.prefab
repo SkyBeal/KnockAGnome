@@ -634,6 +634,8 @@ MonoBehaviour:
   MinimumPointValue: 0
   points: 0
   ScoreText: {fileID: 0}
+  NumericalScoreText: {fileID: 0}
+  GnomesKilled: 0
 --- !u!1001 &2358781042522921185
 PrefabInstance:
   m_ObjectHideFlags: 0
