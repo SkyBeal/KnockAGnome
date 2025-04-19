@@ -34,6 +34,7 @@ public class GnomeAnimationManager : MonoBehaviour
         pluckgrass,
         popout,
         jumpscare,
+        balloon,
     }
     public AnimatedActions givenAction;
     // Start is called before the first frame update
@@ -107,6 +108,9 @@ public class GnomeAnimationManager : MonoBehaviour
             case AnimatedActions.jumpscare:
                 SetAnimation(19);
                 break;
+            case AnimatedActions.balloon:
+                SetAnimation(20);
+                break;
             default:
                 Debug.Log("Error! givenAction outside of knowable range!");
                 break;
@@ -122,10 +126,18 @@ public class GnomeAnimationManager : MonoBehaviour
         {
             anim.SetInteger("runVariation", Random.Range(0, 3));
         }
-        if (animID == 18)
+        if (animID == 18 || animID == 0)
         {
             anim.speed = Random.Range(.75f, 1.25f);
         }
     }
+    public void Jumpscare()
+    {
+        anim.SetTrigger("jumpscare");
+    }
 
+    public void BalloonSmash()
+    {
+        anim.SetTrigger("balloon");
+    }
 }

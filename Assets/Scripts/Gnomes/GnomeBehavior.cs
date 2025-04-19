@@ -11,6 +11,7 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Splines;
+using NaughtyAttributes;
 
 [RequireComponent(typeof(Animator))]
 public class GnomeBehavior : MonoBehaviour
@@ -126,6 +127,7 @@ public class GnomeBehavior : MonoBehaviour
     /// <summary>
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
+    //[Button]
     public void Die()
     {
         Debug.Log(gameObject.name + " was killed");
@@ -172,8 +174,7 @@ public class GnomeBehavior : MonoBehaviour
             {
                 GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
 
-                if (balloon != null)
-                    balloon.StartBalloonFly();
+                GetComponentInChildren<GnomeAnimationManager>().BalloonSmash();
 
                 MusicManager.instance.switchMusic(1);
             }
