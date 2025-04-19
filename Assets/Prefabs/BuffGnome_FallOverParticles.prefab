@@ -4920,7 +4920,7 @@ Transform:
   - {fileID: 1977793501326977231}
   - {fileID: 151484887167727540}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2480743517394496736
 ParticleSystem:
@@ -24409,7 +24409,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e9667c306271074f8569f70b8f0acf1, type: 2}
+  - {fileID: 2100000, guid: d31a3ece63dcf87448ab11555b2b6fb7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
