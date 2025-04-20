@@ -78,7 +78,7 @@ public class SplineController : MonoBehaviour
         //    }
 
         //}
-
+        /*
         if(currentSplineIndex >= splinePath.Length)
         {
 
@@ -93,6 +93,7 @@ public class SplineController : MonoBehaviour
             }
 
         }
+        */
 
     }
 
