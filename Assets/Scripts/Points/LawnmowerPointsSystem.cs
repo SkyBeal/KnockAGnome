@@ -154,12 +154,19 @@ public class LawnmowerPointsSystem : MonoBehaviour
                 numericalScore += Mathf.FloorToInt(decimalValue) % 10;
 
             }
+            else { numericalScore += "0"; }
                 
         }
         else if (decimalValue >= 1)
         {
 
             numericalScore += Mathf.FloorToInt(decimalValue);
+
+        }
+        else
+        {
+
+            numericalScore += "00";
 
         }
 
