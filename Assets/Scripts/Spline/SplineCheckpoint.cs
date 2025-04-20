@@ -6,7 +6,7 @@ public class SplineCheckpoint : MonoBehaviour
 
     public void RotateChair()
     {
-        print(rotoInstructions.power + " " + rotoInstructions.angle);
+        //print(rotoInstructions.power + " " + rotoInstructions.angle);
         PublicEventManager.RotateChair?.Invoke(rotoInstructions);
     }
 }

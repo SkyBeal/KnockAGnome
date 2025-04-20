@@ -102,9 +102,14 @@ public class LawnmowerPointsSystem : MonoBehaviour
     public string AddToSecondTextBox(float score)
     {
 
+        //Debug.Log(score + "secon text box");
         float rounded = Mathf.Floor(score * 100) / 100;
-        if (score != rounded)
+        /*Debug.Log(score < rounded);
+        Debug.Log("----------------------------");
+        if (score < rounded)
             rounded -= 0.01f; // score is consistently 0.01 higher than displayed score
+        */
+        
         string numericalScore = "$" + rounded.ToString();
 
         // add 0 if too short of decimal

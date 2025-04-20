@@ -144,7 +144,7 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
-        Debug.Log("here");
+        //Debug.Log("here");
         float randomPointGain = Random.Range(0.5f, 0.75f);
         lawnmowerPointsSystem.GainPointBonus(randomPointGain);
         if (EndScreen == null)

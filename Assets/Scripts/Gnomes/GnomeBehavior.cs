@@ -128,7 +128,7 @@ public class GnomeBehavior : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        Debug.Log(gameObject.name + " was killed");
+        //Debug.Log(gameObject.name + " was killed");
         if (!isDead)
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Shatter, transform.position);
