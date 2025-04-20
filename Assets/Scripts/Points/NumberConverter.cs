@@ -11,6 +11,8 @@ public class NumberConverter
         "fifty", "sixty", "seventy", "eighty", "ninety"};
     public string ConvertNumber(float num)
     {
+        //Debug.Log(num + "convert number");
+        //num = Mathf.Floor(num * 100) / 100;
         string snum = "";
 
         if (num < 0)
@@ -30,7 +32,7 @@ public class NumberConverter
             snum += onesArray[Mathf.FloorToInt(num)];
         }
 
-        int decimalValue = (int) ((num -  Mathf.FloorToInt(num)) * 100);
+        int decimalValue = Mathf.FloorToInt((num -  Mathf.FloorToInt(num)) * 100);
 
         snum += " dollars and ";
 
@@ -44,6 +46,7 @@ public class NumberConverter
         {
             snum += onesArray[Mathf.FloorToInt(decimalValue)];
         }
+        else { }
 
         snum += " cents";
 
