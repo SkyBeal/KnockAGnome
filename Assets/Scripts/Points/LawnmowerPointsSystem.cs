@@ -160,6 +160,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
         else if (decimalValue >= 1)
         {
 
+            numericalScore += "0";
+
             numericalScore += Mathf.FloorToInt(decimalValue);
 
         }
