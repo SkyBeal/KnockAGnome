@@ -44,6 +44,7 @@ public class NumberConverter
         {
             snum += onesArray[Mathf.FloorToInt(decimalValue)];
         }
+        else { }
 
         snum += " cents";
 
