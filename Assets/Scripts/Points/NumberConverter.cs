@@ -30,11 +30,11 @@ public class NumberConverter
             snum += onesArray[Mathf.FloorToInt(num)];
         }
 
-        int decimalValue = (int) ((num -  Mathf.FloorToInt(num)) * 100);
+        int decimalValue = Mathf.FloorToInt((num -  Mathf.FloorToInt(num)) * 100);
 
         snum += " dollars and ";
 
-        if (decimalValue > 20)
+        if (decimalValue >= 20)
         {
             snum += tensArray[Mathf.FloorToInt(decimalValue) / 10] + " ";
             if (decimalValue % 10 > 0)

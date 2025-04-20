@@ -53,9 +53,9 @@ public class LawnmowerPointsSystem : MonoBehaviour
         points = StartingPointValue;
 
         numberConverter = new NumberConverter();
-        string test = numberConverter.ConvertNumber(0.5f);
-        print(test);
-        GainPoints();
+        //string test = numberConverter.ConvertNumber(0.5f);
+        //print(test);
+        //GainPoints();
         
     }
 
@@ -72,7 +72,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
     public void GainPoints()
     {
         float randomPointGain = UnityEngine.Random.Range(minPointIncrease, maxPointIncrease);
-        points = Mathf.Round((points + randomPointGain) * 100) / 100f;
+        points = Mathf.Floor((points + randomPointGain) * 100) / 100f;
 
         GnomesKilled += 1;
 
@@ -82,7 +82,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
 
     public void GainPointBonus(float pointBonus)
     {
-        points = Mathf.Round((points + pointBonus) * 100) / 100f;
+        points = Mathf.Floor((points + pointBonus) * 100) / 100f;
 
         UpdateScore();
     }
@@ -102,7 +102,18 @@ public class LawnmowerPointsSystem : MonoBehaviour
     public string AddToSecondTextBox(float score)
     {
 
-        string numericalScore = "";
+        float rounded = Mathf.Floor(score * 100) / 100;
+        if (score != rounded)
+            rounded -= 0.01f; // score is consistently 0.01 higher than displayed score
+        string numericalScore = "$" + rounded.ToString();
+
+        // add 0 if too short of decimal
+        if (numericalScore[numericalScore.Length - 2] == '.')
+            numericalScore += "0";
+
+        return numericalScore;
+
+        //string numericalScore = "";
 
 
         if (score < 0)
@@ -146,7 +157,7 @@ public class LawnmowerPointsSystem : MonoBehaviour
         if (decimalValue > 20)
         {
 
-            numericalScore += Mathf.FloorToInt(decimalValue) / 10 + "";
+            numericalScore += (int)(Mathf.FloorToInt(decimalValue) / 10 )+ "";
 
             if (decimalValue % 10 > 0)
             {

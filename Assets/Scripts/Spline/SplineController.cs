@@ -79,13 +79,13 @@ public class SplineController : MonoBehaviour
 
         //}
 
-        if(currentSplineIndex == splinePath.Length)
+        if(currentSplineIndex >= splinePath.Length)
         {
 
-            float timer = 0;
-            timer += Time.deltaTime;
+            //float timer = 0;
+            //timer += Time.deltaTime;
 
-            if (timer >= endingTimer && endingCalled == false)
+            if (endingCalled == false)
             {
                 endingCalled = true;
                 CallEnding();
@@ -144,9 +144,13 @@ public class SplineController : MonoBehaviour
 
     public void CallEnding()
     {
-
+        Debug.Log("here");
         float randomPointGain = Random.Range(0.5f, 0.75f);
         lawnmowerPointsSystem.GainPointBonus(randomPointGain);
+        if (EndScreen == null)
+        {
+            EndScreen = FindObjectOfType<GnomesKilledIncrement>().gameObject;
+        }    
         EndScreen.SetActive(true);
         EndScreen.GetComponent<Animator>().enabled = true;
         EndScreen.GetNamedChild("Score Text").GetComponent<Animator>().enabled = true;
