@@ -127,7 +127,7 @@ public class GnomeBehavior : MonoBehaviour
     /// <summary>
     /// Ends gnome behavior and calls for the gnome to be shatter, passing the velocity of the killing attack.
     /// </summary>
-    //[Button]
+    [Button]
     public void Die()
     {
         Debug.Log(gameObject.name + " was killed");
