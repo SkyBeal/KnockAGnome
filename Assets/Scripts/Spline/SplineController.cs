@@ -152,6 +152,7 @@ public class SplineController : MonoBehaviour
         EndScreen.GetNamedChild("Score Text").GetComponent<Animator>().enabled = true;
         EndScreen.GetNamedChild("Number Score Text").GetComponent<Animator>().enabled = true;
         EndScreen.GetComponentInChildren<GnomesKilledIncrement>().enabled = true;
+        EndScreen.GetComponentInChildren<GnomesKilledIncrement>().StartIncrement();
 
         AudioManager.instance.PlayOneShot(FMODEvents.instance.OldManRambles, transform.position);
 
