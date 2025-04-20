@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class DevDebug : MonoBehaviour
 {
-    private BalloonScript balloon;
+    private GameObject firstGnome;
     private void Start()
     {
-        balloon = FindObjectOfType<BalloonScript>();
+        firstGnome = GameObject.Find("Gnome_First");
     }
     public void Update()
     {
@@ -15,7 +15,10 @@ public class DevDebug : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject.Find("PlayerPrefab").GetComponent<SplineAnimate>().Play();
-            balloon.StartBalloonFly();
+            if (firstGnome != null)
+            {
+                firstGnome.GetComponent<GnomeBehavior>().Die();
+            }
 
             MusicManager.instance.switchMusic(1);
         }

@@ -173,7 +173,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
             ScoreText.text = numberConverter.ConvertNumber(points);
         if (NumericalScoreText != null)
             NumericalScoreText.text = AddToSecondTextBox(points);
-        adminPanel.UpdatePoints(points);
+        if (adminPanel != null)
+            adminPanel.UpdatePoints(points);
     }
 
 }
