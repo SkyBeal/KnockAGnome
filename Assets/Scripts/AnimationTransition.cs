@@ -9,7 +9,6 @@ public class AnimationTransition : MonoBehaviour
     {
 
         GetComponent<Animator>().SetTrigger("Transitioned");
-        GetComponentInParent<GnomesKilledIncrement>().StartIncrement();
 
     }
 
