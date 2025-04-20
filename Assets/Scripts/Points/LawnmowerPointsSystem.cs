@@ -65,8 +65,8 @@ public class LawnmowerPointsSystem : MonoBehaviour
     }
     private IEnumerator delayedAdminPanel()
     {
-        yield return null;
         adminPanel = FindObjectOfType<AdminPanel>();
+        yield return null;
     }
 
     public void GainPoints()
