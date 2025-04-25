@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using System;
 using Debug = UnityEngine.Debug;
+using Unity.VisualScripting;
 
 namespace Roto.Control
 {
@@ -169,18 +170,23 @@ namespace Roto.Control
 
             strAppName = "rotoVRCmd.exe";
 
+            
+
             // rotoVR command file path in streaming Assets
             commandFile = Path.Combine(Application.streamingAssetsPath, strAppName);
 
             // kill all the background running rotoVRCmd.exe to make sure only single instance is running.
-            foreach (Process process in Process.GetProcessesByName(strAppName))
+            foreach (Process process in Process.GetProcessesByName("rotoVRCmd"))
             {
+                
                 process.Kill();
             }
 
 
             ConnectChair();
         }
+
+        
 
         public void ConnectChair()
         {
@@ -212,10 +218,7 @@ namespace Roto.Control
         /// </summary>
         void Start()
         {
-            //MOVED TO AWAKE
-            /*processThread = new Thread(StreamLoop) { };
-            processThread.Start();
-            isConnected = true;*/
+            
         }
 
         #endregion
